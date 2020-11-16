@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "789653528022",
+    "firebase_url": "https://ourmemory-dc874.firebaseio.com",
+    "project_id": "ourmemory-dc874",
+    "storage_bucket": "ourmemory-dc874.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789653528022:android:ff2536e4c1e4e74efe9877",
+        "android_client_info": {
+          "package_name": "com.example.ourmemory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789653528022-dab05hvipngbllpiprlqner7omctnh4f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ourmemory",
+            "certificate_hash": "14597c034da53ab79aa7392b5838fbb458b7e3aa"
+          }
+        },
+        {
+          "client_id": "789653528022-hcdqulkf2trhgo50mndtum9tg96vlmet.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0yzrCXZYMAkeCu_ChShLchVwlh3AjSns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789653528022-hcdqulkf2trhgo50mndtum9tg96vlmet.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
