@@ -52,6 +52,7 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         protected void onResume() {
                 super.onResume();
+                // 주석 추가한 상태로 다시 저장하자.
                 adapter.clear();
                 getJsonData();
         }
