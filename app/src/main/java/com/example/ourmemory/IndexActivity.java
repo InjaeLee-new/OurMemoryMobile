@@ -40,8 +40,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 break;
 
-            // 각자 필요한 인텐트까지만해서 작업해주면돼 크게 코드는 이렇게 구분할 수 있어
-            /** Intent intent = new Intent(시작 엑티비티 , 이동할 엑티비티);
+            /** 각자 필요한 인텐트까지만해서 작업해주면돼 크게 코드는 이렇게 구분할 수 있어
+             *  Intent intent = new Intent(시작 엑티비티 , 이동할 엑티비티);
              *  startActivity(intent);
              *  일반적으로 시작 엑티비티는 this로 현재 엑티비티를 설정하면 되는거고
              *  이동할 엑티비티는 본인들이 만든 내용으로 처리한다.
