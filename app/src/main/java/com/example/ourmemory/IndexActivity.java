@@ -55,6 +55,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
              *  해당 코드를 참고해서 아래 case를 자기꺼에 맞게 처리하시면 됩니다.
              */
 
+            //깃 테스트용 주석하나 달았음!
+
             case R.id.buttonSI:
                 // 성인누나가 새롭게 Activity 만들어서 여기서 이동시키면돼.
                 break;

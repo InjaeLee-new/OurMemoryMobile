@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonLoginOK.setOnClickListener(this);
         buttonToMain.setOnClickListener(this);
 
-//        lottie1 = (LottieAnimationView) findViewById(R.id.lottie1);
+        lottie1 = (LottieAnimationView) findViewById(R.id.lottie1);
 
         textView = findViewById(R.id.textView);
 
