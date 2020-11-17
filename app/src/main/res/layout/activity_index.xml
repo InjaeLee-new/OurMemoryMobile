@@ -19,4 +19,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="추억 리스트 보기" />
+
+    <Button
+        android:id="@+id/buttonSI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="성인누나 작업" />
+
+    <Button
+        android:id="@+id/buttonSW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="승원이 작업" />
+
+    <Button
+        android:id="@+id/buttonSB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="성빈이 작업" />
+
 </LinearLayout>
