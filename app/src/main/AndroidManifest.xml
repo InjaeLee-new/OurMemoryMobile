@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ourmemory">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ourmemory5"
@@ -12,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HealthListActivity"></activity>
+        <activity android:name=".FoodListActivity"></activity>
+        <activity android:name=".HealthListActivity" />
         <activity android:name=".ViewActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".IndexActivity" />
@@ -24,5 +23,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
