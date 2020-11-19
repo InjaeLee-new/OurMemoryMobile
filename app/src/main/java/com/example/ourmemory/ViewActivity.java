@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ourmemory.adapter.MemoryAdapter;
 import com.example.ourmemory.helper.JsonHelper;
 import com.example.ourmemory.model.MemoryDTO;
@@ -50,6 +51,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         memoryDTO = (MemoryDTO) getIntent().getSerializableExtra("dto");
 
+        String full_filename = "http://192.168.1.21:8085/java/img" + "/" + memoryDTO.getMemory_file();
+
         // 1 증가한 조회수를 미리 받아버리기~
         int update_hit = getIntent().getIntExtra("memory_hit", 0);
 
@@ -60,7 +63,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         textView3 = findViewById(R.id.textView3);
         textViewContent = findViewById(R.id.textViewContent);
 
-        imageView.setImageResource(R.drawable.ourmemory);
+        Glide.with(this).load(full_filename)
+                .into(imageView);
         textView1.setText("글 제목 : " + memoryDTO.getMemory_subject());
         textView2.setText("작성자 : " + memoryDTO.getMemory_name());
         textView3.setText("조회수 : " + update_hit + " / " + "추천수 : " + memoryDTO.getMemory_rec() + " / 비추천수 : " +memoryDTO.getMemory_nrec());
