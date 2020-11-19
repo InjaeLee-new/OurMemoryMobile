@@ -38,6 +38,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonBack;
     boolean statusLike = false;
     int like_status = 0;
+
+    // 확인용 주석
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,8 +167,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onSuccess(int i, Header[] headers, byte[] bytes) {
-            Toast.makeText(ViewActivity.this, "성공했습니다. "+i, Toast.LENGTH_SHORT).show();
-            i++;
+            Toast.makeText(ViewActivity.this, "추천 / 비추천 성공했습니다. ", Toast.LENGTH_SHORT).show();
         }
 
         @Override
