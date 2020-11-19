@@ -110,6 +110,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         buttonCommentSubmit.setOnClickListener(this);
     }
 
+    // 댓글을 입력한 이후에, 화면이 초기화되는 작업이 필요하다. 이 부분은 resume으로 해야하는지 알아볼 것.
     @Override
     protected void onResume() {
         super.onResume();
