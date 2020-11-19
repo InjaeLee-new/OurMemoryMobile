@@ -107,11 +107,13 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         buttonBack.setOnClickListener(this);
         textView9.setOnClickListener(this);
         textView10.setOnClickListener(this);
+        buttonCommentSubmit.setOnClickListener(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        getCommentData();
     }
 
     private void getJsonData() {
@@ -126,6 +128,19 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         params.put("seq", memoryDTO.getMemory_num());
         String url = "http://192.168.1.21:8085/java/commentViewJson";
         client.post(url, params,  commentHelper);
+    }
+
+    private void CommentWriteJson() {
+        RequestParams params = new RequestParams();
+        params.put("memory_seq", memoryDTO.getMemory_num());
+        params.put("memory_comment_name", editTextCommentName.getText().toString().trim());
+        params.put("memory_comment_content", editTextCommentContent.getText().toString().trim());
+        String url = "http://192.168.1.21:8085/java/viewCommentWriteJson";
+        client.post(url, params,  commentHelper);
+        onResume();
+
+        editTextCommentName.setText("");
+        editTextCommentContent.setText("");
     }
 
     @Override
@@ -161,6 +176,13 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.buttonCommentSubmit:
                 // 댓글 작성 후 저장하는 버튼
+                if(editTextCommentName.getText() == null || editTextCommentName.getText().toString().equals("")) {
+                    Toast.makeText(this,"댓글에 쓸 이름을 작성해주세요.",Toast.LENGTH_SHORT).show();
+                } else if(editTextCommentContent.getText() == null || editTextCommentContent.getText().toString().equals("")) {
+                    Toast.makeText(this,"댓글을 작성해주세요.",Toast.LENGTH_SHORT).show();
+                } else {
+                    CommentWriteJson();
+                }
                 break;
         }
 
