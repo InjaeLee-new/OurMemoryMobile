@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".FoodListActivity"></activity>
+        <activity android:name=".ViewActivity" />
+        <activity android:name=".ListActivity" />
+        <activity android:name=".IndexActivity" />
+        <activity android:name=".MainActivity">
+        <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
 
     </application>
 
