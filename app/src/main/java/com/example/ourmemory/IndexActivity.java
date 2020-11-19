@@ -34,6 +34,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonSI.setOnClickListener(this);
         buttonSW.setOnClickListener(this);
         buttonSB.setOnClickListener(this);
+
+        // 버튼 추가로 8개까지 작업 할 예정이다.
     }
 
     @Override
