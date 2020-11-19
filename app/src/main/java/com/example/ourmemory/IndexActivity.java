@@ -16,7 +16,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
     Button buttonToMemoryList;
 
-    Button buttonSI , buttonSW, buttonSB;
+    Button buttonSIFood , buttonSW, buttonSB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +25,13 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
         buttonToMemoryList = findViewById(R.id.buttonToMemoryList);
 
-        buttonSI = findViewById(R.id.buttonSI);
+        buttonSIFood = findViewById(R.id.buttonSIFood);
         buttonSW = findViewById(R.id.buttonSW);
         buttonSB = findViewById(R.id.buttonSB);
 
 
         buttonToMemoryList.setOnClickListener(this);
-        buttonSI.setOnClickListener(this);
+        buttonSIFood.setOnClickListener(this);
         buttonSW.setOnClickListener(this);
         buttonSB.setOnClickListener(this);
     }
@@ -57,8 +57,11 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
             //깃 테스트용 주석하나 달았음!
 
-            case R.id.buttonSI:
+            case R.id.buttonSIFood:
                 // 성인누나가 새롭게 Activity 만들어서 여기서 이동시키면돼.
+                Intent intentSIFood = new Intent(this, FoodListActivity.class);
+                intentSIFood.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intentSIFood);
                 break;
             case R.id.buttonSW:
                 // 승원이도 하나 Activity 만들어서 이동시켜주자.

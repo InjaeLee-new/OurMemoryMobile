@@ -57,6 +57,7 @@ public class JsonHelper extends AsyncHttpResponseHandler {
                 memoryDTO.setMemory_rec(temp.getInt("memory_rec"));
                 memoryDTO.setMemory_nrec(temp.getInt("memory_nrec"));
                 memoryDTO.setMemory_name(temp.getString("memory_name"));
+                memoryDTO.setMemory_category(temp.getString("memory_category"));
 
                 adapter.add(memoryDTO);
             }

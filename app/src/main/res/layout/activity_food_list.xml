@@ -5,37 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".IndexActivity">
+    tools:context=".ListActivity">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="로그인 성공!"
+        android:gravity="center_horizontal"
+        android:text="[Food 게시판 🍔]"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-    <Button
-        android:id="@+id/buttonToMemoryList"
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="추억 리스트 보기" />
+        android:layout_weight="1">
+
+    </ListView>
 
     <Button
-        android:id="@+id/buttonSIFood"
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="음식 리스트 보기" />
-
-    <Button
-        android:id="@+id/buttonSW"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="승원이 작업" />
-
-    <Button
-        android:id="@+id/buttonSB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="성빈이 작업" />
+        android:text="돌아가기" />
 
 </LinearLayout>
