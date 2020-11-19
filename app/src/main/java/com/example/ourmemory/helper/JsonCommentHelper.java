@@ -5,6 +5,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.ourmemory.adapter.MemoryAdapter;
+import com.example.ourmemory.adapter.MemoryCommentAdapter;
+import com.example.ourmemory.model.MemoryCommentDTO;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -17,11 +19,11 @@ import cz.msebera.android.httpclient.Header;
 
 public class JsonCommentHelper extends AsyncHttpResponseHandler {
     Activity activity;
-    MemoryAdapter adapter;
+    MemoryCommentAdapter adapter;
     ListView listView;
 
 
-    public JsonCommentHelper(Activity activity, MemoryAdapter adapter, ListView listView) {
+    public JsonCommentHelper(Activity activity, MemoryCommentAdapter adapter, ListView listView) {
         this.activity = activity;
         this.adapter = adapter;
         this.listView = listView;
@@ -30,7 +32,7 @@ public class JsonCommentHelper extends AsyncHttpResponseHandler {
     @Override
     public void onStart() {
         super.onStart();
-        listView.setSelection(adapter.getCount() - 1);
+//        listView.setSelection(adapter.getCount() - 1);
     }
 
     @Override
@@ -44,22 +46,17 @@ public class JsonCommentHelper extends AsyncHttpResponseHandler {
 
         try {
             JSONObject json = new JSONObject(str);
-            JSONArray memorylist = json.getJSONArray("memoryList");
+            JSONArray memoryCommentList = json.getJSONArray("memoryCommentList");
 
-            for(int a = 0 ; a < memorylist.length(); a++) {
-                JSONObject temp = memorylist.getJSONObject(a);
-                MemoryDTO memoryDTO = new MemoryDTO();
-                memoryDTO.setMemory_num(temp.getInt("memory_num"));
-                memoryDTO.setMemory_file(temp.getString("memory_file"));
-                memoryDTO.setMemory_subject(temp.getString("memory_subject"));
-                memoryDTO.setMemory_content(temp.getString("memory_content"));
-                memoryDTO.setMemory_date(temp.getString("memory_date"));
-                memoryDTO.setMemory_hit(temp.getInt("memory_hit"));
-                memoryDTO.setMemory_rec(temp.getInt("memory_rec"));
-                memoryDTO.setMemory_nrec(temp.getInt("memory_nrec"));
-                memoryDTO.setMemory_name(temp.getString("memory_name"));
+            for(int a = 0 ; a < memoryCommentList.length(); a++) {
+                JSONObject temp = memoryCommentList.getJSONObject(a);
+                MemoryCommentDTO memoryCommentDTO = new MemoryCommentDTO();
+                memoryCommentDTO.setMemory_seq(temp.getInt("memory_seq"));
+                memoryCommentDTO.setMemory_comment_name(temp.getString("memory_comment_name"));
+                memoryCommentDTO.setMemory_comment_content(temp.getString("memory_comment_content"));
+                memoryCommentDTO.setReg_date(temp.getString("reg_date"));
 
-                adapter.add(memoryDTO);
+                adapter.add(memoryCommentDTO);
             }
 
         } catch (JSONException e) {
