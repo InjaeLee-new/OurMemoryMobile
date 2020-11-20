@@ -120,7 +120,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
-        String url = "http://192.168.0.109:8081/java/viewHitJson";
+        String url = "http://192.168.1.21:8085/java/viewHitJson";
         client.post(url, params, helper);
     }
 

@@ -29,12 +29,18 @@ public class GoogleLoginResultActivity extends AppCompatActivity {
         String photoUrl = intent.getStringExtra("photoUrl");        // 사진 전달 받기
         String uid = intent.getStringExtra("uid");        // 사진 전달 받기
 
+        // @기준으로 앞에 문자열은 아이디로 뒤에 문자는 따로 nextAt에 저장한다.
+        String splitEmail[] = email.split("@");
+        String userId = splitEmail[0];
+        String nextAt = splitEmail[1];
+
         result = findViewById(R.id.resultString);
         profile = findViewById(R.id.resultProfile);
 
         result.setText("이름 : " +nickname + "\nuid : "+ uid
                 +"\nemail : "+email+"\nphoneNumber : "+phoneNumber+
                 "\nproviderId : "+providerId +"\ntenantId : "+tenantId
+                +"\nuserId : "+userId+"\nnextAt : "+nextAt
         );
         Glide.with(this).load(photoUrl).into(profile); // 프로필 url을 세팅
     }

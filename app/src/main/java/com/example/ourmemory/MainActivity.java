@@ -13,11 +13,14 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.ourmemory.helper.JsonLoginHelper;
+import com.example.ourmemory.model.MemberDTO;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -31,6 +34,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -57,7 +62,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView textView;
 
-    Boolean LoginOK = false;
+    EditText editTextID, editTextPassword;
+
+    static public Boolean LoginOK = false;
+    static public String user_name = "";
+
+    // 일반 로그인에 필요한 내용 구현
+    JsonLoginHelper helper;
+    AsyncHttpClient client;
 
     // 구글 로그인을 위해 작성
     private FirebaseAuth mAuth;
@@ -70,9 +82,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 일반 로그인을 위해 작성
+       helper = new JsonLoginHelper(this);
+       client = new AsyncHttpClient();
+
+       editTextID = findViewById(R.id.editTextID);
+       editTextPassword = findViewById(R.id.editTextPassword);
+
         // 구글 로그인을 위해 작성
        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-               .requestIdToken(getString(R.string.default_web_client_id))
+               .requestIdToken("789653528022-hcdqulkf2trhgo50mndtum9tg96vlmet.apps.googleusercontent.com")
                .requestEmail()
                .build(); // 구글 사인인 버튼을 누를 때 기본적인 옵션 정리 코드
        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -168,7 +187,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.buttonLoginOK:
-                LoginOK = true;
+                RequestParams params = new RequestParams();
+                params.put("id", editTextID.getText().toString().trim());
+                params.put("pw", editTextPassword.getText().toString().trim());
+                String url = "http://192.168.1.21:8085/java/appLogin";
+                client.post(url, params,  helper);
                 if(LoginOK == true) {
                     Intent intentLogin = new Intent(this, IndexActivity.class);
                     startActivity(intentLogin);
@@ -200,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "account 가져왔어 account = " + account, Toast.LENGTH_SHORT).show();
                 // account <= 구글로그인 정보를 담고 있음
                 firebaseAuthWithGoogle(account.getIdToken()); // 로그인 결과값 출력하라는 함수
+                Toast.makeText(this, "account.getIdToken() = " + account.getIdToken(), Toast.LENGTH_SHORT).show();
             } catch (ApiException e) {
                 Toast.makeText(this, "account도 못가져왔어", Toast.LENGTH_SHORT).show();
                 // Google Sign In failed, update UI appropriately
@@ -219,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             // Sign in success, update UI with the signed-in user's information
                             // FirebaseUser = 사용자 프로필을 조작하고 인증 공급자에 연결하거나 연결을 끊고 인증 토큰을 새로 고칠 수 있음
                             FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(getApplicationContext(), "user= " +user, Toast.LENGTH_SHORT).show();
                             updateUI(user);// 함수 호출
                         } else {                    // 로그인이 실패했으면
                             // If sign in fails, display a message to the user.
@@ -231,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // updateUI(user) 함수 작성 ( 실제 화면 결과화면 이동 후 추가 작성, 또는 사용자 정보 가져오게)
 
     private void updateUI(FirebaseUser currentUser) {
-        Toast.makeText(this, "업데이트UI 함수 동작", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "업데이트UI 함수 동작, currentUser = " + currentUser, Toast.LENGTH_SHORT).show();
         if(currentUser != null){
             Toast.makeText(this, "받아온 정보가 있어!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), GoogleLoginResultActivity.class);
@@ -248,26 +273,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this,"실패",Toast.LENGTH_SHORT).show();
         }
     }
-
-    /*
-     그 후에 넘겨받는 곳에서 glide 생성 후 이미지 또는 정보 출력 및 저장 (onCreate에 작성)
-
-        Intent intent = getIntent();
-        String nickname = intent.getStringExtra("nickname");        // 닉네임 전달 받기
-        String email = intent.getStringExtra("email");              // 이메일 전달 받기
-        String phoneNumber = intent.getStringExtra("phoneNumber");  // 전화번호 전달 받기(안 받아짐)
-        String providerId = intent.getStringExtra("providerId");    // firebase 전달 받기
-        String tenantId = intent.getStringExtra("tenantId");        // null로 옴 전달 받기
-        String photoUrl = intent.getStringExtra("photoUrl");        // 사진 전달 받기
-        String uid = intent.getStringExtra("uid");        // 사진 전달 받기
-
-        tv_result = findViewById(R.id.tv_result);
-        iv_profile = findViewById(R.id.iv_profile);
-
-        tv_result.setText("이름 : " +nickname + "\nuid : "+ uid
-                +"\nemail : "+email+"\nphoneNumber : "+phoneNumber+
-                "\nproviderId : "+providerId +"\ntenantId : "+tenantId
-                    );
-        Glide.with(this).load(photoUrl).into(iv_profile); // 프로필 url을 세팅
-     */
 }
