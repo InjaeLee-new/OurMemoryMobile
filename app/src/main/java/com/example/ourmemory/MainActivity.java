@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this, "업데이트UI 함수 동작", Toast.LENGTH_SHORT).show();
         if(currentUser != null){
             Toast.makeText(this, "받아온 정보가 있어!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+            Intent intent = new Intent(getApplicationContext(), GoogleLoginResultActivity.class);
             intent.putExtra("nickname", currentUser.getDisplayName()); 		// 보여지는 이름
             //url을 string 형식으로 넘겨야 에러가 안 뜸
             intent.putExtra("photoUrl", String.valueOf(currentUser.getPhotoUrl()));	// 프로필 사진 url

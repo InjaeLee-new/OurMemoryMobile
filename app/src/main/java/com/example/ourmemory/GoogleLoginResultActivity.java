@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-public class ResultActivity extends AppCompatActivity {
+public class GoogleLoginResultActivity extends AppCompatActivity {
 
     TextView result;
     ImageView profile;

@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".JoinActivity"></activity>
-        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".GoogleLoginResultActivity"></activity>
         <activity android:name=".HealthListActivity" />
         <activity android:name=".FoodListActivity" />
         <activity android:name=".ViewActivity" />
