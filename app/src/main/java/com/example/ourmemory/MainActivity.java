@@ -159,6 +159,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        buttonJoin.startAnimation(buttonfadeoff);
         switch (v.getId()) {
             case R.id.buttonJoin:
+                Intent intentJoin = new Intent(this, JoinActivity.class);
+                startActivity(intentJoin);
                 break;
             case R.id.buttonLogin:
                 login_form.setVisibility(View.VISIBLE);
@@ -168,8 +170,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonLoginOK:
                 LoginOK = true;
                 if(LoginOK == true) {
-                    Intent intent = new Intent(this, IndexActivity.class);
-                    startActivity(intent);
+                    Intent intentLogin = new Intent(this, IndexActivity.class);
+                    startActivity(intentLogin);
                 }
                 break;
             case R.id.buttonToMain:
