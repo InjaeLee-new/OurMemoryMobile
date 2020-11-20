@@ -52,14 +52,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:backgroundTint="#F1F1F1"
+            android:foregroundTint="#1D8CE4"
+            android:text="구글로그인" />
 
         <Button
             android:id="@+id/buttonLoginOK"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_weight="1"
+            android:backgroundTint="#F1F1F1"
+            android:foregroundTint="#1D8CE4"
             android:text="로그인"
             tools:text="로그인" />
 
@@ -67,7 +80,10 @@
             android:id="@+id/buttonToMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_weight="1"
+            android:backgroundTint="#F1F1F1"
+            android:foregroundTint="#1D8CE4"
             android:text="메인으로 돌아가기" />
     </LinearLayout>
 </LinearLayout>
