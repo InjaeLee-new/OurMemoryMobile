@@ -14,24 +14,21 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-public class JsonHelper extends AsyncHttpResponseHandler {
+public class HealthJsonHelper extends AsyncHttpResponseHandler {
     Activity activity;
     MemoryAdapter adapter;
     ListView listView;
 
-
-    public JsonHelper(Activity activity, MemoryAdapter adapter, ListView listView) {
+    public HealthJsonHelper(Activity activity, MemoryAdapter adapter, ListView listView) {
         this.activity = activity;
         this.adapter = adapter;
         this.listView = listView;
     }
-
     @Override
     public void onStart() {
         super.onStart();
         listView.setSelection(adapter.getCount() - 1);
     }
-
     @Override
     public void onFinish() {
         super.onFinish();
@@ -57,7 +54,6 @@ public class JsonHelper extends AsyncHttpResponseHandler {
                 memoryDTO.setMemory_rec(temp.getInt("memory_rec"));
                 memoryDTO.setMemory_nrec(temp.getInt("memory_nrec"));
                 memoryDTO.setMemory_name(temp.getString("memory_name"));
-//                memoryDTO.setMemory_category(temp.getString("memory_category"));
 
                 adapter.add(memoryDTO);
             }
@@ -69,6 +65,6 @@ public class JsonHelper extends AsyncHttpResponseHandler {
 
     @Override
     public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-        Toast.makeText(activity, "오류떴는데용 ㅎㅎㅎ" + i, Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, "실패", Toast.LENGTH_SHORT).show();
     }
 }

@@ -34,6 +34,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonSIFood.setOnClickListener(this);
         buttonSW.setOnClickListener(this);
         buttonSB.setOnClickListener(this);
+
+        // 버튼 추가로 8개까지 작업 할 예정이다.
     }
 
     @Override
@@ -65,6 +67,9 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.buttonSW:
                 // 승원이도 하나 Activity 만들어서 이동시켜주자.
+                Intent intentSW = new Intent(this, HealthListActivity.class);
+                intentSW.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intentSW);
                 break;
             case R.id.buttonSB:
                 // 세번쓰기 힘들다 성빈아 만들어서 이동시켜주자.
