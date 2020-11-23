@@ -86,3 +86,4 @@
         android:foregroundTint="#1D8CE4"
         android:text="구글로그인" />
 </LinearLayout>
+    <!-- 커밋 관리용 -->
