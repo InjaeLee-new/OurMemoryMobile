@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HealthListActivity"></activity>
+        <activity android:name=".TotalListActivity"></activity>
+        <activity android:name=".HealthListActivity" />
         <activity android:name=".ViewActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".IndexActivity" />

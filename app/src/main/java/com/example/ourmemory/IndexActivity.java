@@ -16,7 +16,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
     Button buttonToMemoryList;
 
-    Button buttonSI , buttonSW, buttonSB;
+    Button buttonSI , buttonSW, buttonSB, buttonTotal;
+    Button buttonTravel, buttonMusic, buttonArt, buttonIt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +29,23 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonSI = findViewById(R.id.buttonSI);
         buttonSW = findViewById(R.id.buttonSW);
         buttonSB = findViewById(R.id.buttonSB);
+        buttonTravel = findViewById(R.id.buttonTravel);
+        buttonMusic = findViewById(R.id.buttonMusic);
+        buttonArt = findViewById(R.id.buttonArt);
+        buttonIt = findViewById(R.id.buttonIt);
+
+        buttonTotal = findViewById(R.id.buttonTotal);
 
 
         buttonToMemoryList.setOnClickListener(this);
         buttonSI.setOnClickListener(this);
         buttonSW.setOnClickListener(this);
         buttonSB.setOnClickListener(this);
+        buttonTravel.setOnClickListener(this);
+        buttonMusic.setOnClickListener(this);
+        buttonArt.setOnClickListener(this);
+        buttonIt.setOnClickListener(this);
+        buttonTotal.setOnClickListener(this);
     }
 
     @Override
@@ -66,6 +78,24 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.buttonSB:
                 // 세번쓰기 힘들다 성빈아 만들어서 이동시켜주자.
+                break;
+            case R.id.buttonTravel:
+                // Travel category.
+                break;
+            case R.id.buttonMusic:
+                // 음악 category.
+                break;
+            case R.id.buttonArt:
+                // 문화 category.
+                break;
+            case R.id.buttonIt:
+                // IT category.
+                break;
+            case R.id.buttonTotal:
+                // 선택한 카테고리 모아보기
+                Intent intentTotal = new Intent(this, TotalListActivity.class);
+                intentTotal.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intentTotal);
                 break;
         }
     }
