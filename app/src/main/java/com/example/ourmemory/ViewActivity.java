@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import cz.msebera.android.httpclient.Header;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -138,7 +139,6 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         params.put("memory_comment_content", editTextCommentContent.getText().toString().trim());
         String url = "http://192.168.1.21:8085/java/viewCommentWriteJson";
         client.post(url, params,  commentHelper);
-        onResume();
 
         editTextCommentName.setText("");
         editTextCommentContent.setText("");
@@ -183,6 +183,12 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this,"댓글을 작성해주세요.",Toast.LENGTH_SHORT).show();
                 } else {
                     CommentWriteJson();
+                    finish();
+                    Intent reStartIntent = new Intent(this, ViewActivity.class);
+                    reStartIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    reStartIntent.putExtra("dto", memoryDTO);
+                    startActivity(reStartIntent);
+                    Toast.makeText(this, "댓글 작성이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
