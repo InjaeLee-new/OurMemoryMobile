@@ -13,6 +13,7 @@ import com.example.ourmemory.adapter.MemoryAdapter;
 import com.example.ourmemory.helper.HealthJsonHelper;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,10 @@ public class ItListActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void getJsonData() {
-        String url = "";
+        String url = "http://127.0.0.1:8080/java/listITJson";
+        RequestParams params = new RequestParams();
+        String memory_category = "Game";
+        params.put("memory_category", memory_category);
         client.get(url, helper);
     }
 
