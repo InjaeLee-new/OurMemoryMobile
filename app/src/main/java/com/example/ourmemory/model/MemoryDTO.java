@@ -3,9 +3,6 @@ package com.example.ourmemory.model;
 import java.io.Serializable;
 
 public class MemoryDTO implements Serializable {
-
-    public static int total_count;
-
     private int memory_num;
     private String memory_name;
     private String memory_id;
@@ -15,17 +12,9 @@ public class MemoryDTO implements Serializable {
     private int memory_rec;
     private int memory_nrec;
     private int memory_hit;
+    private String memory_category;
     private String memory_file;
     private String memory_date;
-    private String memory_category;
-
-    public static int getTotal_count() {
-        return total_count;
-    }
-
-    public static void setTotal_count(int total_count) {
-        MemoryDTO.total_count = total_count;
-    }
 
     public int getMemory_rec() {
         return memory_rec;
@@ -97,6 +86,7 @@ public class MemoryDTO implements Serializable {
     public String getMemory_category() {
         return memory_category;
     }
+
     public void setMemory_category(String memory_category) {
         this.memory_category = memory_category;
     }
