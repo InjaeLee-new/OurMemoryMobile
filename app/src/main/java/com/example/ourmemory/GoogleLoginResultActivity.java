@@ -43,5 +43,5 @@ public class GoogleLoginResultActivity extends AppCompatActivity {
                 +"\nuserId : "+userId+"\nnextAt : "+nextAt
         );
         Glide.with(this).load(photoUrl).into(profile); // 프로필 url을 세팅
-    }
+    }//
 }

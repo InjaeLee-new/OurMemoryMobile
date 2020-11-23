@@ -242,5 +242,5 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
             Toast.makeText(ViewActivity.this, "실패했는데요 ㅎ?" + i + "에러가 났네요", Toast.LENGTH_SHORT).show();
         }
-    }
+    }//
 }

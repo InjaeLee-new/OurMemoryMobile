@@ -79,5 +79,5 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
                 // by 승원
                 intent.putExtra("memory_hit", dto.getMemory_hit()+1);
                 startActivity(intent);
-        }
+        }//
 }

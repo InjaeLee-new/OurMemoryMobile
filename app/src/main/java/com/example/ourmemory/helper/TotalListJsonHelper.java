@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
+// 모아보기 관련 내용을 담은 helper
 public class TotalListJsonHelper extends AsyncHttpResponseHandler {
     Activity activity;
     MemoryAdapter adapter;

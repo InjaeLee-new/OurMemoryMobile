@@ -76,6 +76,6 @@ public class HealthListActivity extends AppCompatActivity
 
         intent.putExtra("memory_hit", dto.getMemory_hit()+1);
         startActivity(intent);
-    }
+    }//
 
 }

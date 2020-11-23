@@ -1,7 +1,7 @@
 package com.example.ourmemory.model;
 
 import java.io.Serializable;
-
+//
 public class MemoryDTO implements Serializable {
     private int memory_num;
     private String memory_name;

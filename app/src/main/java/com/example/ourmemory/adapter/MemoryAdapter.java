@@ -20,6 +20,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+// List를 불러오는 매개체가 되는 Adapter
 public class MemoryAdapter extends ArrayAdapter<MemoryDTO> {
 
     Activity activity;

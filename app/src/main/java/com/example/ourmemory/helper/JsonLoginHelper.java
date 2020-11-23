@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
+// 로그인 관련 static 데이터 공유를 위한 helper
 public class JsonLoginHelper extends AsyncHttpResponseHandler {
     Activity activity;
 

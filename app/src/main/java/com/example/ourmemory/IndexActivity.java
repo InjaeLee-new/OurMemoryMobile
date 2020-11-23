@@ -99,5 +99,5 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intentTotal);
                 break;
         }
-    }
+    }//
 }
