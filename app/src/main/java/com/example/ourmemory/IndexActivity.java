@@ -14,7 +14,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
      * 아래쪽으로 가서 확인해주세요.
      */
 
-    Button buttonToMemoryList;
+    Button buttonPet;
 
     Button buttonSI , buttonSW, buttonSB, buttonTotal;
     Button buttonTravel, buttonMusic, buttonArt, buttonIt;
@@ -24,7 +24,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
 
-        buttonToMemoryList = findViewById(R.id.buttonToMemoryList);
+        buttonPet = findViewById(R.id.buttonPet);
 
         buttonSI = findViewById(R.id.buttonSI);
         buttonSW = findViewById(R.id.buttonSW);
@@ -37,7 +37,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonTotal = findViewById(R.id.buttonTotal);
 
 
-        buttonToMemoryList.setOnClickListener(this);
+        buttonPet.setOnClickListener(this);
         buttonSI.setOnClickListener(this);
         buttonSW.setOnClickListener(this);
         buttonSB.setOnClickListener(this);
@@ -51,10 +51,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonToMemoryList:
-                Intent intent = new Intent(this, ListActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                startActivity(intent);
+            case R.id.buttonPet:
+                // 반려동물!
                 break;
 
             /** 각자 필요한 인텐트까지만해서 작업해주면돼요. 크게 코드는 이렇게 구분됩니다.
@@ -80,6 +78,9 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 // 세번쓰기 힘들다 성빈아 만들어서 이동시켜주자.
                 break;
             case R.id.buttonTravel:
+                Intent intent = new Intent(this, ListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent);
                 // Travel category.
                 break;
             case R.id.buttonMusic:
