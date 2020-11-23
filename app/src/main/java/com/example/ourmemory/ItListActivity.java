@@ -59,7 +59,7 @@ public class ItListActivity extends AppCompatActivity implements View.OnClickLis
     private void getJsonData() {
         String url = "http://127.0.0.1:8080/java/listITJson";
         RequestParams params = new RequestParams();
-        String memory_category = "Game";
+        String memory_category = "IT";
         params.put("memory_category", memory_category);
         client.get(url, helper);
     }
