@@ -18,6 +18,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+// 댓글창을 불러오는 ListView의 Adapter
 public class MemoryCommentAdapter extends ArrayAdapter<MemoryCommentDTO> {
 
     Activity activity;

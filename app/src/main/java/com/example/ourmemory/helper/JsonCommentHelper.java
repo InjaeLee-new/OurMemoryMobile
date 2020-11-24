@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-
+// 댓글 정보를 불러오는 helper
 public class JsonCommentHelper extends AsyncHttpResponseHandler {
     Activity activity;
     MemoryCommentAdapter adapter;

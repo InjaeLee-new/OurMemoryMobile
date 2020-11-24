@@ -1,5 +1,5 @@
 package com.example.ourmemory;
-//
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,40 +10,42 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.ourmemory.adapter.MemoryAdapter;
-import com.example.ourmemory.helper.JsonHelper;
+import com.example.ourmemory.helper.HealthJsonHelper;
+import com.example.ourmemory.helper.TotalListJsonHelper;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
-    JsonHelper helper;
+public class TotalListActivity extends AppCompatActivity
+        implements View.OnClickListener, AdapterView.OnItemClickListener {
+    TotalListJsonHelper helper;
     AsyncHttpClient client;
     MemoryAdapter adapter;
-    Button button;
-    ListView listView;
+    Button buttonTotal;
+    ListView listViewTotal;
     List<MemoryDTO> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_list);
+        setContentView(R.layout.activity_total_list);
+        buttonTotal = findViewById(R.id.buttonTotal);
+        listViewTotal = findViewById(R.id.listViewTotal);
 
-        button = findViewById(R.id.button);
-        listView  = findViewById(R.id.listView);
+
         list = new ArrayList<>();
         adapter = new MemoryAdapter(this, R.layout.list_item, list);
 
         client = new AsyncHttpClient();
-        helper = new JsonHelper(this, adapter, listView);
+        helper = new TotalListJsonHelper(this, adapter, listViewTotal);
 
-        listView.setAdapter(adapter);
-        getJsonData();
+        listViewTotal.setAdapter(adapter);
 
-        button.setOnClickListener(this);
-        listView.setOnItemClickListener(this);
-
+        buttonTotal.setOnClickListener(this);
+        listViewTotal.setOnItemClickListener(this);
     }
 
     @Override
@@ -55,8 +57,14 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void getJsonData() {
-        String url = "http://192.168.0.109:8081/java/foodListJson";
-        client.get(url, helper);
+        RequestParams params = new RequestParams();
+        params.put("startNum",1);
+        params.put("endNum",MemoryDTO.getTotal_count());
+        params.put("cate1","health");
+        params.put("cate2","pet");
+        params.put("cate3","food");
+        String url = "http://192.168.1.21:8085/java/totalListJson";
+        client.get(url, params, helper);
     }
 
     @Override
@@ -71,15 +79,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         Intent intent = new Intent(this, ViewActivity.class);
         intent.putExtra("dto", dto);
 
-        // View에서 hit 수가 1 증가하는 부분은 다시 리스트로 돌아올때 적용된다.
-        // 그래서 리스트에서 view로 넘어갈때 임의로 조회수를 1 증가시켜서 보여주기되면 바로바로 실시간 적용이 가능하다.
-        // by 승원
         intent.putExtra("memory_hit", dto.getMemory_hit()+1);
         startActivity(intent);
-    }
-
-
-
-
-
+    }//
 }

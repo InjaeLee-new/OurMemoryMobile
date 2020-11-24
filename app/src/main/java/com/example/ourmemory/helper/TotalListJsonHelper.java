@@ -13,13 +13,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
-// 헬스 카테고리 데이터 받아오는 helper
-public class HealthJsonHelper extends AsyncHttpResponseHandler {
+
+// 모아보기 관련 내용을 담은 helper
+public class TotalListJsonHelper extends AsyncHttpResponseHandler {
     Activity activity;
     MemoryAdapter adapter;
     ListView listView;
 
-    public HealthJsonHelper(Activity activity, MemoryAdapter adapter, ListView listView) {
+    public TotalListJsonHelper(Activity activity, MemoryAdapter adapter, ListView listView) {
         this.activity = activity;
         this.adapter = adapter;
         this.listView = listView;
@@ -40,6 +41,7 @@ public class HealthJsonHelper extends AsyncHttpResponseHandler {
 
         try {
             JSONObject json = new JSONObject(str);
+//            MemoryDTO.setTotal_count(json.getInt("totalResult"));
             JSONArray memorylist = json.getJSONArray("memoryList");
 
             for(int a = 0 ; a < memorylist.length(); a++) {
@@ -54,6 +56,7 @@ public class HealthJsonHelper extends AsyncHttpResponseHandler {
                 memoryDTO.setMemory_rec(temp.getInt("memory_rec"));
                 memoryDTO.setMemory_nrec(temp.getInt("memory_nrec"));
                 memoryDTO.setMemory_name(temp.getString("memory_name"));
+                memoryDTO.setMemory_category(temp.getString("memory_category"));
 
                 adapter.add(memoryDTO);
             }
