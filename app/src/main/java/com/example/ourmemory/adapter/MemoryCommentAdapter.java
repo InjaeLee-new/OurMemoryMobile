@@ -5,13 +5,10 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.ourmemory.R;
 import com.example.ourmemory.model.MemoryCommentDTO;
-import com.example.ourmemory.model.MemoryDTO;
 
 import java.util.List;
 

@@ -1,9 +1,5 @@
 package com.example.ourmemory;
 
-import androidx.appcompat.app.AppCompatActivity;
-import cz.msebera.android.httpclient.Header;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,22 +12,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.ourmemory.adapter.MemoryAdapter;
 import com.example.ourmemory.adapter.MemoryCommentAdapter;
 import com.example.ourmemory.helper.JsonCommentHelper;
-import com.example.ourmemory.helper.JsonHelper;
 import com.example.ourmemory.model.MemoryCommentDTO;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.ResponseHandlerInterface;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import cz.msebera.android.httpclient.Header;
 
 public class ViewActivity extends AppCompatActivity implements View.OnClickListener {
 

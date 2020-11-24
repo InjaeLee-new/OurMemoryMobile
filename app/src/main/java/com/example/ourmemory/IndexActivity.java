@@ -1,11 +1,11 @@
 package com.example.ourmemory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class IndexActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,7 +16,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
     Button buttonPet;
 
-    Button buttonFood , buttonSW, buttonSB, buttonTotal;
+    Button buttonFood , buttonSW, buttonGame, buttonTotal;
     Button buttonTravel, buttonMusic, buttonArt, buttonIt;
 
     @Override
@@ -28,7 +28,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
         buttonFood = findViewById(R.id.buttonFood);
         buttonSW = findViewById(R.id.buttonSW);
-        buttonSB = findViewById(R.id.buttonSB);
+        buttonGame = findViewById(R.id.buttonGame);
         buttonTravel = findViewById(R.id.buttonTravel);
         buttonMusic = findViewById(R.id.buttonMusic);
         buttonArt = findViewById(R.id.buttonArt);
@@ -40,7 +40,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonPet.setOnClickListener(this);
         buttonFood.setOnClickListener(this);
         buttonSW.setOnClickListener(this);
-        buttonSB.setOnClickListener(this);
+        buttonGame.setOnClickListener(this);
         buttonTravel.setOnClickListener(this);
         buttonMusic.setOnClickListener(this);
         buttonArt.setOnClickListener(this);
@@ -74,11 +74,11 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 intentSW.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intentSW);
                 break;
-            case R.id.buttonSB:
+            case R.id.buttonGame:
                 // 세번쓰기 힘들다 성빈아 만들어서 이동시켜주자.
-                Intent intentSB = new Intent(this, ItListActivity.class);
-                intentSB.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                startActivity(intentSB);
+                Intent intentGame = new Intent(this, GameListActivity.class);
+                intentGame.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intentGame);
                 break;
             case R.id.buttonTravel:
                 Intent intent = new Intent(this, ListActivity.class);
@@ -94,6 +94,9 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.buttonIt:
                 // IT category.
+                Intent intentIt = new Intent(this, ItListActivity.class);
+                intentIt.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intentIt);
                 break;
             case R.id.buttonTotal:
                 // 선택한 카테고리 모아보기

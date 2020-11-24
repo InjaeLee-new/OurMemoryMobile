@@ -1,7 +1,5 @@
 package com.example.ourmemory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +16,8 @@ import com.loopj.android.http.RequestParams;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class ItListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener{
 
         HealthJsonHelper helper;
@@ -33,7 +33,7 @@ public class ItListActivity extends AppCompatActivity implements View.OnClickLis
             setContentView(R.layout.activity_it_list);
 
             buttonH = findViewById(R.id.buttonH);
-            listViewH = findViewById(R.id.listViewH);
+            listViewH = findViewById(R.id.listView);
 
 
             list = new ArrayList<>();
@@ -57,7 +57,7 @@ public class ItListActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void getJsonData() {
-        String url = "http://127.0.0.1:8080/java/listITJson";
+        String url = "http://192.168.1.21:8085/java/listITJson";
         RequestParams params = new RequestParams();
         String memory_category = "IT";
         params.put("memory_category", memory_category);

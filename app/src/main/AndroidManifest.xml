@@ -11,10 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".JoinActivity"></activity>
-        <activity android:name=".GoogleLoginResultActivity"></activity>
+        <activity android:name=".JoinActivity" />
+        <activity android:name=".GoogleLoginResultActivity" />
         <activity android:name=".TotalListActivity" />
         <activity android:name=".HealthListActivity" />
+        <activity android:name=".GameListActivity" />
+        <activity android:name=".ItListActivity" />
         <activity android:name=".FoodListActivity" />
         <activity android:name=".ViewActivity" />
         <activity android:name=".ListActivity" />

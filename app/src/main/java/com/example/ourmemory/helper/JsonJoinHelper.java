@@ -3,7 +3,6 @@ package com.example.ourmemory.helper;
 import android.app.Activity;
 import android.widget.Toast;
 
-import com.example.ourmemory.MainActivity;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONException;

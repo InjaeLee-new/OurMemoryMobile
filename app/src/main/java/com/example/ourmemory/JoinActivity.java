@@ -1,9 +1,5 @@
 package com.example.ourmemory;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,12 +24,15 @@ import com.loopj.android.http.RequestParams;
 
 import java.io.File;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+
 public class JoinActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button buttonJoin, buttonBack, buttonForTest;
 
-    String [] category = {"memory", "pet", "health"};
-
+    String [] category = {"memory", "pet", "health", "art" , "it", "game", "food", "music"};
     int checkCategory = 0;
 
     ImageButton imageButton;
@@ -115,6 +114,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonForTest:
                 Toast.makeText(this, editTextId.getText().toString(), Toast.LENGTH_SHORT).show();
                 break;
+
 
         }
     }

@@ -1,7 +1,5 @@
 package com.example.ourmemory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +8,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.ourmemory.adapter.MemoryAdapter;
-import com.example.ourmemory.helper.HealthJsonHelper;
 import com.example.ourmemory.helper.TotalListJsonHelper;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
@@ -18,6 +15,8 @@ import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class TotalListActivity extends AppCompatActivity
         implements View.OnClickListener, AdapterView.OnItemClickListener {

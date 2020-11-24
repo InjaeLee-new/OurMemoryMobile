@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.ourmemory.adapter.MemoryAdapter;
 import com.example.ourmemory.adapter.MemoryCommentAdapter;
 import com.example.ourmemory.model.MemoryCommentDTO;
-import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONArray;
