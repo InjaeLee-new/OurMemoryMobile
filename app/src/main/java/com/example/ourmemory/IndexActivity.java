@@ -76,6 +76,9 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.buttonSB:
                 // 세번쓰기 힘들다 성빈아 만들어서 이동시켜주자.
+                Intent intentSB = new Intent(this, ItListActivity.class);
+                intentSB.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intentSB);
                 break;
             case R.id.buttonTravel:
                 Intent intent = new Intent(this, ListActivity.class);
