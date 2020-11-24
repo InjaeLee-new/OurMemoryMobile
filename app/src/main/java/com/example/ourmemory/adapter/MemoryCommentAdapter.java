@@ -7,17 +7,20 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.ourmemory.R;
 import com.example.ourmemory.model.MemoryCommentDTO;
 import com.example.ourmemory.model.MemoryDTO;
+import android.widget.TextView;
 
+import com.example.ourmemory.R;
+import com.example.ourmemory.model.MemoryCommentDTO;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+// 댓글창을 불러오는 ListView의 Adapter
 public class MemoryCommentAdapter extends ArrayAdapter<MemoryCommentDTO> {
 
     Activity activity;

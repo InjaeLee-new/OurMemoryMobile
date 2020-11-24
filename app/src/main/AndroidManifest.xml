@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ourmemory">
 
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
@@ -14,9 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".WriteActivity"></activity>
+        <activity android:name=".JoinActivity" />
+        <activity android:name=".GoogleLoginResultActivity" />
         <activity android:name=".TotalListActivity" />
         <activity android:name=".HealthListActivity" />
+        <activity android:name=".GameListActivity" />
+        <activity android:name=".ItListActivity" />
+        <activity android:name=".FoodListActivity" />
         <activity android:name=".ViewActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".IndexActivity" />
@@ -37,5 +45,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

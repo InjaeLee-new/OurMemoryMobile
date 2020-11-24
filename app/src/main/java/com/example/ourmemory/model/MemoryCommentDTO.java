@@ -1,5 +1,5 @@
 package com.example.ourmemory.model;
-
+//
 public class MemoryCommentDTO {
     private int memory_seq;
     private String memory_comment_name;
@@ -14,6 +14,12 @@ public class MemoryCommentDTO {
         this.reg_date = reg_date;
     }
 
+    public String getReg_date() {
+        return reg_date;
+    }
+    public void setReg_date(String reg_date) {
+        this.reg_date = reg_date;
+    }
     public int getMemory_seq() {
         return memory_seq;
     }

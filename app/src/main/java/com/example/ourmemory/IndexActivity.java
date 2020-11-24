@@ -1,11 +1,11 @@
 package com.example.ourmemory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class IndexActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,7 +16,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
     Button buttonPet;
 
-    Button buttonSI , buttonSW, buttonSB, buttonTotal;
+    Button buttonFood , buttonSW, buttonGame, buttonTotal;
     Button buttonTravel, buttonMusic, buttonArt, buttonIt;
 
     @Override
@@ -26,9 +26,9 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
         buttonPet = findViewById(R.id.buttonPet);
 
-        buttonSI = findViewById(R.id.buttonSI);
+        buttonFood = findViewById(R.id.buttonFood);
         buttonSW = findViewById(R.id.buttonSW);
-        buttonSB = findViewById(R.id.buttonSB);
+        buttonGame = findViewById(R.id.buttonGame);
         buttonTravel = findViewById(R.id.buttonTravel);
         buttonMusic = findViewById(R.id.buttonMusic);
         buttonArt = findViewById(R.id.buttonArt);
@@ -39,8 +39,9 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
         buttonPet.setOnClickListener(this);
         buttonSI.setOnClickListener(this);
+        buttonFood.setOnClickListener(this);
         buttonSW.setOnClickListener(this);
-        buttonSB.setOnClickListener(this);
+        buttonGame.setOnClickListener(this);
         buttonTravel.setOnClickListener(this);
         buttonMusic.setOnClickListener(this);
         buttonArt.setOnClickListener(this);
@@ -56,6 +57,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent);
                 // Travel category.
+            case R.id.buttonPet:
+                // 반려동물!
                 break;
             /** 각자 필요한 인텐트까지만해서 작업해주면돼요. 크게 코드는 이렇게 구분됩니다.
              *  Intent intent = new Intent(시작 엑티비티 , 이동할 엑티비티);
@@ -75,12 +78,26 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.buttonPet:
                 // 반려동물!
+            case R.id.buttonFood:
+                // 성인누나가 새롭게 Activity 만들어서 여기서 이동시키면돼.
                 break;
             case R.id.buttonSW:
                 // 승원이도 하나 Activity 만들어서 이동시켜주자.
                 Intent intentSW = new Intent(this, HealthListActivity.class);
                 intentSW.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intentSW);
+                break;
+            case R.id.buttonGame:
+                // 세번쓰기 힘들다 성빈아 만들어서 이동시켜주자.
+                Intent intentGame = new Intent(this, GameListActivity.class);
+                intentGame.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intentGame);
+                break;
+            case R.id.buttonTravel:
+                Intent intent = new Intent(this, ListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent);
+                // Travel category.
                 break;
             case R.id.buttonMusic:
                 // 음악 category.
@@ -90,6 +107,11 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.buttonSB:
                 // 세번쓰기 힘들다 성빈아 만들어서 이동시켜주자.
+            case R.id.buttonIt:
+                // IT category.
+                Intent intentIt = new Intent(this, ItListActivity.class);
+                intentIt.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intentIt);
                 break;
             case R.id.buttonTotal:
                 // 선택한 카테고리 모아보기

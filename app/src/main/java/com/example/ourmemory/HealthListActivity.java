@@ -1,7 +1,5 @@
 package com.example.ourmemory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +9,13 @@ import android.widget.ListView;
 
 import com.example.ourmemory.adapter.MemoryAdapter;
 import com.example.ourmemory.helper.HealthJsonHelper;
-import com.example.ourmemory.helper.JsonHelper;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class HealthListActivity extends AppCompatActivity
         implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -58,7 +57,7 @@ public class HealthListActivity extends AppCompatActivity
     }
 
     private void getJsonData() {
-        String url = "http://192.168.1.3:8085/java/healthListJson";
+        String url = "http://192.168.1.21:8085/java/healthListJson";
         client.get(url, helper);
     }
 
@@ -76,6 +75,6 @@ public class HealthListActivity extends AppCompatActivity
 
         intent.putExtra("memory_hit", dto.getMemory_hit()+1);
         startActivity(intent);
-    }
+    }//
 
 }

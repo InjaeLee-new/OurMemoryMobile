@@ -2,9 +2,6 @@ package com.example.ourmemory.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -20,6 +17,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+// List를 불러오는 매개체가 되는 Adapter
 public class MemoryAdapter extends ArrayAdapter<MemoryDTO> {
 
     Activity activity;

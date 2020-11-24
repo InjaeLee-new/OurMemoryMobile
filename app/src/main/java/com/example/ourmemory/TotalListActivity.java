@@ -1,7 +1,5 @@
 package com.example.ourmemory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +8,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.ourmemory.adapter.MemoryAdapter;
-import com.example.ourmemory.helper.HealthJsonHelper;
 import com.example.ourmemory.helper.TotalListJsonHelper;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
@@ -18,6 +15,8 @@ import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class TotalListActivity extends AppCompatActivity
         implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -65,7 +64,7 @@ public class TotalListActivity extends AppCompatActivity
         params.put("cate1","health");
         params.put("cate2","pet");
         params.put("cate3","food");
-        String url = "http://192.168.1.3:8085/java/totalListJson";
+        String url = "http://192.168.1.21:8085/java/totalListJson";
         client.get(url, params, helper);
     }
 
@@ -92,5 +91,5 @@ public class TotalListActivity extends AppCompatActivity
 
         intent.putExtra("memory_hit", dto.getMemory_hit()+1);
         startActivity(intent);
-    }
+    }//
 }

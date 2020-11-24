@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
+// 모아보기 관련 내용을 담은 helper
 public class TotalListJsonHelper extends AsyncHttpResponseHandler {
     Activity activity;
     MemoryAdapter adapter;
@@ -40,7 +41,7 @@ public class TotalListJsonHelper extends AsyncHttpResponseHandler {
 
         try {
             JSONObject json = new JSONObject(str);
-            MemoryDTO.setTotal_count(json.getInt("totalResult"));
+//            MemoryDTO.setTotal_count(json.getInt("totalResult"));
             JSONArray memorylist = json.getJSONArray("memoryList");
 
             for(int a = 0 ; a < memorylist.length(); a++) {
