@@ -38,4 +38,10 @@
         android:layout_height="wrap_content"
         android:text="성빈이 작업" />
 
+    <Button
+        android:id="@+id/buttonMusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
 </LinearLayout>

@@ -17,6 +17,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
     Button buttonToMemoryList;
 
     Button buttonSIFood , buttonSW, buttonSB;
+    Button buttonMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +30,15 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonSW = findViewById(R.id.buttonSW);
         buttonSB = findViewById(R.id.buttonSB);
 
+        buttonMusic = findViewById(R.id.buttonMusic);
+
 
         buttonToMemoryList.setOnClickListener(this);
         buttonSIFood.setOnClickListener(this);
         buttonSW.setOnClickListener(this);
         buttonSB.setOnClickListener(this);
+
+        buttonMusic.setOnClickListener(this);
     }
 
     @Override
@@ -69,6 +74,15 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
             case R.id.buttonSB:
                 // 세번쓰기 힘들다 성빈아 만들어서 이동시켜주자.
                 break;
+
+
+            case R.id.buttonMusic:
+                Intent intentMusic = new Intent(this, MusicListActivity.class);
+                intentMusic.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intentMusic);
+
+                break;
+
         }
     }
 }
