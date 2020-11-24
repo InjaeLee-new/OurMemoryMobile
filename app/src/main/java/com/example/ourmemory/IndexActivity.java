@@ -38,6 +38,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
 
         buttonPet.setOnClickListener(this);
+        buttonSI.setOnClickListener(this);
         buttonFood.setOnClickListener(this);
         buttonSW.setOnClickListener(this);
         buttonGame.setOnClickListener(this);
@@ -51,10 +52,14 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.buttonTravel:
+                Intent intent = new Intent(this, ListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent);
+                // Travel category.
             case R.id.buttonPet:
                 // 반려동물!
                 break;
-
             /** 각자 필요한 인텐트까지만해서 작업해주면돼요. 크게 코드는 이렇게 구분됩니다.
              *  Intent intent = new Intent(시작 엑티비티 , 이동할 엑티비티);
              *  startActivity(intent);
@@ -65,6 +70,14 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
              *  해당 코드를 참고해서 아래 case를 자기꺼에 맞게 처리하시면 됩니다.
              */
 
+            case R.id.buttonArt:
+                // 문화 category.
+                break;
+            case R.id.buttonIt:
+                // IT category.
+                break;
+            case R.id.buttonPet:
+                // 반려동물!
             case R.id.buttonFood:
                 // 성인누나가 새롭게 Activity 만들어서 여기서 이동시키면돼.
                 break;
@@ -89,9 +102,11 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
             case R.id.buttonMusic:
                 // 음악 category.
                 break;
-            case R.id.buttonArt:
-                // 문화 category.
+            case R.id.buttonSI:
+                // 성인누나가 새롭게 Activity 만들어서 여기서 이동시키면돼.
                 break;
+            case R.id.buttonSB:
+                // 세번쓰기 힘들다 성빈아 만들어서 이동시켜주자.
             case R.id.buttonIt:
                 // IT category.
                 Intent intentIt = new Intent(this, ItListActivity.class);
@@ -105,5 +120,5 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intentTotal);
                 break;
         }
-    }//
+    }
 }
