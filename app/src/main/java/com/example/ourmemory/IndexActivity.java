@@ -105,12 +105,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
 
-            case R.id.buttonMusic:
-                Intent intentMusic = new Intent(this, MusicListActivity.class);
-                intentMusic.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                startActivity(intentMusic);
 
-                break;
 
         }
     }
