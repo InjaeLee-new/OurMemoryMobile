@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
+// 리스트데이터를 불러오는 helper
 public class JsonHelper extends AsyncHttpResponseHandler {
     Activity activity;
     MemoryAdapter adapter;
@@ -57,7 +58,7 @@ public class JsonHelper extends AsyncHttpResponseHandler {
                 memoryDTO.setMemory_rec(temp.getInt("memory_rec"));
                 memoryDTO.setMemory_nrec(temp.getInt("memory_nrec"));
                 memoryDTO.setMemory_name(temp.getString("memory_name"));
-                memoryDTO.setMemory_category(temp.getString("memory_category"));
+//                memoryDTO.setMemory_category(temp.getString("memory_category"));
 
                 adapter.add(memoryDTO);
             }

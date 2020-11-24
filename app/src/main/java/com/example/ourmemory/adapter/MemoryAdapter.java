@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.ourmemory.R;
 import com.example.ourmemory.model.MemoryDTO;
 
@@ -16,6 +17,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+// List를 불러오는 매개체가 되는 Adapter
 public class MemoryAdapter extends ArrayAdapter<MemoryDTO> {
 
     Activity activity;
@@ -37,7 +39,10 @@ public class MemoryAdapter extends ArrayAdapter<MemoryDTO> {
 
         MemoryDTO memoryDTO = getItem(position);
 
+
         String fileName = memoryDTO.getMemory_file();
+        String full_filename = "http://192.168.1.21:8085/java/img" + "/" + memoryDTO.getMemory_file();
+
 
         if (memoryDTO != null) {
             ImageView imageView = convertView.findViewById(R.id.imageView);
@@ -45,7 +50,15 @@ public class MemoryAdapter extends ArrayAdapter<MemoryDTO> {
             TextView textView2 = convertView.findViewById(R.id.textView2);
             TextView textView3 = convertView.findViewById(R.id.textView3);
 
-            imageView.setImageResource(R.drawable.ourmemory);
+            Glide.with(activity).load(full_filename)
+                    .into(imageView);
+
+//            imageView.setImageURI(Uri.parse(full_filename));
+
+//            Bitmap myBitmap = BitmapFactory.decodeFile(full_filename2);
+//
+//            imageView.setImageBitmap(myBitmap);
+
             textView1.setText("글 제목 : " + memoryDTO.getMemory_subject());
             textView2.setText("작성자 : " + memoryDTO.getMemory_name());
             textView3.setText("조회수 : " + memoryDTO.getMemory_hit() + " / " +"추천수 : " + memoryDTO.getMemory_rec() + " / 비추천수 : " +memoryDTO.getMemory_nrec());

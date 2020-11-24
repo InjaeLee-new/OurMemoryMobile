@@ -17,6 +17,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class FoodListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     JsonHelper helper;
     AsyncHttpClient client;
