@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.ourmemory.adapter.MemoryAdapter;
-import com.example.ourmemory.helper.HealthJsonHelper;
 import com.example.ourmemory.helper.JsonHelper;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
@@ -18,34 +17,32 @@ import com.loopj.android.http.AsyncHttpClient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HealthListActivity extends AppCompatActivity
-        implements View.OnClickListener, AdapterView.OnItemClickListener {
-    HealthJsonHelper helper;
+public class FoodListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+    JsonHelper helper;
     AsyncHttpClient client;
     MemoryAdapter adapter;
-    Button buttonH;
-    ListView listViewH;
+    Button button;
+    ListView listView;
     List<MemoryDTO> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_health_list);
+        setContentView(R.layout.activity_food_list);
 
-        buttonH = findViewById(R.id.buttonH);
-        listViewH = findViewById(R.id.listViewH);
-
-
+        button = findViewById(R.id.button);
+        listView  = findViewById(R.id.listView);
         list = new ArrayList<>();
         adapter = new MemoryAdapter(this, R.layout.list_item, list);
 
         client = new AsyncHttpClient();
-        helper = new HealthJsonHelper(this, adapter, listViewH);
+        helper = new JsonHelper(this, adapter, listView);
 
-        listViewH.setAdapter(adapter);
+        listView.setAdapter(adapter);
+        getJsonData();
 
-        buttonH.setOnClickListener(this);
-        listViewH.setOnItemClickListener(this);
+        button.setOnClickListener(this);
+        listView.setOnItemClickListener(this);
 
     }
 
@@ -58,7 +55,7 @@ public class HealthListActivity extends AppCompatActivity
     }
 
     private void getJsonData() {
-        String url = "http://192.168.1.3:8085/java/healthListJson";
+        String url = "http://192.168.0.109:8081/java/foodListJson";
         client.get(url, helper);
     }
 
@@ -74,8 +71,15 @@ public class HealthListActivity extends AppCompatActivity
         Intent intent = new Intent(this, ViewActivity.class);
         intent.putExtra("dto", dto);
 
+        // View에서 hit 수가 1 증가하는 부분은 다시 리스트로 돌아올때 적용된다.
+        // 그래서 리스트에서 view로 넘어갈때 임의로 조회수를 1 증가시켜서 보여주기되면 바로바로 실시간 적용이 가능하다.
+        // by 승원
         intent.putExtra("memory_hit", dto.getMemory_hit()+1);
         startActivity(intent);
     }
+
+
+
+
 
 }

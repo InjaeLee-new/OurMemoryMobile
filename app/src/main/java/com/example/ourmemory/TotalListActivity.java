@@ -24,7 +24,7 @@ public class TotalListActivity extends AppCompatActivity
     TotalListJsonHelper helper;
     AsyncHttpClient client;
     MemoryAdapter adapter;
-    Button buttonTotal;
+    Button buttonTotal, buttonWrite;
     ListView listViewTotal;
     List<MemoryDTO> list;
 
@@ -33,6 +33,7 @@ public class TotalListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_total_list);
         buttonTotal = findViewById(R.id.buttonTotal);
+        buttonWrite = findViewById(R.id.buttonWrite);
         listViewTotal = findViewById(R.id.listViewTotal);
 
 
@@ -45,6 +46,7 @@ public class TotalListActivity extends AppCompatActivity
         listViewTotal.setAdapter(adapter);
 
         buttonTotal.setOnClickListener(this);
+        buttonWrite.setOnClickListener(this);
         listViewTotal.setOnItemClickListener(this);
     }
 
@@ -63,13 +65,22 @@ public class TotalListActivity extends AppCompatActivity
         params.put("cate1","health");
         params.put("cate2","pet");
         params.put("cate3","food");
-        String url = "http://192.168.0.42:8088/java/totalListJson";
+        String url = "http://192.168.1.3:8085/java/totalListJson";
         client.get(url, params, helper);
     }
 
     @Override
     public void onClick(View v) {
-        finish();
+        switch (v.getId()){
+            case R.id.buttonWrite:
+                Intent intent = new Intent(this, WriteActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent);
+                break;
+            case R.id.buttonTotal:
+                finish();
+                break;
+        }
     }
 
     @Override
