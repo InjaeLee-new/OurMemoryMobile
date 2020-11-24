@@ -11,6 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <activity android:name=".MusicListActivity"></activity>
         <activity android:name=".PetListActivity"></activity>
         <activity android:name=".WriteActivity" />
         <activity android:name=".JoinActivity" />
