@@ -430,6 +430,13 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/buttonForTest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="테스트용 버튼" />
+
+                <Button
                     android:id="@+id/buttonJoin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

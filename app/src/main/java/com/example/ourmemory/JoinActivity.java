@@ -30,7 +30,11 @@ import java.io.File;
 
 public class JoinActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button buttonJoin, buttonBack;
+    Button buttonJoin, buttonBack, buttonForTest;
+
+    String [] category = {"memory", "pet", "health"};
+
+    int checkCategory = 0;
 
     ImageButton imageButton;
 
@@ -62,6 +66,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         imageButton = findViewById(R.id.imageButton);
         buttonJoin = findViewById(R.id.buttonJoin);
         buttonBack = findViewById(R.id.buttonBack);
+        buttonForTest = findViewById(R.id.buttonForTest);
 
         checkBox1 = findViewById(R.id.checkBox1);
         checkBox2 = findViewById(R.id.checkBox2);
@@ -73,7 +78,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         checkBox8 = findViewById(R.id.checkBox8);
 
         editTextName = findViewById(R.id.editTextName);
-        editTextId = findViewById(R.id.editTextID);
+        editTextId = findViewById(R.id.editTextId);
         editTextPwd = findViewById(R.id.editTextPwd);
         editTextNick = findViewById(R.id.editTextNick);
         editTextEmail1 = findViewById(R.id.editTextEmail1);
@@ -91,6 +96,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         buttonJoin.setOnClickListener(this);
         buttonBack.setOnClickListener(this);
         imageButton.setOnClickListener(this);
+        buttonForTest.setOnClickListener(this);
     }
 
     @Override
@@ -98,7 +104,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.buttonJoin:
                 MemoryJoinAction();
-//                finish();
+                finish();
                 break;
             case R.id.buttonBack:
                 finish();
@@ -106,18 +112,18 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.imageButton:
                 showPhotoDialog();
                 break;
+            case R.id.buttonForTest:
+                Toast.makeText(this, editTextId.getText().toString(), Toast.LENGTH_SHORT).show();
+                break;
+
         }
     }
 
     public void MemoryJoinAction() {
         RequestParams params = new RequestParams();
-//        Toast.makeText(this, editTextName.getText().toString() + editTextId.getText().toString() + editTextPwd.getText().toString() + editTextNick.getText().toString() +
-//                 editTextEmail1.getText().toString() + editTextEmail2.getText().toString() + editTextTel1.getText().toString() +
-//               editTextTel2.getText().toString() + editTextTel3.getText().toString() + editTextAddr.getText().toString() + "" , Toast.LENGTH_SHORT);
         params.put("profile", filepath);
         params.put("name", editTextName.getText().toString().trim());
-//        params.put("id", editTextId.getText().toString().trim());
-        params.put("id", "compose");
+        params.put("id", editTextId.getText().toString().trim());
         params.put("pw", editTextPwd.getText().toString().trim());
         params.put("nickname", editTextNick.getText().toString().trim());
 //        params.put("gender", radioGender.isSelected());

@@ -16,7 +16,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
     Button buttonPet;
 
-    Button buttonSI , buttonSW, buttonSB, buttonTotal;
+    Button buttonFood , buttonSW, buttonSB, buttonTotal;
     Button buttonTravel, buttonMusic, buttonArt, buttonIt;
 
     @Override
@@ -26,7 +26,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
         buttonPet = findViewById(R.id.buttonPet);
 
-        buttonSI = findViewById(R.id.buttonSI);
+        buttonFood = findViewById(R.id.buttonFood);
         buttonSW = findViewById(R.id.buttonSW);
         buttonSB = findViewById(R.id.buttonSB);
         buttonTravel = findViewById(R.id.buttonTravel);
@@ -38,7 +38,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
 
         buttonPet.setOnClickListener(this);
-        buttonSI.setOnClickListener(this);
+        buttonFood.setOnClickListener(this);
         buttonSW.setOnClickListener(this);
         buttonSB.setOnClickListener(this);
         buttonTravel.setOnClickListener(this);
@@ -65,7 +65,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
              *  해당 코드를 참고해서 아래 case를 자기꺼에 맞게 처리하시면 됩니다.
              */
 
-            case R.id.buttonSI:
+            case R.id.buttonFood:
                 // 성인누나가 새롭게 Activity 만들어서 여기서 이동시키면돼.
                 break;
             case R.id.buttonSW:
