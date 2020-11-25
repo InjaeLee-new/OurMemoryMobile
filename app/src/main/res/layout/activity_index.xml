@@ -101,9 +101,9 @@
         android:textAlignment="center" />
 
     <Button
-        android:id="@+id/buttonMusic"
+        android:id="@+id/buttonLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="로그아웃 테스트용" />
 
 </LinearLayout>

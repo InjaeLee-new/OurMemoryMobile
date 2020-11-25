@@ -64,7 +64,7 @@ public class TotalListActivity extends AppCompatActivity
         params.put("cate1","health");
         params.put("cate2","pet");
         params.put("cate3","food");
-        String url = "http://192.168.1.21:8085/java/totalListJson";
+        String url = "http://192.168.1.3:8085/java/totalListJson";
         client.get(url, params, helper);
     }
 

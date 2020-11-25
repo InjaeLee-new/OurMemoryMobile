@@ -1,6 +1,7 @@
 package com.example.ourmemory;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -71,29 +72,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    Button google_signin;
     SignInButton google_signin;
 
-   @Override
+    // 세션 함수
+    SessionManager sessionManager;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 일반 로그인을 위해 작성
-       helper = new JsonLoginHelper(this);
-       client = new AsyncHttpClient();
+        // 아이디 세션을 위한 함수
+        sessionManager = new SessionManager(this);
 
-       editTextID = findViewById(R.id.editTextID);
-       editTextPassword = findViewById(R.id.editTextPassword);
+        // 일반 로그인을 위해 작성
+        helper = new JsonLoginHelper(this, sessionManager);
+        client = new AsyncHttpClient();
+
+        editTextID = findViewById(R.id.editTextID);
+        editTextPassword = findViewById(R.id.editTextPassword);
 
         // 구글 로그인을 위해 작성
-       GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                .requestIdToken("789653528022-hcdqulkf2trhgo50mndtum9tg96vlmet.apps.googleusercontent.com")
                .requestEmail()
                .build(); // 구글 사인인 버튼을 누를 때 기본적인 옵션 정리 코드
-       mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-       mAuth = FirebaseAuth.getInstance(); // 파이어 베이스 인증 객체 초기화
-       google_signin = (SignInButton) findViewById(R.id.sign_in_button);
-       google_signin.setOnClickListener(this);
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mAuth = FirebaseAuth.getInstance(); // 파이어 베이스 인증 객체 초기화
+        google_signin = (SignInButton) findViewById(R.id.sign_in_button);
+        google_signin.setOnClickListener(this);
 
-       // 일반 코드 시작
+        // 일반 코드 시작
         login_form = findViewById(R.id.login_form);
         main_form = findViewById(R.id.main_form);
 
@@ -178,22 +184,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonLogin:
                 login_form.setVisibility(View.VISIBLE);
                 main_form.setVisibility(View.GONE);
+
                 break;
 
             case R.id.buttonLoginOK:
                 RequestParams params = new RequestParams();
                 params.put("id", editTextID.getText().toString().trim());
                 params.put("pw", editTextPassword.getText().toString().trim());
-                String url = "http://192.168.1.21:8085/java/appLogin";
+                String url = "http://192.168.1.3:8085/java/appLogin";
                 client.post(url, params,  helper);
-                if(LoginOK == true) {
+                if(LoginOK) {
                     Intent intentLogin = new Intent(this, IndexActivity.class);
                     startActivity(intentLogin);
+//                    finish();
                 }
                 break;
             case R.id.buttonToMain:
                 login_form.setVisibility(View.GONE);
                 main_form.setVisibility(View.VISIBLE);
+                sessionManager.logout();
                 break;
 
             case R.id.sign_in_button:
