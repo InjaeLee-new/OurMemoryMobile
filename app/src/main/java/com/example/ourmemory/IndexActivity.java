@@ -2,9 +2,16 @@ package com.example.ourmemory;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class IndexActivity extends AppCompatActivity implements View.OnClickListener {
@@ -18,6 +25,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
     Button buttonFood , buttonHealth, buttonGame, buttonTotal;
     Button buttonTravel, buttonMusic, buttonArt, buttonIt;
+    Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +52,66 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonArt.setOnClickListener(this);
         buttonIt.setOnClickListener(this);
         buttonTotal.setOnClickListener(this);
+
+        /*
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ourmemory8);
+        setSupportActionBar(toolbar);
+        */
+
+        ActionBar ab = getSupportActionBar();
+        //ab.hide();
+
+
+
+        ab.setIcon(R.drawable.ourmemory8);
+        //ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE);
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayShowHomeEnabled(true);
+
+
+
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // 인텐트는 우선 테스트용으로 다 동일하게 넣어둠
+
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                Intent intent1 = new Intent(this, ListActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent1);
+                break;
+            case R.id.action_favorite:
+                Intent intent2 = new Intent(this, ListActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent2);
+                break;
+            case R.id.action_mypage:
+                Intent intent3 = new Intent(this, ListActivity.class);
+                intent3.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent3);
+                break;
+            case R.id.action_logout:
+                Intent intent4 = new Intent(this, ListActivity.class);
+                intent4.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent4);
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
     /** 각자 필요한 인텐트까지만해서 작업해주면돼요. 크게 코드는 이렇게 구분됩니다.
      *  Intent intent = new Intent(시작 엑티비티 , 이동할 엑티비티);
      *  startActivity(intent);
@@ -53,6 +121,9 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
      *  위의 코드를 확인하면 buttonToMemoryList 버튼에 대한 이벤트 처리가 되어있는데,
      *  해당 코드를 참고해서 아래 case를 자기꺼에 맞게 처리하시면 됩니다.
      */
+
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
