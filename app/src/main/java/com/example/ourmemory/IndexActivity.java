@@ -69,6 +69,9 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.buttonArt:
                 // 문화 category.
+                Intent intentArt = new Intent(this, ArtListActivity.class);
+                intentArt.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intentArt);
                 break;
             case R.id.buttonIt:
                 // IT category.

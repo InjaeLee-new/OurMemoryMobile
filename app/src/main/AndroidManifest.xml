@@ -3,20 +3,26 @@
     package="com.example.ourmemory">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
         android:icon="@mipmap/ourmemory5"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WriteActivity"></activity>
+        <activity android:name=".ArtListActivity"></activity>
+        <activity android:name=".WriteActivity" />
         <activity android:name=".TotalListActivity" />
+        <activity android:name=".JoinActivity" />
+        <activity android:name=".GoogleLoginResultActivity" />
         <activity android:name=".HealthListActivity" />
+        <activity android:name=".FoodListActivity" />
         <activity android:name=".ViewActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".IndexActivity" />
@@ -27,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
