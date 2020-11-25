@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ourmemory.helper.JsonJoinHelper;
 import com.example.ourmemory.photoHelper.FileUtils;
 import com.example.ourmemory.photoHelper.PhotoHelper;
@@ -91,12 +92,16 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         radioGender = findViewById(R.id.radioGender);
         radioBtnM = findViewById(R.id.radioBtnM);
         radioBtnF = findViewById(R.id.radioBtnF);
+        if(checkBox1.isChecked()) {
+
+        }
 
         buttonJoin.setOnClickListener(this);
         buttonBack.setOnClickListener(this);
         imageButton.setOnClickListener(this);
         buttonForTest.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View v) {
@@ -195,10 +200,14 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
                 Intent photoIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
                         Uri.parse("file://" + filepath));
                 sendBroadcast(photoIntent);
+                Glide.with(this).load(filepath)
+                        .into(imageButton);
                 break;
             case 101:
                 if(resultCode == RESULT_OK) {
                     filepath = FileUtils.getPath(this, data.getData());
+                    Glide.with(this).load(filepath)
+                            .into(imageButton);
                 }
                 break;
         }
