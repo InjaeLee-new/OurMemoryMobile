@@ -1,15 +1,20 @@
 package com.example.ourmemory.helper;
 
 import android.app.Activity;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.ourmemory.MainActivity;
+import com.example.ourmemory.adapter.MemoryAdapter;
+import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
+
 
 // 로그인 관련 static 데이터 공유를 위한 helper
 public class JsonLoginHelper extends AsyncHttpResponseHandler {

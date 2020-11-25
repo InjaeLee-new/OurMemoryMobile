@@ -132,6 +132,23 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent);
                 break;
+            /** 각자 필요한 인텐트까지만해서 작업해주면돼요. 크게 코드는 이렇게 구분됩니다.
+             *  Intent intent = new Intent(시작 엑티비티 , 이동할 엑티비티);
+             *  startActivity(intent);
+             *  일반적으로 시작 엑티비티는 this로 현재 엑티비티를 설정하면 되는거고
+             *  이동할 엑티비티는 본인들이 만든 액티비티로 이동시키면 됩니다.
+             *
+             *  위의 코드를 확인하면 buttonToMemoryList 버튼에 대한 이벤트 처리가 되어있는데,
+             *  해당 코드를 참고해서 아래 case를 자기꺼에 맞게 처리하시면 됩니다.
+             */
+
+            case R.id.buttonArt:
+                // 문화 category.
+                Intent intentArt = new Intent(this, ArtListActivity.class);
+                intentArt.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intentArt);
+                break;
+
             case R.id.buttonPet:
                 // 반려동물!
                 Intent intentPet = new Intent(this, PetListActivity.class);
@@ -174,10 +191,6 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 intentTotal.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intentTotal);
                 break;
-
-
-
-
         }
     }
 }

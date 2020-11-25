@@ -1,5 +1,5 @@
 package com.example.ourmemory.model;
-//
+
 public class MemberDTO {
     private String user_name;
     private String user_id;
