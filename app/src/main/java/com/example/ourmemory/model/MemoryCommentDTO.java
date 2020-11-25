@@ -1,5 +1,5 @@
 package com.example.ourmemory.model;
-
+//
 public class MemoryCommentDTO {
     private int memory_seq;
     private String memory_comment_name;

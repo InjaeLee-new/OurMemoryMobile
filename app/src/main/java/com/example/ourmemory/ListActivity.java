@@ -1,7 +1,5 @@
 package com.example.ourmemory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +14,8 @@ import com.loopj.android.http.AsyncHttpClient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -79,5 +79,5 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
                 // by 승원
                 intent.putExtra("memory_hit", dto.getMemory_hit()+1);
                 startActivity(intent);
-        }
+        }//
 }

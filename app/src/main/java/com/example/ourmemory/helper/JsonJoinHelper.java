@@ -1,26 +1,21 @@
 package com.example.ourmemory.helper;
 
 import android.app.Activity;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.ourmemory.MainActivity;
-import com.example.ourmemory.adapter.MemoryAdapter;
-import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
+public class JsonJoinHelper extends AsyncHttpResponseHandler {
 
-// 로그인 관련 static 데이터 공유를 위한 helper
-public class JsonLoginHelper extends AsyncHttpResponseHandler {
     Activity activity;
+    int result;
 
-    public JsonLoginHelper(Activity activity) {
+    public JsonJoinHelper(Activity activity) {
         this.activity = activity;
     }
     @Override
@@ -38,12 +33,8 @@ public class JsonLoginHelper extends AsyncHttpResponseHandler {
 
         try {
             JSONObject json = new JSONObject(str);
-            int result = Integer.parseInt(json.getString("result"));
-
-            if(result > 0 ) {
-                MainActivity.LoginOK = true;
-                MainActivity.user_name = json.getString("user_name");
-            }
+//            result = Integer.parseInt(json.getString("rt"));
+            Toast.makeText(activity,"회원가입 성공 + result = " + result, Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -51,6 +42,6 @@ public class JsonLoginHelper extends AsyncHttpResponseHandler {
 
     @Override
     public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-        Toast.makeText(activity, "로그인 실패" + i, Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, "회원가입 실패, result = " + result  + i, Toast.LENGTH_SHORT).show();
     }
 }

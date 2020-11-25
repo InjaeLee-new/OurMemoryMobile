@@ -58,7 +58,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buttonSW"
+            android:id="@+id/buttonHealth"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_weight="1"
@@ -72,14 +72,14 @@
             android:background="@drawable/music_button" />
 
         <Button
-            android:id="@+id/buttonSI"
+            android:id="@+id/buttonFood"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_weight="1"
             android:background="@drawable/food_button" />
 
         <Button
-            android:id="@+id/buttonSB"
+            android:id="@+id/buttonGame"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_weight="1"
@@ -99,5 +99,11 @@
         android:layout_height="wrap_content"
         android:text="모아보기"
         android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/buttonMusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 </LinearLayout>

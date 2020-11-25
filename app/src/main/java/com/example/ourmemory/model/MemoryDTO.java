@@ -2,9 +2,10 @@ package com.example.ourmemory.model;
 
 import java.io.Serializable;
 
+//
 public class MemoryDTO implements Serializable {
-    public static int total_count;
 
+    public static int total_count;
     private int memory_num;
     private String memory_name;
     private String memory_id;

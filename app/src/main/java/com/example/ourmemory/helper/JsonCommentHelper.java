@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
 import com.example.ourmemory.adapter.MemoryAdapter;
 import com.example.ourmemory.adapter.MemoryCommentAdapter;
 import com.example.ourmemory.model.MemoryCommentDTO;
@@ -16,7 +17,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-
+// 댓글 정보를 불러오는 helper
 public class JsonCommentHelper extends AsyncHttpResponseHandler {
     Activity activity;
     MemoryCommentAdapter adapter;

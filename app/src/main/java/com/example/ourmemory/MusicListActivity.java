@@ -17,9 +17,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class FoodListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class MusicListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     JsonHelper helper;
     AsyncHttpClient client;
     MemoryAdapter adapter;
@@ -30,7 +28,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_list);
+        setContentView(R.layout.activity_music_list2);
 
         button = findViewById(R.id.button);
         listView  = findViewById(R.id.listView);
@@ -41,23 +39,21 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         helper = new JsonHelper(this, adapter, listView);
 
         listView.setAdapter(adapter);
-        getJsonData();
+
 
         button.setOnClickListener(this);
         listView.setOnItemClickListener(this);
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // 주석 추가한 상태로 다시 저장하자.
         adapter.clear();
         getJsonData();
     }
 
     private void getJsonData() {
-        String url = "http://192.168.0.109:8081/java/foodListJson";
+        String url = "http://192.168.0.109:8081/java/musicListJson";
         client.get(url, helper);
     }
 
@@ -79,9 +75,4 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         intent.putExtra("memory_hit", dto.getMemory_hit()+1);
         startActivity(intent);
     }
-
-
-
-
-
 }

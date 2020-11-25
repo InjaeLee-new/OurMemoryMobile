@@ -1,14 +1,17 @@
 package com.example.ourmemory;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.content.Intent;
+import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class GoogleLoginResultActivity extends AppCompatActivity {
 

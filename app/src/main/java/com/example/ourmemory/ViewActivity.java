@@ -16,22 +16,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+
 import com.example.ourmemory.adapter.MemoryAdapter;
 import com.example.ourmemory.adapter.MemoryCommentAdapter;
 import com.example.ourmemory.helper.JsonCommentHelper;
 import com.example.ourmemory.helper.JsonHelper;
+
 import com.example.ourmemory.model.MemoryCommentDTO;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.ResponseHandlerInterface;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+import cz.msebera.android.httpclient.Header;
 
 public class ViewActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,6 +47,9 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     AsyncHttpClient client;
     String rt = null;
     String rt2 = ""; // 추천 확인용 result
+
+    ListView listView;
+    List<MemoryCommentDTO> list;
 
     ListView listView;
     List<MemoryCommentDTO> list;
@@ -112,8 +118,6 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         textView9.setOnClickListener(this);
         textView10.setOnClickListener(this);
         buttonCommentSubmit.setOnClickListener(this);
-
-
     }
 
     // 댓글을 입력한 이후에, 화면이 초기화되는 작업이 필요하다. 이 부분은 resume으로 해야하는지 알아볼 것.
@@ -213,7 +217,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandCheck() {
         RequestParams params = new RequestParams();
 
-        String url = "http://192.168.1.3:8085/java/recommandCheck";
+        String url = "http://192.168.1.21:8085/java/recommandCheck";
         params.put("recommand_id", "hong01"); // 이부분은 다음에 세션 값 되면 변경해야함.
         params.put("recommand_seq", memoryDTO.getMemory_num());
         client.post(url, params, recommandCheckHelper);
@@ -224,13 +228,13 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandData() {
         RequestParams params = new RequestParams();
         if (like_status == 1){
-            String url = "http://192.168.1.3:8085/java/recommendation";
+            String url = "http://192.168.1.21:8085/java/recommendation";
             params.put("memory_num", memoryDTO.getMemory_num());
             client.post(url, params, recommandHelper);
             Log.d("[test]",like_status+" ");
         } else if (like_status == 2){
             params.put("memory_num", memoryDTO.getMemory_num());
-            String url = "http://192.168.1.3:8085/java/notrecommendation";
+            String url = "http://192.168.1.21:8085/java/notrecommendation";
             client.post(url, params, recommandHelper);
             Log.d("[test]",like_status+" ");
         }
@@ -289,5 +293,5 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
             Toast.makeText(ViewActivity.this, "Check " + i + "에러가 났네요", Toast.LENGTH_SHORT).show();
         }
-    }
+    }//
 }
