@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonToMain:
                 login_form.setVisibility(View.GONE);
                 main_form.setVisibility(View.VISIBLE);
-                sessionManager.logout();
+                sessionManager.logout();// 일단 세션 로그아웃 버튼 안 만들어서 해놨음
                 break;
 
             case R.id.sign_in_button:
