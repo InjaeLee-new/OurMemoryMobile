@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 //
 public class MemoryDTO implements Serializable {
+
+    public static int total_count;
     private int memory_num;
     private String memory_name;
     private String memory_id;
@@ -16,16 +18,13 @@ public class MemoryDTO implements Serializable {
     private String memory_category;
     private String memory_file;
     private String memory_date;
-    public static int total_count;
 
     public static int getTotal_count() {
         return total_count;
     }
-
     public static void setTotal_count(int total_count) {
         MemoryDTO.total_count = total_count;
     }
-
     public int getMemory_rec() {
         return memory_rec;
     }

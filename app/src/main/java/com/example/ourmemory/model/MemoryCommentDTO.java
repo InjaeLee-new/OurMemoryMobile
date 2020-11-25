@@ -13,7 +13,9 @@ public class MemoryCommentDTO {
     public void setReg_date(String reg_date) {
         this.reg_date = reg_date;
     }
-
+    public int getMemory_seq() {
+        return memory_seq;
+    }
     public void setMemory_seq(int memory_seq) {
         this.memory_seq = memory_seq;
     }
