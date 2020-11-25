@@ -7,12 +7,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Toolbar;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.HashMap;
 
 public class IndexActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,18 +25,30 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
      * 하단에 onClickListener 부분에 주석으로 해야할 내용들을 남겨놨습니다.
      * 아래쪽으로 가서 확인해주세요.
      */
+    TextView textView6;
 
-    Button buttonPet;
+    Button buttonPet, buttonLogout;
 
     Button buttonFood , buttonHealth, buttonGame, buttonTotal;
     Button buttonTravel, buttonMusic, buttonArt, buttonIt;
     Toolbar toolbar;
 
 
+    SessionManager sessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
+
+        sessionManager = new SessionManager(this);
+//        sessionManager.checkLogin();
+
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        String session_id = user.get(sessionManager.ID);
+        String cate1 = user.get(sessionManager.CATE1);
+        String google = user.get(sessionManager.GOOGLE_ID);
+        textView6 = findViewById(R.id.textView6);
+        textView6.setText("카데고리 목록 (안녕하세요 "+session_id+"\n"+cate1+"\n"+google+"\n"+"님)");
 
         buttonPet = findViewById(R.id.buttonPet);
         buttonFood = findViewById(R.id.buttonFood);
@@ -42,6 +59,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonArt = findViewById(R.id.buttonArt);
         buttonIt = findViewById(R.id.buttonIt);
         buttonTotal = findViewById(R.id.buttonTotal);
+        buttonLogout = findViewById(R.id.buttonLogout);
 
         buttonPet.setOnClickListener(this);
         buttonFood.setOnClickListener(this);
@@ -52,6 +70,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonArt.setOnClickListener(this);
         buttonIt.setOnClickListener(this);
         buttonTotal.setOnClickListener(this);
+        buttonLogout.setOnClickListener(this);
+
 
         /*
         toolbar = findViewById(R.id.toolbar);
@@ -68,9 +88,6 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         //ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE);
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowHomeEnabled(true);
-
-
-
     }
 
     @Override
@@ -176,6 +193,13 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 Intent intentTotal = new Intent(this, TotalListActivity.class);
                 intentTotal.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intentTotal);
+                break;
+            case R.id.buttonLogout:
+                // 로그아웃 테스트
+                // 이후 로그아웃 버튼 생성시 sessionManager.logout(); 함수 실행
+                sessionManager.logout();
+                finish();
+                MainActivity.LoginOK =false;
                 break;
         }
     }
