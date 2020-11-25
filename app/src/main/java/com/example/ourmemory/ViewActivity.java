@@ -51,9 +51,6 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     ListView listView;
     List<MemoryCommentDTO> list;
 
-    ListView listView;
-    List<MemoryCommentDTO> list;
-
     MemoryDTO memoryDTO;
     ImageView imageView;
     TextView textView1, textView2, textView3, textViewContent, textView9, textView10;
@@ -130,14 +127,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
-        String url = "http://192.168.0.109:8081/java/viewHitJson";
+        String url = "http://192.168.1.21:8085/java/viewHitJson";
         client.post(url, params, helper);
     }
 
     private void getCommentData() {
         RequestParams params = new RequestParams();
         params.put("seq", memoryDTO.getMemory_num());
-        String url = "http://192.168.0.109:8081/java/commentViewJson";
+        String url = "http://192.168.1.21:8085/java/commentViewJson";
         client.post(url, params,  commentHelper);
     }
 
@@ -146,7 +143,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         params.put("memory_seq", memoryDTO.getMemory_num());
         params.put("memory_comment_name", editTextCommentName.getText().toString().trim());
         params.put("memory_comment_content", editTextCommentContent.getText().toString().trim());
-        String url = "http://192.168.0.109:8081/java/viewCommentWriteJson";
+        String url = "http://192.168.1.21:8085/java/viewCommentWriteJson";
         client.post(url, params,  commentHelper);
 
         editTextCommentName.setText("");

@@ -36,6 +36,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageButton imageButton;
 
+    CheckBox[] checkBoxes;
     CheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7, checkBox8;
 
     EditText editTextName, editTextId, editTextPwd, editTextNick, editTextTel1, editTextTel2, editTextTel3,
@@ -43,9 +44,10 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
     String [] categoryName = {"memory", "pet", "it", "game" , "food", "music", "art", "health"};
     String [] category = new String[3];
-    int [] checkBox = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBox4, R.id.checkBox4
-            , R.id.checkBox5, R.id.checkBox6, R.id.checkBox7};
+//    int [] checkBox = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBox4, R.id.checkBox4
+//            , R.id.checkBox5, R.id.checkBox6, R.id.checkBox7};
     int checkCategory = 0;
+
 
     RadioGroup radioGender;
     RadioButton radioBtnM, radioBtnF;
@@ -77,6 +79,8 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         buttonJoin = findViewById(R.id.buttonJoin);
         buttonBack = findViewById(R.id.buttonBack);
         buttonForTest = findViewById(R.id.buttonForTest);
+
+//        checkBoxes[0] = findViewById(checkBox[0]);
 
         checkBox1 = findViewById(R.id.checkBox1);
         checkBox2 = findViewById(R.id.checkBox2);
@@ -116,6 +120,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         checkBox6.setOnClickListener(this);
         checkBox7.setOnClickListener(this);
         checkBox8.setOnClickListener(this);
+
     }
 
 
@@ -141,21 +146,21 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.checkBox1:
-                if(checkBox1.isChecked()) {
-                    if(checkCategory < 3) {
-                        category[checkCategory] = categoryName[0];
-                        checkCategory += 1;
-                    } else {
-                        Toast.makeText(this,
-                                "카테고리는 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
-                        checkBox1.setChecked(false);
+                    if(checkBox1.isChecked()) {
+                        if(checkCategory < 3) {
+                            category[checkCategory] = categoryName[0];
+                            checkCategory += 1;
+                        } else {
+                            Toast.makeText(this,
+                                    "카테고리는 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                            checkBox1.setChecked(false);
+                        }
                     }
-                }
-                else {
-                    if(checkCategory > 0) {
-                        checkCategory -= 1;
-                    }
-                    category[checkCategory] = null;
+                    else {
+                        if(checkCategory > 0) {
+                            checkCategory -= 1;
+                        }
+                        category[checkCategory] = null;
                 }
                 break;
             case R.id.checkBox2:

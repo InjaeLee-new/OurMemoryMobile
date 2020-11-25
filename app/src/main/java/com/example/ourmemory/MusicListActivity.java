@@ -53,7 +53,7 @@ public class MusicListActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void getJsonData() {
-        String url = "http://192.168.0.109:8081/java/musicListJson";
+        String url = "http://192.168.1.21:8085/java/musicListJson";
         client.get(url, helper);
     }
 
