@@ -68,6 +68,6 @@ public class TotalListJsonHelper extends AsyncHttpResponseHandler {
 
     @Override
     public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-        Toast.makeText(activity, "실패", Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, "실패 , i =" + i, Toast.LENGTH_SHORT).show();
     }
 }
