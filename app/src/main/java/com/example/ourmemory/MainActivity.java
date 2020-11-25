@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.ourmemory.helper.JsonLoginHelper;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -30,6 +31,7 @@ import com.loopj.android.http.RequestParams;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -191,12 +193,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 RequestParams params = new RequestParams();
                 params.put("id", editTextID.getText().toString().trim());
                 params.put("pw", editTextPassword.getText().toString().trim());
-                String url = "http://192.168.1.3:8085/java/appLogin";
+                String url = "http://192.168.1.21:8085/java/appLogin";
                 client.post(url, params,  helper);
                 if(LoginOK) {
                     Intent intentLogin = new Intent(this, IndexActivity.class);
                     startActivity(intentLogin);
-//                    finish();
                 }
                 break;
             case R.id.buttonToMain:

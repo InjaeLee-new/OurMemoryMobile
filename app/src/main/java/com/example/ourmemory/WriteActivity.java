@@ -19,10 +19,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ourmemory.helper.FileUtils;
 import com.example.ourmemory.helper.PhotoHelper;
 import com.loopj.android.http.AsyncHttpClient;
@@ -40,7 +42,8 @@ import cz.msebera.android.httpclient.Header;
 public class WriteActivity extends AppCompatActivity implements View.OnClickListener {
     Button buttonWrite, buttonWriteCancel, buttonWriteImage;
     EditText editTextWrite1, editTextWrite2, editTextWrite3, editTextWrite4, editTextWrite5;
-    TextView textView11;
+    TextView textViewImage;
+    ImageView imageView;
     Spinner spinner;
     String filePath = null;
     HttpResponse response;
@@ -54,13 +57,14 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         buttonWrite = findViewById(R.id.buttonWrite);
         buttonWriteCancel = findViewById(R.id.buttonWriteCancel);
         buttonWriteImage = findViewById(R.id.buttonWriteImage);
+        imageView = findViewById(R.id.imageView);
         editTextWrite1 = findViewById(R.id.editTextWrite1);
         editTextWrite2 = findViewById(R.id.editTextWrite2);
         editTextWrite3 = findViewById(R.id.editTextWrite3);
         editTextWrite4 = findViewById(R.id.editTextWrite4);
         editTextWrite5 = findViewById(R.id.editTextWrite5);
 
-        textView11 = findViewById(R.id.textView11);
+        textViewImage = findViewById(R.id.textViewImage);
 
         // 스피너 객체 호출
         spinner = (Spinner)findViewById(R.id.spinner);
@@ -170,7 +174,11 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
                     Log.d("[TEST]", filePath);
                     sendBroadcast(intent);
                     realFileName = filePath.substring(filePath.lastIndexOf("/")+1);
-                    textView11.setText(realFileName);
+                    textViewImage.setText(realFileName);
+                    Glide.with(this).load(filePath)
+                            .into(imageView);
+                    buttonWriteImage.setVisibility(View.GONE);
+                    imageView.setVisibility(View.VISIBLE);
                     break;
                 case 101 :
                     String uri = data.getData().toString();
@@ -180,7 +188,11 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
                     Log.d("[TEST]", "filePath = "+filePath);
                     Toast.makeText(this, fileName+"을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
                     realFileName = filePath.substring(filePath.lastIndexOf("/")+1);
-                    textView11.setText(realFileName);
+                    textViewImage.setText(realFileName);
+                    Glide.with(this).load(filePath)
+                            .into(imageView);
+                    buttonWriteImage.setVisibility(View.GONE);
+                    imageView.setVisibility(View.VISIBLE);
                     break;
             }
         }
@@ -215,7 +227,7 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         }
 
         RequestParams params = new RequestParams();
-        String url = "http://192.168.1.3:8085/java/writeAndroid";
+        String url = "http://192.168.1.21:8085/java/writeAndroid";
         params.put("memory_name",memory_name);
         params.put("memory_id",memory_id);
         params.put("memory_pass",memory_pass);
