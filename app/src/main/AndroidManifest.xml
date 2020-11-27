@@ -25,8 +25,6 @@
         <activity android:name=".JoinActivity" />
         <activity android:name=".GoogleLoginResultActivity" />
         <activity android:name=".TotalListActivity" />
-        <activity android:name=".JoinActivity" />
-        <activity android:name=".GoogleLoginResultActivity" />
         <activity android:name=".HealthListActivity" />
         <activity android:name=".GameListActivity" />
         <activity android:name=".ItListActivity" />

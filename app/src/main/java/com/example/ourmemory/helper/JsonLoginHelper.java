@@ -32,6 +32,7 @@ public class JsonLoginHelper extends AsyncHttpResponseHandler {
     public void onStart() {
         super.onStart();
     }
+
     @Override
     public void onFinish() {
         super.onFinish();
