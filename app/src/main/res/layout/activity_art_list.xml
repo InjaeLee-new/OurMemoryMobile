@@ -4,28 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FBF2F3"
     android:orientation="vertical"
-    tools:context=".GameListActivity">
+    tools:context=".HealthListActivity">
 
     <TextView
-        android:id="@+id/textViewImage"
+        android:id="@+id/textViewA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="[게임 게시판]"
+        android:text="[ 우리들의 문화생활 저장소 ]"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listViewArt"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1">
 
     </ListView>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="돌아가기" />

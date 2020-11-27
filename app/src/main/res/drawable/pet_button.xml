@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!--  버튼이 눌렸을때의 이미지 -->
@@ -5,4 +6,13 @@
 
     <!--  버튼이 눌리지 않았을때의 이미지 -->
     <item android:drawable="@drawable/dognew1"/>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--  버튼이 눌렸을때의 이미지 -->
+    <item android:state_pressed="true" android:drawable="@drawable/dognew2"/>
+
+    <!--  버튼이 눌리지 않았을때의 이미지 -->
+    <item android:drawable="@drawable/dognew1"/>
+>>>>>>> 75f346fdb03a9cd8cd3957484a91aaeb2ce4f4b2
 </selector>

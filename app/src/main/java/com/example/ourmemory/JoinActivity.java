@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ourmemory.helper.JsonJoinHelper;
 import com.example.ourmemory.photoHelper.FileUtils;
 import com.example.ourmemory.photoHelper.PhotoHelper;
@@ -32,15 +34,20 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
     Button buttonJoin, buttonBack, buttonForTest;
 
-    String [] category = {"memory", "pet", "health", "art" , "it", "game", "food", "music"};
-    int checkCategory = 0;
-
     ImageButton imageButton;
 
+    CheckBox[] checkBoxes;
     CheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7, checkBox8;
 
     EditText editTextName, editTextId, editTextPwd, editTextNick, editTextTel1, editTextTel2, editTextTel3,
             editTextEmail1, editTextEmail2, editTextAddr;
+
+    String [] categoryName = {"memory", "pet", "it", "game" , "food", "music", "art", "health"};
+    String [] category = new String[3];
+//    int [] checkBox = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBox4, R.id.checkBox4
+//            , R.id.checkBox5, R.id.checkBox6, R.id.checkBox7};
+    int checkCategory = 0;
+
 
     RadioGroup radioGender;
     RadioButton radioBtnM, radioBtnF;
@@ -58,6 +65,12 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         client = new AsyncHttpClient();
         helper = new JsonJoinHelper(this);
 
+        Log.d("[TEST]", "" +checkCategory);
+        if(category[checkCategory] != null) {
+            Log.d("[TEST]", category[checkCategory]);
+        } else {
+            Log.d("[TEST]", checkCategory + "인덱스의 category값이 null입니다.");
+        }
 
         buttonJoin = findViewById(R.id.buttonJoin);
         buttonBack = findViewById(R.id.buttonBack);
@@ -66,6 +79,8 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         buttonJoin = findViewById(R.id.buttonJoin);
         buttonBack = findViewById(R.id.buttonBack);
         buttonForTest = findViewById(R.id.buttonForTest);
+
+//        checkBoxes[0] = findViewById(checkBox[0]);
 
         checkBox1 = findViewById(R.id.checkBox1);
         checkBox2 = findViewById(R.id.checkBox2);
@@ -96,7 +111,18 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         buttonBack.setOnClickListener(this);
         imageButton.setOnClickListener(this);
         buttonForTest.setOnClickListener(this);
+
+        checkBox1.setOnClickListener(this);
+        checkBox2.setOnClickListener(this);
+        checkBox3.setOnClickListener(this);
+        checkBox4.setOnClickListener(this);
+        checkBox5.setOnClickListener(this);
+        checkBox6.setOnClickListener(this);
+        checkBox7.setOnClickListener(this);
+        checkBox8.setOnClickListener(this);
+
     }
+
 
     @Override
     public void onClick(View v) {
@@ -112,9 +138,157 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
                 showPhotoDialog();
                 break;
             case R.id.buttonForTest:
-                Toast.makeText(this, editTextId.getText().toString(), Toast.LENGTH_SHORT).show();
+                String result = "";
+                for(int i = 0 ; i < category.length; i++) {
+                    result += i+1 + "번째 카테고리" + category[i] + "\n";
+                }
+                Toast.makeText(this, result , Toast.LENGTH_SHORT).show();
                 break;
 
+            case R.id.checkBox1:
+                    if(checkBox1.isChecked()) {
+                        if(checkCategory < 3) {
+                            category[checkCategory] = categoryName[0];
+                            checkCategory += 1;
+                        } else {
+                            Toast.makeText(this,
+                                    "카테고리는 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                            checkBox1.setChecked(false);
+                        }
+                    }
+                    else {
+                        if(checkCategory > 0) {
+                            checkCategory -= 1;
+                        }
+                        category[checkCategory] = null;
+                }
+                break;
+            case R.id.checkBox2:
+                if(checkBox2.isChecked()) {
+                    if(checkCategory < 3) {
+                        category[checkCategory] = categoryName[1];
+                        checkCategory += 1;
+                    } else {
+                        Toast.makeText(this,
+                                "카테고리는 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                        checkBox2.setChecked(false);
+                    }
+                }
+                else {
+                    if(checkCategory > 0) {
+                        checkCategory -= 1;
+                    }
+                    category[checkCategory] = null;
+                }
+                break;
+            case R.id.checkBox3:
+                if(checkBox3.isChecked()) {
+                    if(checkCategory < 3) {
+                        category[checkCategory] = categoryName[2];
+                        checkCategory += 1;
+                    } else {
+                        Toast.makeText(this,
+                                "카테고리는 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                        checkBox3.setChecked(false);
+                    }
+                }
+                else {
+                    if(checkCategory > 0) {
+                        checkCategory -= 1;
+                    }
+                    category[checkCategory] = null;
+                }
+                break;
+            case R.id.checkBox4:
+                if(checkBox4.isChecked()) {
+                    if(checkCategory < 3) {
+                        category[checkCategory] = categoryName[3];
+                        checkCategory += 1;
+                    } else {
+                        Toast.makeText(this,
+                                "카테고리는 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                        checkBox4.setChecked(false);
+                    }
+                }
+                else {
+                    if(checkCategory > 0) {
+                        checkCategory -= 1;
+                    }
+                    category[checkCategory] = null;
+                }
+                break;
+            case R.id.checkBox5:
+                if(checkBox5.isChecked()) {
+                    if(checkCategory < 3) {
+                        category[checkCategory] = categoryName[4];
+                        checkCategory += 1;
+                    } else {
+                        Toast.makeText(this,
+                                "카테고리는 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                        checkBox5.setChecked(false);
+                    }
+                }
+                else {
+                    if(checkCategory > 0) {
+                        checkCategory -= 1;
+                    }
+                    category[checkCategory] = null;
+                }
+                break;
+            case R.id.checkBox6:
+                if(checkBox6.isChecked()) {
+                    if(checkCategory < 3) {
+                        category[checkCategory] = categoryName[5];
+                        checkCategory += 1;
+                    } else {
+                        Toast.makeText(this,
+                                "카테고리는 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                        checkBox6.setChecked(false);
+                    }
+                }
+                else {
+                    if(checkCategory > 0) {
+                        checkCategory -= 1;
+                    }
+                    category[checkCategory] = null;
+                }
+                break;
+            case R.id.checkBox7:
+                if(checkBox7.isChecked()) {
+                    if(checkCategory < 3) {
+                        category[checkCategory] = categoryName[6];
+                        checkCategory += 1;
+                    } else {
+                        Toast.makeText(this,
+                                "카테고리는 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                        checkBox7.setChecked(false);
+                    }
+                }
+                else {
+                    if(checkCategory > 0) {
+                        checkCategory -= 1;
+                    }
+                    category[checkCategory] = null;
+                }
+                break;
+            case R.id.checkBox8:
+                if(checkBox8.isChecked()) {
+                    if(checkCategory < 3) {
+                        category[checkCategory] = categoryName[7];
+                        checkCategory += 1;
+                    } else {
+                        Toast.makeText(this,
+                                "카테고리는 3개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
+                        checkBox8.setChecked(false);
+                    }
+                }
+                else {
+                    if(checkCategory > 0) {
+                        checkCategory -= 1;
+                    }
+                    category[checkCategory] = null;
+                }
+                break;
 
         }
     }
@@ -134,9 +308,9 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         params.put("tel2", editTextTel2.getText().toString().trim());
         params.put("tel3", editTextTel3.getText().toString().trim());
         params.put("addr", editTextAddr.getText().toString().trim());
-        params.put("cate1","health");
-        params.put("cate2","pet");
-        params.put("cate3","food");
+        params.put("cate1", category[0]);
+        params.put("cate2", category[1]);
+        params.put("cate3", category[2]);
         params.put("google_Id", "23523523");
         params.put("kakao_Id", "235235");
         String url = "http://192.168.1.21:8085/java/joinJson";
@@ -195,10 +369,14 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
                 Intent photoIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
                         Uri.parse("file://" + filepath));
                 sendBroadcast(photoIntent);
+                Glide.with(this).load(filepath)
+                        .into(imageButton);
                 break;
             case 101:
                 if(resultCode == RESULT_OK) {
                     filepath = FileUtils.getPath(this, data.getData());
+                    Glide.with(this).load(filepath)
+                            .into(imageButton);
                 }
                 break;
         }

@@ -121,15 +121,23 @@
 
         <Button
             android:id="@+id/buttonWriteImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:background="@android:drawable/ic_menu_gallery" />
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:visibility="gone"
+            app:srcCompat="@mipmap/ic_launcher" />
+
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/textViewImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:text="이미지 추가" />
     </LinearLayout>
 
@@ -140,6 +148,7 @@
         android:layout_weight="1"
         android:ems="10"
         android:gravity="start|top"
+        android:hint="작성하실 내용을 입력해주세요."
         android:inputType="textMultiLine" />
 
     <LinearLayout

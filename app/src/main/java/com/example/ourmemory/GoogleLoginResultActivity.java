@@ -1,5 +1,9 @@
 package com.example.ourmemory;
 
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.EditText;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -42,5 +46,5 @@ public class GoogleLoginResultActivity extends AppCompatActivity {
                 +"\nuserId : "+userId+"\nnextAt : "+nextAt
         );
         Glide.with(this).load(photoUrl).into(profile); // 프로필 url을 세팅
-    }//
+    }
 }

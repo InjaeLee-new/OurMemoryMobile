@@ -146,6 +146,12 @@
             android:text="모아보기"
             android:textAlignment="center" />
 
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+             />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -17,43 +17,45 @@ import com.loopj.android.http.AsyncHttpClient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class ArtListActivity extends AppCompatActivity
+        implements View.OnClickListener, AdapterView.OnItemClickListener{
     JsonHelper helper;
     AsyncHttpClient client;
     MemoryAdapter adapter;
-    Button button;
-    ListView listView;
+    Button buttonA;
+    ListView listViewArt;
     List<MemoryDTO> list;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music_list2);
+        setContentView(R.layout.activity_art_list);
+        buttonA = findViewById(R.id.buttonA);
+        listViewArt = findViewById(R.id.listViewArt);
 
-        button = findViewById(R.id.button);
-        listView  = findViewById(R.id.listView);
+
         list = new ArrayList<>();
         adapter = new MemoryAdapter(this, R.layout.list_item, list);
 
         client = new AsyncHttpClient();
-        helper = new JsonHelper(this, adapter, listView);
+        helper = new JsonHelper(this, adapter, listViewArt);
 
-        listView.setAdapter(adapter);
+        listViewArt.setAdapter(adapter);
 
-
-        button.setOnClickListener(this);
-        listView.setOnItemClickListener(this);
+        buttonA.setOnClickListener(this);
+        listViewArt.setOnItemClickListener(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        // 주석 추가한 상태로 다시 저장하자.
         adapter.clear();
         getJsonData();
     }
 
     private void getJsonData() {
-        String url = "http://192.168.1.21:8085/java/musicListJson";
+        String url = "http://192.168.1.21:8085/java/artListJson";
+
         client.get(url, helper);
     }
 
@@ -69,9 +71,6 @@ public class MusicListActivity extends AppCompatActivity implements View.OnClick
         Intent intent = new Intent(this, ViewActivity.class);
         intent.putExtra("dto", dto);
 
-        // View에서 hit 수가 1 증가하는 부분은 다시 리스트로 돌아올때 적용된다.
-        // 그래서 리스트에서 view로 넘어갈때 임의로 조회수를 1 증가시켜서 보여주기되면 바로바로 실시간 적용이 가능하다.
-        // by 승원
         intent.putExtra("memory_hit", dto.getMemory_hit()+1);
         startActivity(intent);
     }
