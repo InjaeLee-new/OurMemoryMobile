@@ -1,8 +1,11 @@
 package com.example.ourmemory;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,8 +16,11 @@ import android.widget.ImageView;
 import android.widget.Toolbar;
 
 
+import com.bumptech.glide.Glide;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
@@ -72,6 +78,22 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonTotal.setOnClickListener(this);
         buttonLogout.setOnClickListener(this);
 
+        // 이벤트 알림창 띄우기
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View view = factory.inflate(R.layout.eventdialog, null);
+//        String full_filename = "http://192.168.1.21:8085/java/eventimage/event1.jpg";
+//        Glide.with(this).load(full_filename)
+//                .into(imageView);
+        alert.setView(view);
+        // 확인 버튼 설정
+        alert.setPositiveButton("오늘 하루 보지 않기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
 
         /*
         toolbar = findViewById(R.id.toolbar);
@@ -81,9 +103,6 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
         ActionBar ab = getSupportActionBar();
         //ab.hide();
-
-
-
         ab.setIcon(R.drawable.ourmemory8);
         //ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE);
         ab.setDisplayHomeAsUpEnabled(true);
