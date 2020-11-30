@@ -348,17 +348,17 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         // 여러개 넣으려면 다시 검색해보거나 memory_file 이름 다 다르게 해서 spring에 있는 파라미터 값도 바꿔줘야함.
         try {
             params.put("memory_file1", new File(filePath1));
-            if (imgCnt==2){
+            if (imgCnt>1){
                 params.put("memory_file2", new File(filePath2));
-            }
-            if (imgCnt==3){
-                params.put("memory_file3", new File(filePath3));
-            }
-            if (imgCnt==4){
-                params.put("memory_file4", new File(filePath4));
-            }
-            if (imgCnt==5){
-                params.put("memory_file5", new File(filePath5));
+                if (imgCnt>2){
+                    params.put("memory_file3", new File(filePath3));
+                    if (imgCnt>3){
+                        params.put("memory_file4", new File(filePath4));
+                        if (imgCnt>4){
+                            params.put("memory_file5", new File(filePath5));
+                        }
+                    }
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
