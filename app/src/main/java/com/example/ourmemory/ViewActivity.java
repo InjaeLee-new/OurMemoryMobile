@@ -3,7 +3,6 @@ package com.example.ourmemory;
 import androidx.appcompat.app.AppCompatActivity;
 import cz.msebera.android.httpclient.Header;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,10 +16,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import com.example.ourmemory.adapter.MemoryAdapter;
 import com.example.ourmemory.adapter.MemoryCommentAdapter;
 import com.example.ourmemory.helper.JsonCommentHelper;
-import com.example.ourmemory.helper.JsonHelper;
 
 import com.example.ourmemory.model.MemoryCommentDTO;
 import com.example.ourmemory.model.MemoryDTO;
@@ -34,8 +31,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import androidx.appcompat.app.AppCompatActivity;
-import cz.msebera.android.httpclient.Header;
 
 public class ViewActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,7 +50,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     MemoryDTO memoryDTO;
     ImageView imageView;
     TextView textView1, textView2, textView3, textViewContent, textView9, textView10;
-    Button buttonBack, buttonCommentSubmit;
+    Button buttonBack, buttonCommentSubmit, buttonModify, buttonDelete;
     EditText editTextCommentContent, editTextCommentName;
     boolean statusLike = false;
     int like_status = 0;
@@ -99,6 +94,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         int update_hit = getIntent().getIntExtra("memory_hit", 0);
 
         buttonBack = findViewById(R.id.buttonBack);
+        buttonModify = findViewById(R.id.buttonModify);
+        buttonDelete = findViewById(R.id.buttonDelete);
         imageView = findViewById(R.id.imageView);
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
@@ -120,6 +117,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         textViewContent.setText(memoryDTO.getMemory_content());
 
         buttonBack.setOnClickListener(this);
+        buttonModify.setOnClickListener(this);
+        buttonDelete.setOnClickListener(this);
         textView9.setOnClickListener(this);
         textView10.setOnClickListener(this);
         buttonCommentSubmit.setOnClickListener(this);
@@ -214,6 +213,16 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
                     startActivity(reStartIntent);
                     Toast.makeText(this, "댓글 작성이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case R.id.buttonModify:
+                Intent intentModify = new Intent(this, ModifyActivity.class);
+                intentModify.putExtra("dto", memoryDTO);
+                startActivity(intentModify);
+                break;
+            case R.id.buttonDelete:
+                Intent intentDelete = new Intent(this, DeleteActivity.class);
+                intentDelete.putExtra("dto", memoryDTO);
+                startActivity(intentDelete);
                 break;
         }
 
