@@ -85,7 +85,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         memoryDTO = (MemoryDTO) getIntent().getSerializableExtra("dto");
 
-        String full_filename = "http://192.168.1.3:8085/java/img" + "/" + memoryDTO.getMemory_file();
+        String full_filename = "http://192.168.0.109:8082/java/img" + "/" + memoryDTO.getMemory_file();
 
         // 1 증가한 조회수를 미리 받아버리기~
         int update_hit = getIntent().getIntExtra("memory_hit", 0);
@@ -127,14 +127,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.21:8085/java/viewHitJson";
+        String url = "http://192.168.0.109:8082/java/viewHitJson";
         client.post(url, params, helper);
     }
 
     private void getCommentData() {
         RequestParams params = new RequestParams();
         params.put("seq", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.21:8085/java/commentViewJson";
+        String url = "http://192.168.0.109:8082/java/commentViewJson";
         client.post(url, params,  commentHelper);
     }
 
@@ -143,7 +143,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         params.put("memory_seq", memoryDTO.getMemory_num());
         params.put("memory_comment_name", editTextCommentName.getText().toString().trim());
         params.put("memory_comment_content", editTextCommentContent.getText().toString().trim());
-        String url = "http://192.168.1.21:8085/java/viewCommentWriteJson";
+        String url = "http://192.168.0.109:8082/java/viewCommentWriteJson";
         client.post(url, params,  commentHelper);
 
         editTextCommentName.setText("");
@@ -214,7 +214,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandCheck() {
         RequestParams params = new RequestParams();
 
-        String url = "http://192.168.1.3:8085/java/recommandCheck";
+        String url = "http://192.168.0.109:8082/java/recommandCheck";
         params.put("recommand_id", "hong01"); // 이부분은 다음에 세션 값 되면 변경해야함.
         params.put("recommand_seq", memoryDTO.getMemory_num());
         client.post(url, params, recommandCheckHelper);
@@ -225,13 +225,13 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandData() {
         RequestParams params = new RequestParams();
         if (like_status == 1){
-            String url = "http://192.168.1.3:8085/java/recommendation";
+            String url = "http://192.168.0.109:8082/java/recommendation";
             params.put("memory_num", memoryDTO.getMemory_num());
             client.post(url, params, recommandHelper);
             Log.d("[test]",like_status+" ");
         } else if (like_status == 2){
             params.put("memory_num", memoryDTO.getMemory_num());
-            String url = "http://192.168.1.3:80855/java/notrecommendation";
+            String url = "http://192.168.0.109:8082/java/notrecommendation";
             client.post(url, params, recommandHelper);
             Log.d("[test]",like_status+" ");
         }

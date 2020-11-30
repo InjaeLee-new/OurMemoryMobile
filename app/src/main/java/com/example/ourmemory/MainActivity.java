@@ -2,7 +2,9 @@ package com.example.ourmemory;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +36,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     /**
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText editTextID, editTextPassword;
 
     static public Boolean LoginOK = false;
+    static public Boolean isntAppJoin = false;
     static public String user_name = "";
 
     // 일반 로그인에 필요한 내용 구현
@@ -113,11 +118,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonToMain = findViewById(R.id.buttonToMain);
 
 
-
         buttonLogin.setOnClickListener(this);
         buttonJoin.setOnClickListener(this);
         buttonLoginOK.setOnClickListener(this);
         buttonToMain.setOnClickListener(this);
+
 
         lottie1 = (LottieAnimationView) findViewById(R.id.lottie1);
 
@@ -181,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.buttonJoin:
                 Intent intentJoin = new Intent(this, JoinActivity.class);
+                intentJoin.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intentJoin);
                 break;
             case R.id.buttonLogin:
@@ -193,11 +199,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 RequestParams params = new RequestParams();
                 params.put("id", editTextID.getText().toString().trim());
                 params.put("pw", editTextPassword.getText().toString().trim());
-                String url = "http://192.168.1.21:8085/java/appLogin";
+                String url = "http://192.168.0.109:8082/java/appLogin";
                 client.post(url, params,  helper);
-                if(LoginOK) {
+
+                if(LoginOK && !isntAppJoin) {
+                    Log.d("[Main.LoginOK]", ""+LoginOK);
+                    Log.d("[Main.isntAppJoin]", ""+isntAppJoin);
                     Intent intentLogin = new Intent(this, IndexActivity.class);
                     startActivity(intentLogin);
+                } else {
+                    HashMap<String, String> user = sessionManager.getUserDetail();
+                    String user_id = user.get(sessionManager.ID);
+                    String user_name = user.get(sessionManager.NAME);
+                    Intent intentAppJoin = new Intent(this, AppJoinActivity.class);
+                    intentAppJoin.putExtra("user_id", user_id);
+                    intentAppJoin.putExtra("user_name", user_name);
+
+                    startActivity(intentAppJoin);
                 }
                 break;
             case R.id.buttonToMain:
@@ -209,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.sign_in_button:
                 signIn();
                 break;
+
 
         }
     }

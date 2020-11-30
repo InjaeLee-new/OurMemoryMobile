@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="#FFEBEC"
+    android:gravity="center"
+    android:orientation="horizontal"
+    tools:showIn="@layout/activity_index">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/home_button" />
+
+        <ImageButton
+            android:id="@+id/btnWrite"
+            android:layout_width="32dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toEndOf="@+id/btnHome"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/write_button" />
+
+        <ImageButton
+            android:id="@+id/btnFav"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="47dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toStartOf="@+id/btnTotal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/fav_button" />
+
+        <ImageButton
+            android:id="@+id/btnTotal"
+            android:layout_width="33dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="70dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/total_button2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
