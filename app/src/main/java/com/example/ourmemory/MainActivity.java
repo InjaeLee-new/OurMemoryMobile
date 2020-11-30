@@ -198,6 +198,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(LoginOK) {
                     Intent intentLogin = new Intent(this, IndexActivity.class);
                     startActivity(intentLogin);
+                    editTextID.setText("");
+                    editTextPassword.setText("");
                 }
                 break;
             case R.id.buttonToMain:

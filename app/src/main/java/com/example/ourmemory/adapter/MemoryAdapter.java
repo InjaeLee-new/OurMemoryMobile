@@ -41,7 +41,7 @@ public class MemoryAdapter extends ArrayAdapter<MemoryDTO> {
 
 
         String fileName = memoryDTO.getMemory_file();
-        String full_filename = "http://192.168.0.109:8081/java/img" + "/" + memoryDTO.getMemory_file();
+        String full_filename = "http://192.168.1.21:8085/java/img" + "/" + memoryDTO.getMemory_file();
 
 
         if (memoryDTO != null) {
