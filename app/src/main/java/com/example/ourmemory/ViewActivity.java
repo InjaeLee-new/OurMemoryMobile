@@ -17,7 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 
 import com.example.ourmemory.adapter.MemoryCommentAdapter;
 import com.example.ourmemory.helper.JsonCommentHelper;
@@ -54,15 +53,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     MemoryDTO memoryDTO;
     ImageView imageView;
     TextView textView1, textView2, textView3, textViewContent, textView9, textView10;
-<<<<<<< HEAD
+
     Button buttonBack, buttonCommentSubmit, buttonShare;
     ImageButton imageButtonPre, imageButtonNext;
     ViewPager2 viewPager;
-=======
-  
-    Button buttonBack, buttonCommentSubmit, buttonModify, buttonDelete, buttonShare;
 
->>>>>>> 7b816d694ee43f77c873ddfde17405eb04ff90fa
     EditText editTextCommentContent, editTextCommentName;
     boolean statusLike = false;
     int like_status = 0;
@@ -102,30 +97,21 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         memoryDTO = (MemoryDTO) getIntent().getSerializableExtra("dto");
         getJsonData(); // 제이슨 데이터 처리!
 
-<<<<<<< HEAD
+
         String fileName = memoryDTO.getMemory_file();
         String[] array_fileName = fileName.split(", ");
 //        String full_filename = "http://192.168.1.3:8085/java/storage" + "/" + array_fileName[0];
         // viewpager 만들기
-
         viewPager.setAdapter(new ViewPagerHelper(array_fileName, this));
-=======
-        memoryDTO = (MemoryDTO) getIntent().getSerializableExtra("dto");
-
-        String full_filename = "http://192.168.1.21:8085/java/img" + "/" + memoryDTO.getMemory_file();
->>>>>>> 7b816d694ee43f77c873ddfde17405eb04ff90fa
 
         // 1 증가한 조회수를 미리 받아버리기~
         int update_hit = getIntent().getIntExtra("memory_hit", 0);
 
         buttonBack = findViewById(R.id.buttonBack);
-<<<<<<< HEAD
+//        buttonModify = findViewById(R.id.buttonModify);
+//        buttonDelete = findViewById(R.id.buttonDelete);
 //        imageView = findViewById(R.id.imageView);
-=======
-        buttonModify = findViewById(R.id.buttonModify);
-        buttonDelete = findViewById(R.id.buttonDelete);
-        imageView = findViewById(R.id.imageView);
->>>>>>> 7b816d694ee43f77c873ddfde17405eb04ff90fa
+
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
         textView3 = findViewById(R.id.textView3);
@@ -147,13 +133,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         buttonBack.setOnClickListener(this);
         buttonShare.setOnClickListener(this);
-<<<<<<< HEAD
         imageButtonPre.setOnClickListener(this);
         imageButtonNext.setOnClickListener(this);
-=======
-        buttonModify.setOnClickListener(this);
-        buttonDelete.setOnClickListener(this);
->>>>>>> 7b816d694ee43f77c873ddfde17405eb04ff90fa
+//        buttonModify.setOnClickListener(this);
+//        buttonDelete.setOnClickListener(this);
+
         textView9.setOnClickListener(this);
         textView10.setOnClickListener(this);
         buttonCommentSubmit.setOnClickListener(this);
