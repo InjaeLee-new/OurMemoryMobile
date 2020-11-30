@@ -50,7 +50,9 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     MemoryDTO memoryDTO;
     ImageView imageView;
     TextView textView1, textView2, textView3, textViewContent, textView9, textView10;
-    Button buttonBack, buttonCommentSubmit, buttonModify, buttonDelete;
+  
+    Button buttonBack, buttonCommentSubmit, buttonModify, buttonDelete, buttonShare;
+
     EditText editTextCommentContent, editTextCommentName;
     boolean statusLike = false;
     int like_status = 0;
@@ -71,6 +73,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         buttonCommentSubmit = findViewById(R.id.buttonCommentSubmit);
         editTextCommentContent = findViewById(R.id.editTextCommentContent);
         editTextCommentName = findViewById(R.id.editTextCommentName);
+        buttonShare = findViewById(R.id.buttonShare);
 
         helper = new ViewHelper();
         recommandHelper = new RecommandHelper();
@@ -84,7 +87,6 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         memoryDTO = (MemoryDTO) getIntent().getSerializableExtra("dto");
         getJsonData(); // 제이슨 데이터 처리!
-
 
         memoryDTO = (MemoryDTO) getIntent().getSerializableExtra("dto");
 
@@ -117,6 +119,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         textViewContent.setText(memoryDTO.getMemory_content());
 
         buttonBack.setOnClickListener(this);
+        buttonShare.setOnClickListener(this);
         buttonModify.setOnClickListener(this);
         buttonDelete.setOnClickListener(this);
         textView9.setOnClickListener(this);
@@ -134,14 +137,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.21:8085/java/viewHitJson";
+        String url = "http://192.168.1.3:8085/java/viewHitJson";
         client.post(url, params, helper);
     }
 
     private void getCommentData() {
         RequestParams params = new RequestParams();
         params.put("seq", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.21:8085/java/commentViewJson";
+        String url = "http://192.168.1.3:8085/java/commentViewJson";
         client.post(url, params,  commentHelper);
     }
 
@@ -150,7 +153,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         params.put("memory_seq", memoryDTO.getMemory_num());
         params.put("memory_comment_name", editTextCommentName.getText().toString().trim());
         params.put("memory_comment_content", editTextCommentContent.getText().toString().trim());
-        String url = "http://192.168.1.21:8085/java/viewCommentWriteJson";
+        String url = "http://192.168.1.3:8085/java/viewCommentWriteJson";
         client.post(url, params,  commentHelper);
 
         editTextCommentName.setText("");
@@ -214,6 +217,21 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this, "댓글 작성이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.buttonShare: // 공유하기 버튼
+                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                intent.setType("text/plain");
+
+                // Set default text message
+                // 카톡, 이메일, MMS 다 이걸로 설정 가능
+                String subject = memoryDTO.getMemory_subject(); // url 앞에 들어가는 문구
+                // URL 보내는 곳 ( 임시로 플레이스토어 이동 인스타 다운로드로 경로 지정해둠 )
+                String text = "https://play.google.com/store/apps/details?id=com.instagram.android";
+                intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                intent.putExtra(Intent.EXTRA_TEXT, text);
+
+                // Title of intent
+                Intent chooser = Intent.createChooser(intent, "친구에게 공유하기");
+                startActivity(chooser);
             case R.id.buttonModify:
                 Intent intentModify = new Intent(this, ModifyActivity.class);
                 intentModify.putExtra("dto", memoryDTO);

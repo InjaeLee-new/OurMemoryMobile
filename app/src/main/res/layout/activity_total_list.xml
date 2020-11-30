@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1000"
             android:gravity="center_horizontal"
-            android:text="                 [ 모아보기 ]"
+            android:text="   [ 모아보기 ]"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <Button

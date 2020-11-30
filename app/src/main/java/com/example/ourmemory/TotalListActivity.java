@@ -33,6 +33,7 @@ public class TotalListActivity extends AppCompatActivity
         setContentView(R.layout.activity_total_list);
         buttonTotal = findViewById(R.id.buttonTotal);
         buttonWrite = findViewById(R.id.buttonWrite);
+
         listViewTotal = findViewById(R.id.listViewTotal);
 
 
@@ -46,6 +47,7 @@ public class TotalListActivity extends AppCompatActivity
 
         buttonTotal.setOnClickListener(this);
         buttonWrite.setOnClickListener(this);
+
         listViewTotal.setOnItemClickListener(this);
     }
 
@@ -64,21 +66,22 @@ public class TotalListActivity extends AppCompatActivity
         params.put("cate1","health");
         params.put("cate2","pet");
         params.put("cate3","food");
-        String url = "http://192.168.1.21:8085/java/totalListJson";
+        String url = "http://192.168.1.3:8085/java/totalListJson";
         client.get(url, params, helper);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.buttonWrite:
+            case R.id.buttonWrite: // 글 쓰기 버튼
                 Intent intent = new Intent(this, WriteActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent);
                 break;
-            case R.id.buttonTotal:
+            case R.id.buttonTotal: // 뒤로가기 버튼
                 finish();
                 break;
+
         }
     }
 
