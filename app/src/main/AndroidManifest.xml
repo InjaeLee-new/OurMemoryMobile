@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ourmemory">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -18,15 +17,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".ArtListActivity"></activity>
-        <activity android:name=".MusicListActivity"></activity>
-        <activity android:name=".PetListActivity"></activity>
+        <activity android:name=".ArtListActivity"/>
+        <activity android:name=".MusicListActivity"/>
+        <activity android:name=".PetListActivity"/>
         <activity android:name=".WriteActivity" />
         <activity android:name=".JoinActivity" />
         <activity android:name=".GoogleLoginResultActivity" />
         <activity android:name=".TotalListActivity" />
-        <activity android:name=".JoinActivity" />
-        <activity android:name=".GoogleLoginResultActivity" />
         <activity android:name=".HealthListActivity" />
         <activity android:name=".GameListActivity" />
         <activity android:name=".ItListActivity" />
@@ -52,11 +49,5 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
