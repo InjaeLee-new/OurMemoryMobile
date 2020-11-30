@@ -2,13 +2,19 @@ package com.example.ourmemory;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.EventLog;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import android.widget.TextView;
@@ -39,6 +45,9 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
     Button buttonTravel, buttonMusic, buttonArt, buttonIt;
     Toolbar toolbar;
 
+    // 팝업을 위한 코드 선언
+    public static boolean popUpStop = false;
+    AlertDialog.Builder alert;
 
     SessionManager sessionManager;
     @Override
@@ -79,21 +88,50 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonLogout.setOnClickListener(this);
 
         // 이벤트 알림창 띄우기
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert = new AlertDialog.Builder(this);
         LayoutInflater factory = LayoutInflater.from(this);
         final View view = factory.inflate(R.layout.eventdialog, null);
 //        String full_filename = "http://192.168.1.21:8085/java/eventimage/event1.jpg";
 //        Glide.with(this).load(full_filename)
 //                .into(imageView);
         alert.setView(view);
+
+        // 이벤트 팝업을 클릭하면 이벤트 페이지로 이동
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentEvent = new Intent(getApplicationContext(), EventActivity.class);
+                startActivity(intentEvent);
+            }
+        });
+
         // 확인 버튼 설정
         alert.setPositiveButton("오늘 하루 보지 않기", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                popUpStop = true;
             }
         });
-        alert.show();
+
+//        WindowManager.LayoutParams params = alert.getWindow().getAttributes();
+//        params.width = params.MATCH_PARENT;
+//        params.height = params.MATCH_PARENT;
+//        alert.getWindow().setAttributes(
+//                (android.view.WindowManager.LayoutParams)
+//                        params);
+
+        if(popUpStop) {
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable()  {
+                public void run() {
+                    // 시간 지난 후 실행할 코딩
+                    alert.show();
+                }
+            }, 500); // 0.5초후
+        } else {
+            alert.show();
+        }
 
         /*
         toolbar = findViewById(R.id.toolbar);
