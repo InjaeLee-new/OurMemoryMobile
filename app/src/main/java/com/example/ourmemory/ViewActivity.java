@@ -1,6 +1,8 @@
 package com.example.ourmemory;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
+
 import cz.msebera.android.httpclient.Header;
 
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.ourmemory.adapter.MemoryCommentAdapter;
 import com.example.ourmemory.helper.JsonCommentHelper;
 
+import com.example.ourmemory.helper.ViewPagerHelper;
 import com.example.ourmemory.model.MemoryCommentDTO;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
@@ -50,6 +54,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imageView;
     TextView textView1, textView2, textView3, textViewContent, textView9, textView10;
     Button buttonBack, buttonCommentSubmit, buttonShare;
+    ImageButton imageButtonPre, imageButtonNext;
+    ViewPager2 viewPager;
     EditText editTextCommentContent, editTextCommentName;
     boolean statusLike = false;
     int like_status = 0;
@@ -65,6 +71,10 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         editTextCommentName = findViewById(R.id.editTextCommentName);
         buttonShare = findViewById(R.id.buttonShare);
 
+        imageButtonPre = findViewById(R.id.imageButtonPre);
+        imageButtonNext = findViewById(R.id.imageButtonNext);
+        viewPager =  findViewById(R.id.viewPager);
+
         helper = new ViewHelper();
         recommandHelper = new RecommandHelper();
         recommandCheckHelper = new RecommandCheckHelper();
@@ -78,13 +88,18 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         memoryDTO = (MemoryDTO) getIntent().getSerializableExtra("dto");
         getJsonData(); // 제이슨 데이터 처리!
 
-        String full_filename = "http://192.168.1.3:8085/java/img" + "/" + memoryDTO.getMemory_file();
+        String fileName = memoryDTO.getMemory_file();
+        String[] array_fileName = fileName.split(", ");
+//        String full_filename = "http://192.168.1.3:8085/java/storage" + "/" + array_fileName[0];
+        // viewpager 만들기
+
+        viewPager.setAdapter(new ViewPagerHelper(array_fileName, this));
 
         // 1 증가한 조회수를 미리 받아버리기~
         int update_hit = getIntent().getIntExtra("memory_hit", 0);
 
         buttonBack = findViewById(R.id.buttonBack);
-        imageView = findViewById(R.id.imageView);
+//        imageView = findViewById(R.id.imageView);
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
         textView3 = findViewById(R.id.textView3);
@@ -95,8 +110,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         listView.setAdapter(commentAdapter);
         getCommentData();
 
-        Glide.with(this).load(full_filename)
-                .into(imageView);
+//        Glide.with(this).load(full_filename)
+//                .into(imageView);
         textView1.setText("글 제목 : " + memoryDTO.getMemory_subject());
         textView2.setText("작성자 : " + memoryDTO.getMemory_name());
         textView3.setText("조회수 : " + update_hit);
@@ -106,6 +121,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         buttonBack.setOnClickListener(this);
         buttonShare.setOnClickListener(this);
+        imageButtonPre.setOnClickListener(this);
+        imageButtonNext.setOnClickListener(this);
         textView9.setOnClickListener(this);
         textView10.setOnClickListener(this);
         buttonCommentSubmit.setOnClickListener(this);
@@ -152,6 +169,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        int position;
         switch (v.getId()){
             case R.id.buttonBack:
                 finish();
@@ -216,6 +234,17 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
                 // Title of intent
                 Intent chooser = Intent.createChooser(intent, "친구에게 공유하기");
                 startActivity(chooser);
+                break;
+
+            case R.id.imageButtonPre:
+                position = viewPager.getCurrentItem();//현재 보여지는 아이템의 위치를 리턴
+
+                viewPager.setCurrentItem(position-1,true);
+                break;
+            case R.id.imageButtonNext:
+                position = viewPager.getCurrentItem();//현재 보여지는 아이템의 위치를 리턴
+
+                viewPager.setCurrentItem(position+1,true);
                 break;
         }
 
