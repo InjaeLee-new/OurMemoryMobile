@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout layoutMain, layoutSecond, login_form, main_form;
     LottieAnimationView lottie1, lottie2, lottie3;
 
-    Button buttonLogin, buttonJoin , buttonLoginOK, buttonToMain, buttonMasterKey;
+    Button buttonLogin, buttonJoin , buttonLoginOK, buttonToMain, buttonMasterKey, buttonMasterKey2;
 
     TextView textView;
 
@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonLoginOK = findViewById(R.id.buttonLoginOK);
         buttonToMain = findViewById(R.id.buttonToMain);
         buttonMasterKey = findViewById(R.id.buttonMasterKey);
+        buttonMasterKey2 = findViewById(R.id.buttonMasterKey2);
 
 
         buttonLogin.setOnClickListener(this);
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonLoginOK.setOnClickListener(this);
         buttonToMain.setOnClickListener(this);
         buttonMasterKey.setOnClickListener(this);
+        buttonMasterKey2.setOnClickListener(this);
 
 
         lottie1 = (LottieAnimationView) findViewById(R.id.lottie1);
