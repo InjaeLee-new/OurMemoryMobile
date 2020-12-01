@@ -157,14 +157,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.21:8085/java/viewHitJson";
+        String url = "http://192.168.0.109:8082/java/viewHitJson";
         client.post(url, params, helper);
     }
 
     private void getCommentData() {
         RequestParams params = new RequestParams();
         params.put("seq", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.21:8085/java/commentViewJson";
+        String url = "http://192.168.0.109:8082/java/commentViewJson";
         client.post(url, params,  commentHelper);
     }
 
@@ -173,7 +173,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         params.put("memory_seq", memoryDTO.getMemory_num());
         params.put("memory_comment_name", editTextCommentName.getText().toString().trim());
         params.put("memory_comment_content", editTextCommentContent.getText().toString().trim());
-        String url = "http://192.168.1.21:8085/java/viewCommentWriteJson";
+        String url = "http://192.168.0.109:8082/java/viewCommentWriteJson";
         client.post(url, params,  commentHelper);
 
         editTextCommentName.setText("");
@@ -282,7 +282,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         RequestParams params = new RequestParams();
 
 
-        String url = "http://192.168.1.21:8085/java/recommandCheck";
+        String url = "http://192.168.0.109:8082/java/recommandCheck";
         params.put("recommand_id", session_id); // 변경시킴
 
         params.put("recommand_seq", memoryDTO.getMemory_num());
@@ -295,7 +295,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         RequestParams params = new RequestParams();
         if (like_status == 1){
 
-            String url = "http://192.168.1.21:8085/java/recommendation";
+            String url = "http://192.168.0.109:8082/java/recommendation";
             params.put("memory_num", memoryDTO.getMemory_num());
             client.post(url, params, recommandHelper);
             Log.d("[test]",like_status+" ");

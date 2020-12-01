@@ -73,10 +73,17 @@ public class TotalListActivity extends AppCompatActivity
         RequestParams params = new RequestParams();
         params.put("startNum",1);
         params.put("endNum",MemoryDTO.getTotal_count());
+<<<<<<< HEAD
+        params.put("cate1","health");
+        params.put("cate2","pet");
+        params.put("cate3","food");
+        String url = "http://192.168.0.109:8082/java/totalListJson";
+=======
         params.put("cate1", cate1);
         params.put("cate2", cate2);
         params.put("cate3", cate3);
         String url = "http://192.168.1.21:8085/java/totalListJson";
+>>>>>>> ca2b89fcb15c2023908eef08c2385eb8e56b0ee2
         client.get(url, params, helper);
     }
 
