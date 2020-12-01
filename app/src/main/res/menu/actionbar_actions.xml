@@ -20,6 +20,9 @@
         android:id="@+id/action_mypage"
         android:title="마이페이지" />
     <item
+        android:id="@+id/action_contactus"
+        android:title="고객센터" />
+    <item
         android:id="@+id/action_logout"
         android:title="로그아웃" />
 </menu>

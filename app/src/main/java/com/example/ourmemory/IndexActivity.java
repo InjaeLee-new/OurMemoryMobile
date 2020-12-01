@@ -122,6 +122,11 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 intent4.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent4);
                 break;
+            case R.id.action_contactus: //
+                Intent intent5 = new Intent(this, ContactUsActivity.class);
+                intent5.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent5);
+                break;
 
         }
         return super.onOptionsItemSelected(item);

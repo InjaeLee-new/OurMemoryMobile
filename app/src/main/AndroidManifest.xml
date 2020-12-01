@@ -16,10 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".ArtListActivity"/>
-        <activity android:name=".MusicListActivity"/>
-        <activity android:name=".PetListActivity"/>
+        <activity android:name=".ContactUsActivity"></activity>
+        <activity android:name=".ArtListActivity" />
+        <activity android:name=".MusicListActivity" />
+        <activity android:name=".PetListActivity" />
         <activity android:name=".WriteActivity" />
         <activity android:name=".JoinActivity" />
         <activity android:name=".GoogleLoginResultActivity" />
@@ -34,7 +34,6 @@
         <activity android:name=".ModifyActivity" />
         <activity android:name=".DeleteActivity" />
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

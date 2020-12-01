@@ -51,7 +51,6 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     List<MemoryCommentDTO> list;
 
     MemoryDTO memoryDTO;
-    ImageView imageView;
     TextView textView1, textView2, textView3, textViewContent, textView9, textView10;
 
     Button buttonBack, buttonCommentSubmit, buttonShare;
