@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout layoutMain, layoutSecond, login_form, main_form;
     LottieAnimationView lottie1, lottie2, lottie3;
 
-    Button buttonLogin, buttonJoin , buttonLoginOK, buttonToMain;
+    Button buttonLogin, buttonJoin , buttonLoginOK, buttonToMain, buttonMasterKey;
 
     TextView textView;
 
@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonJoin = findViewById(R.id.buttonJoin);
         buttonLoginOK = findViewById(R.id.buttonLoginOK);
         buttonToMain = findViewById(R.id.buttonToMain);
+        buttonMasterKey = findViewById(R.id.buttonMasterKey);
 
 
 
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonJoin.setOnClickListener(this);
         buttonLoginOK.setOnClickListener(this);
         buttonToMain.setOnClickListener(this);
+        buttonMasterKey.setOnClickListener(this);
 
         lottie1 = (LottieAnimationView) findViewById(R.id.lottie1);
 
@@ -193,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 RequestParams params = new RequestParams();
                 params.put("id", editTextID.getText().toString().trim());
                 params.put("pw", editTextPassword.getText().toString().trim());
-                String url = "http://192.168.1.3:8085/java/appLogin";
+                String url = "http://192.168.1.21:8085/java/appLogin";
                 client.post(url, params,  helper);
                 if(LoginOK) {
                     Intent intentLogin = new Intent(this, IndexActivity.class);
@@ -210,6 +212,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.sign_in_button:
                 signIn();
+                break;
+
+            case R.id.buttonMasterKey:
+                String user_Id = "master";
+                String user_Name = "master";
+                String cate1 = "memory";
+                String cate2 = "pet";
+                String cate3 = "art";
+                String google_Id = "3545321";
+                String kakao_Id = "3231351";
+                sessionManager.createSession(user_Id, user_Name, cate1,
+                        cate2, cate3, google_Id, kakao_Id);
+                Intent masterIntent = new Intent(this, IndexActivity.class);
+                startActivity(masterIntent);
                 break;
 
         }

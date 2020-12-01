@@ -85,4 +85,10 @@
         android:backgroundTint="#F1F1F1"
         android:foregroundTint="#1D8CE4"
         android:text="구글로그인" />
+
+    <Button
+        android:id="@+id/buttonMasterKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="슈퍼방장버튼" />
 </LinearLayout>
