@@ -57,7 +57,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void getJsonData() {
-        String url = "http://192.168.0.109:8082/java/foodListJson";
+        String url = "http://192.168.1.21:8085/java/foodListJson";
         client.get(url, helper);
     }
 
