@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String kakao_Id = "3231351";
                 sessionManager.createSession(user_Id, user_Name, cate1,
                         cate2, cate3, google_Id, kakao_Id);
-                Intent masterIntent = new Intent(this, Index2Activity.class);
+                Intent masterIntent = new Intent(this, IndexActivity.class);
                 startActivity(masterIntent);
                 break;
             case R.id.buttonMasterKey2:

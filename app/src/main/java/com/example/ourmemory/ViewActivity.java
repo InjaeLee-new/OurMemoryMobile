@@ -54,7 +54,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imageView;
     TextView textView1, textView2, textView3, textViewContent, textView9, textView10;
 
-    Button buttonBack, buttonCommentSubmit, buttonShare;
+    Button buttonBack, buttonCommentSubmit, buttonShare, buttonModify, buttonDelete;
     ImageButton imageButtonPre, imageButtonNext;
     ViewPager2 viewPager;
 
@@ -79,6 +79,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         editTextCommentContent = findViewById(R.id.editTextCommentContent);
         editTextCommentName = findViewById(R.id.editTextCommentName);
         buttonShare = findViewById(R.id.buttonShare);
+        buttonModify = findViewById(R.id.buttonModify);
+        buttonDelete = findViewById(R.id.buttonDelete);
 
         imageButtonPre = findViewById(R.id.imageButtonPre);
         imageButtonNext = findViewById(R.id.imageButtonNext);
@@ -102,7 +104,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         String fileName = memoryDTO.getMemory_file();
         String[] array_fileName = fileName.split(", ");
-//        String full_filename = "http://192.168.1.3:8085/java/storage" + "/" + array_fileName[0];
+        String full_filename = "http://192.168.1.21:8085/java/img" + "/" + array_fileName[0];
         // viewpager 만들기
         viewPager.setAdapter(new ViewPagerHelper(array_fileName, this));
 
@@ -137,8 +139,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         buttonShare.setOnClickListener(this);
         imageButtonPre.setOnClickListener(this);
         imageButtonNext.setOnClickListener(this);
-//        buttonModify.setOnClickListener(this);
-//        buttonDelete.setOnClickListener(this);
+        buttonModify.setOnClickListener(this);
+        buttonDelete.setOnClickListener(this);
 
         textView9.setOnClickListener(this);
         textView10.setOnClickListener(this);

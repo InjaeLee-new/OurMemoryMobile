@@ -20,7 +20,7 @@ public class ViewHolderPage extends RecyclerView.ViewHolder {
     }
 
     public void onBind(String fileName, Context context){
-        String full_filename = "http://192.168.1.3:8085/java/storage/" +fileName;
+        String full_filename = "http://192.168.1.21:8085/java/img/" +fileName;
         Glide.with(context).load(full_filename).into(imageViewItem);
     }
 }
