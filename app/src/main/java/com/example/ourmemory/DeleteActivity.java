@@ -67,7 +67,7 @@ public class DeleteActivity extends AppCompatActivity implements View.OnClickLis
             try {
                 JSONObject json = new JSONObject(str);
                 String rt = json.getString("rt");
-                if(rt.equals("OK")) {
+                if(rt.equals("성공!")) {
                     Toast.makeText(DeleteActivity.this, "삭제성공", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {

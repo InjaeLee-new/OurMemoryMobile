@@ -115,12 +115,6 @@
                         android:layout_weight="1"
                         android:text="TextView" />
 
-                    <TextView
-                        android:id="@+id/textView7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="댓글창"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -140,6 +134,13 @@
                             android:layout_weight="1"
                             android:text="글 삭제하기" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="댓글창"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 </LinearLayout>
 
