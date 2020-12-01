@@ -246,6 +246,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent masterIntent = new Intent(this, Index2Activity.class);
                 startActivity(masterIntent);
                 break;
+            case R.id.buttonMasterKey2:
+                user_Id = "master";
+                user_Name = "master";
+                cate1 = "memory";
+                cate2 = "pet";
+                cate3 = "art";
+                google_Id = "3545321";
+                kakao_Id = "3231351";
+                sessionManager.createSession(user_Id, user_Name, cate1,
+                        cate2, cate3, google_Id, kakao_Id);
+                Intent masterIntent2 = new Intent(this, Index2Activity.class);
+                startActivity(masterIntent2);
+                break;
 
 
         }
