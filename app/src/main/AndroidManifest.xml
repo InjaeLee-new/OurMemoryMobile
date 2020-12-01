@@ -25,6 +25,7 @@
         <activity android:name=".FoodListActivity" />
         <activity android:name=".ViewActivity" />
         <activity android:name=".ListActivity" />
+        <activity android:name=".AppJoinActivity" />
         <activity android:name=".IndexActivity" />
         <activity android:name=".Index2Activity" />
         <activity android:name=".ModifyActivity" />
