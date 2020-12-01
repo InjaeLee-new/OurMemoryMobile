@@ -94,5 +94,11 @@
         android:id="@+id/buttonMasterKey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="슈퍼방장버튼" />
+        android:text="Index 슈퍼패스" />
+
+    <Button
+        android:id="@+id/buttonMasterKey2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Index2 슈퍼패스" />
 </LinearLayout>
