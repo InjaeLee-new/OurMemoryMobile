@@ -203,8 +203,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 client.post(url, params,  helper);
 
                 if(LoginOK && !isntAppJoin) {
-                    Log.d("[Main.LoginOK]", ""+LoginOK);
-                    Log.d("[Main.isntAppJoin]", ""+isntAppJoin);
                     Intent intentLogin = new Intent(this, IndexActivity.class);
                     startActivity(intentLogin);
                 } else {
