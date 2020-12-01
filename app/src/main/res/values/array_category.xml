@@ -2,7 +2,7 @@
 <resources>
     <string-array name="category_item">
         <item>-----카테고리 선택-----</item>
-        <item>travel</item>
+        <item>memory</item>
         <item>food</item>
         <item>culture</item>
         <item>it</item>
