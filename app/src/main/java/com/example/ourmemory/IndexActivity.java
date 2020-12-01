@@ -43,6 +43,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
     Button buttonFood , buttonHealth, buttonGame, buttonTotal;
     Button buttonTravel, buttonMusic, buttonArt, buttonIt;
+
     Toolbar toolbar;
 
     // 팝업을 위한 코드 선언
@@ -63,7 +64,9 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         String cate1 = user.get(sessionManager.CATE1);
         String google = user.get(sessionManager.GOOGLE_ID);
         textView6 = findViewById(R.id.textView6);
-        textView6.setText("카데고리 목록 (안녕하세요 "+session_id+"\n"+cate1+"\n"+google+"\n"+"님)");
+
+        textView6.setText("카데고리 목록 (안녕하세요 " + session_id + "\n" + cate1 + "\n" + google + "\n" + "님)");
+
 
         buttonPet = findViewById(R.id.buttonPet);
         buttonFood = findViewById(R.id.buttonFood);
