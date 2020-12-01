@@ -8,6 +8,11 @@
     android:orientation="vertical"
     tools:context=".WriteActivity">
 
+    <include
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/textView13"
         android:layout_width="match_parent"
@@ -264,7 +269,7 @@
     <EditText
         android:id="@+id/editTextWrite5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
         android:gravity="start|top"
@@ -290,4 +295,9 @@
             android:layout_weight="1"
             android:text="취소 🙅‍♂" />
     </LinearLayout>
+
+    <include
+        layout="@layout/menu_footer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
 </LinearLayout>

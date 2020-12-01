@@ -1,6 +1,8 @@
 package com.example.ourmemory;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
 import cz.msebera.android.httpclient.Header;
@@ -8,6 +10,8 @@ import cz.msebera.android.httpclient.Header;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,6 +69,16 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     // 세션 사용을 위해 세션 매니저 선언
     SessionManager sessionManager;
     String session_id;
+
+    // 상단 툴바
+    Toolbar toolbar;
+    ImageButton toolBack;
+    // 하단 메뉴_푸터
+    ImageButton btnHome, btnWrite, btnFav, btnTotal;
+    // 화면이동 전역변수 인텐트
+    Intent intent;
+
+
     // 확인용 주석
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +88,23 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         sessionManager = new SessionManager(this);
         HashMap<String, String> user = sessionManager.getUserDetail();
         session_id = user.get(sessionManager.ID);
+
+        // 툴바관리
+        toolbar = findViewById(R.id.toolbar);
+        toolBack = findViewById(R.id.toolBack);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        toolBack.setOnClickListener(this);
+
+        // 하단 메뉴_푸터
+        btnHome = findViewById(R.id.btnHome);
+        btnWrite = findViewById(R.id.btnWrite);
+        btnFav = findViewById(R.id.btnFav);
+        btnTotal = findViewById(R.id.btnTotal);
+        btnHome.setOnClickListener(this);
+        btnWrite.setOnClickListener(this);
+        btnFav.setOnClickListener(this);
+        btnTotal.setOnClickListener(this);
 
         buttonCommentSubmit = findViewById(R.id.buttonCommentSubmit);
         editTextCommentContent = findViewById(R.id.editTextCommentContent);
@@ -104,14 +135,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         String fileName = memoryDTO.getMemory_file();
         String[] array_fileName = fileName.split(", ");
-        String full_filename = "http://192.168.1.21:8085/java/img" + "/" + array_fileName[0];
+        String full_filename = "http://192.168.0.109:8082/java/img" + "/" + array_fileName[0];
         // viewpager 만들기
         viewPager.setAdapter(new ViewPagerHelper(array_fileName, this));
 
         // 1 증가한 조회수를 미리 받아버리기~
         int update_hit = getIntent().getIntExtra("memory_hit", 0);
 
-        buttonBack = findViewById(R.id.buttonBack);
+//        buttonBack = findViewById(R.id.buttonBack);
 //        buttonModify = findViewById(R.id.buttonModify);
 //        buttonDelete = findViewById(R.id.buttonDelete);
 //        imageView = findViewById(R.id.imageView);
@@ -135,7 +166,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         textView10.setText("비추천수 : " +memoryDTO.getMemory_nrec());
         textViewContent.setText(memoryDTO.getMemory_content());
 
-        buttonBack.setOnClickListener(this);
+//        buttonBack.setOnClickListener(this);
         buttonShare.setOnClickListener(this);
         imageButtonPre.setOnClickListener(this);
         imageButtonNext.setOnClickListener(this);
@@ -157,14 +188,83 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.21:8085/java/viewHitJson";
+        String url = "http://192.168.0.109:8082/java/viewHitJson";
         client.post(url, params, helper);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_mypage:    //마이페이지 액티비티(임시)로 가도록 이동
+                Intent intent = new Intent(this, MypageActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent);
+                break;
+            case R.id.action_logout:
+                // 로그아웃 테스트
+                // 이후 로그아웃 버튼 생성시 sessionManager.logout(); 함수 실행
+                sessionManager.logout();
+                finish();
+                MainActivity.LoginOK =false;
+                break;
+            case R.id.memory :
+                Intent intent1 = new Intent(this, ListActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent1);
+                break;
+            case R.id.pet :
+                Intent intent2 = new Intent(this, PetListActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent2);
+                break;
+            case R.id.it :
+                Intent intent3 = new Intent(this, ItListActivity.class);
+                intent3.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent3);
+                break;
+            case R.id.game :
+                Intent intent4 = new Intent(this, GameListActivity.class);
+                intent4.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent4);
+                break;
+            case R.id.food :
+                Intent intent5 = new Intent(this, FoodListActivity.class);
+                intent5.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent5);
+                break;
+            case R.id.music :
+                Intent intent6 = new Intent(this, MusicListActivity.class);
+                intent6.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent6);
+                break;
+            case R.id.art :
+                Intent intent7 = new Intent(this, ArtListActivity.class);
+                intent7.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent7);
+                break;
+            case R.id.health :
+                Intent intent8 = new Intent(this, HealthListActivity.class);
+                intent8.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent8);
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void getCommentData() {
         RequestParams params = new RequestParams();
         params.put("seq", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.21:8085/java/commentViewJson";
+        String url = "http://192.168.0.109:8082/java/commentViewJson";
         client.post(url, params,  commentHelper);
     }
 
@@ -173,7 +273,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         params.put("memory_seq", memoryDTO.getMemory_num());
         params.put("memory_comment_name", editTextCommentName.getText().toString().trim());
         params.put("memory_comment_content", editTextCommentContent.getText().toString().trim());
-        String url = "http://192.168.1.21:8085/java/viewCommentWriteJson";
+        String url = "http://192.168.0.109:8082/java/viewCommentWriteJson";
         client.post(url, params,  commentHelper);
 
         editTextCommentName.setText("");
@@ -190,6 +290,23 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int position;
         switch (v.getId()){
+            case R.id.btnHome:      // 홈화면 (모든 리스트 보이는 현재 화면)
+                intent = new Intent(this, Index2Activity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnWrite:     // 작성화면 (WriteActivity)
+                intent = new Intent(this, WriteActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnFav:       // 좋아요 누른 게시물만? (미정)
+                break;
+            case R.id.btnTotal:     // 내 게시물? (미정)
+                break;
+
+            case R.id.toolBack :
+                finish();
+                break;
+
             case R.id.buttonBack:
                 finish();
                 break;
@@ -282,7 +399,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         RequestParams params = new RequestParams();
 
 
-        String url = "http://192.168.1.21:8085/java/recommandCheck";
+        String url = "http://192.168.0.109:8082/java/recommandCheck";
         params.put("recommand_id", session_id); // 변경시킴
 
         params.put("recommand_seq", memoryDTO.getMemory_num());
@@ -295,13 +412,13 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         RequestParams params = new RequestParams();
         if (like_status == 1){
 
-            String url = "http://192.168.1.21:8085/java/recommendation";
+            String url = "http://192.168.0.109:8082/java/recommendation";
             params.put("memory_num", memoryDTO.getMemory_num());
             client.post(url, params, recommandHelper);
             Log.d("[test]",like_status+" ");
         } else if (like_status == 2){
             params.put("memory_num", memoryDTO.getMemory_num());
-            String url = "http://192.168.1.21:8085/java/notrecommendation";
+            String url = "http://192.168.0.109:8082/java/notrecommendation";
             client.post(url, params, recommandHelper);
             Log.d("[test]",like_status+" ");
         }

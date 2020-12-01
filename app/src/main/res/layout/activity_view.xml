@@ -8,6 +8,12 @@
     android:orientation="vertical"
     tools:context=".ViewActivity">
 
+    <include
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:clickable="true" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,24 +41,26 @@
 
                         <ImageButton
                             android:id="@+id/imageButtonPre"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@android:drawable/ic_media_rew" />
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:backgroundTint="#FBF2F3"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@drawable/back2" />
 
                         <androidx.viewpager2.widget.ViewPager2
                             android:id="@+id/viewPager"
-                            android:layout_width="350dp"
-                            android:layout_height="350dp">
+                            android:layout_width="300dp"
+                            android:layout_height="300dp">
 
                         </androidx.viewpager2.widget.ViewPager2>
 
                         <ImageButton
                             android:id="@+id/imageButtonNext"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@android:drawable/ic_media_ff" />
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="#FBF2F3"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@drawable/next2" />
 
                     </LinearLayout>
 
@@ -205,10 +213,18 @@
 
     </ScrollView>
 
-    <Button
+    <!--
+     <Button
         android:id="@+id/buttonBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="리스트로 돌아가기" />
+    -->
+
+
+    <include
+        layout="@layout/menu_footer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
 
 </LinearLayout>

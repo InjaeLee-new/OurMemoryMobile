@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 RequestParams params = new RequestParams();
                 params.put("id", editTextID.getText().toString().trim());
                 params.put("pw", editTextPassword.getText().toString().trim());
-                String url = "http://192.168.1.21:8085/java/appLogin";
+                String url = "http://192.168.0.109:8082/java/appLogin";
                 client.post(url, params,  helper);
 
 

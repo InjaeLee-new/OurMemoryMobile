@@ -3,23 +3,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/iconfinder_ic_search"
-        android:title="Search"
-        app:showAsAction="ifRoom"
-        />
-
-    <item
-        android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_favorite"
-        android:title="Favorite"
-        app:showAsAction="ifRoom"
-        />
-
-    <item
         android:id="@+id/action_mypage"
-        android:title="마이페이지" />
+        android:icon="@drawable/mypage"
+        android:title="Mypage"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/action_logout"
-        android:title="로그아웃" />
+        android:icon="@drawable/logout"
+        android:title="Logout"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/memory"
+        android:icon="@mipmap/ic_launcher"
+        android:title="여행" />
+    <item
+        android:id="@+id/pet"
+        android:icon="@mipmap/ic_launcher"
+        android:title="반려동물" />
+    <item
+        android:id="@+id/it"
+        android:title="IT" />
+    <item
+        android:id="@+id/game"
+        android:title="게임" />
+    <item
+        android:id="@+id/food"
+        android:title="음식" />
+    <item
+        android:id="@+id/music"
+        android:title="음악" />
+    <item
+        android:id="@+id/art"
+        android:title="문화생활" />
+    <item
+        android:id="@+id/health"
+        android:title="건강" />
+
+
 </menu>

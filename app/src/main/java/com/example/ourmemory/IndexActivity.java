@@ -140,7 +140,6 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ourmemory8);
         setSupportActionBar(toolbar);
-        */
 
         ActionBar ab = getSupportActionBar();
         //ab.hide();
@@ -148,6 +147,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         //ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE);
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowHomeEnabled(true);
+
+         */
     }
 
     @Override
@@ -159,29 +160,60 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // 인텐트는 우선 테스트용으로 다 동일하게 넣어둠
-
         switch (item.getItemId()) {
-            case R.id.action_search:
+            case R.id.action_mypage:    //마이페이지 액티비티(임시)로 가도록 이동
+                Intent intent = new Intent(this, MypageActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent);
+                break;
+            case R.id.action_logout:
+                // 로그아웃 테스트
+                // 이후 로그아웃 버튼 생성시 sessionManager.logout(); 함수 실행
+                sessionManager.logout();
+                finish();
+                MainActivity.LoginOK =false;
+                break;
+            case R.id.memory :
                 Intent intent1 = new Intent(this, ListActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent1);
                 break;
-            case R.id.action_favorite:
+            case R.id.pet :
                 Intent intent2 = new Intent(this, ListActivity.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent2);
                 break;
-            case R.id.action_mypage:
+            case R.id.it :
                 Intent intent3 = new Intent(this, ListActivity.class);
                 intent3.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent3);
                 break;
-            case R.id.action_logout:
+            case R.id.game :
                 Intent intent4 = new Intent(this, ListActivity.class);
                 intent4.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent4);
                 break;
+            case R.id.food :
+                Intent intent5 = new Intent(this, ListActivity.class);
+                intent5.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent5);
+                break;
+            case R.id.music :
+                Intent intent6 = new Intent(this, ListActivity.class);
+                intent6.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent6);
+                break;
+            case R.id.art :
+                Intent intent7 = new Intent(this, ListActivity.class);
+                intent7.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent7);
+                break;
+            case R.id.health :
+                Intent intent8 = new Intent(this, ListActivity.class);
+                intent8.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent8);
+                break;
+
 
         }
         return super.onOptionsItemSelected(item);

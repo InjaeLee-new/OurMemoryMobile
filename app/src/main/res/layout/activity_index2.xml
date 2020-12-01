@@ -8,6 +8,11 @@
     android:orientation="vertical"
     tools:context=".Index2Activity">
 
+    <include
+        layout="@layout/layout_toolbar"
+        android:clickable="true" />
+
+
     <ListView
         android:id="@+id/listView_index"
         android:layout_width="match_parent"
