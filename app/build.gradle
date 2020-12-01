@@ -48,6 +48,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
 
+
     // 구글 로그인
     implementation 'androidx.constraintlayout:constraintlayout:2.0.3'
     implementation 'com.google.firebase:firebase-auth:20.0.0'

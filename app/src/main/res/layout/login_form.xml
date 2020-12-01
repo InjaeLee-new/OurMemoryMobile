@@ -75,6 +75,7 @@
             android:backgroundTint="#F1F1F1"
             android:foregroundTint="#1D8CE4"
             android:text="메인으로 돌아가기" />
+
     </LinearLayout>
 
     <com.google.android.gms.common.SignInButton
@@ -84,5 +85,14 @@
 
         android:backgroundTint="#F1F1F1"
         android:foregroundTint="#1D8CE4"
-        android:text="구글로그인" />
+        android:text="구글로그인" >
+
+    </com.google.android.gms.common.SignInButton>
+
+
+    <Button
+        android:id="@+id/buttonMasterKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="슈퍼방장버튼" />
 </LinearLayout>

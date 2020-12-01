@@ -6,28 +6,25 @@
     android:layout_height="match_parent"
     android:background="#FBF2F3"
     android:orientation="vertical"
-    tools:context=".ListActivity">
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="[Food 게시판 🍔]"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    tools:context=".Index2Activity">
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listView_index"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
     </ListView>
 
-    <Button
-        android:id="@+id/button"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="돌아가기" />
+        android:layout_height="50dp"
+        android:orientation="horizontal">
 
+        <include
+            layout="@layout/menu_footer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
 </LinearLayout>

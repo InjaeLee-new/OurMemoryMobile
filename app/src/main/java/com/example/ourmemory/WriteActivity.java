@@ -337,7 +337,7 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         }
 
         RequestParams params = new RequestParams();
-        String url = "http://192.168.1.3:8085/java/writeAndroid";
+        String url = "http://192.168.1.21:8085/java/writeAndroid";
         params.put("memory_name",memory_name);
         params.put("memory_id",memory_id);
         params.put("memory_pass",memory_pass);

@@ -59,6 +59,10 @@ public class JsonLoginHelper extends AsyncHttpResponseHandler {
                     String google_Id = temp.getString("google_Id");
                     String kakao_Id = temp.getString("kakao_Id");
 
+                    if(cate1 == null) {
+                        MainActivity.isntAppJoin = true;
+                    }
+
                     sessionManager.createSession(user_id, user_name, cate1,
                             cate2, cate3, google_Id, kakao_Id);
                 }
