@@ -90,4 +90,9 @@
     </com.google.android.gms.common.SignInButton>
 
 
+    <Button
+        android:id="@+id/buttonMasterKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="슈퍼방장버튼" />
 </LinearLayout>

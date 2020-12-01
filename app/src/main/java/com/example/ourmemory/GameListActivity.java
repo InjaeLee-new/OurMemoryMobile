@@ -24,7 +24,7 @@ public class GameListActivity extends AppCompatActivity implements View.OnClickL
     AsyncHttpClient client;
     MemoryAdapter adapter;
     Button buttonH;
-    ListView listViewH;
+    ListView listView;
     List<MemoryDTO> list;
 
     @Override
@@ -33,19 +33,19 @@ public class GameListActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_game_list);
 
         buttonH = findViewById(R.id.buttonH);
-        listViewH = findViewById(R.id.listViewH);
+        listView = findViewById(R.id.listView);
 
 
         list = new ArrayList<>();
         adapter = new MemoryAdapter(this, R.layout.list_item, list);
 
         client = new AsyncHttpClient();
-        helper = new HealthJsonHelper(this, adapter, listViewH);
+        helper = new HealthJsonHelper(this, adapter, listView);
 
-        listViewH.setAdapter(adapter);
+        listView.setAdapter(adapter);
 
         buttonH.setOnClickListener(this);
-        listViewH.setOnItemClickListener(this);
+        listView.setOnItemClickListener(this);
 
     }
     @Override
