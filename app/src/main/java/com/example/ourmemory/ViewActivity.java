@@ -1,6 +1,8 @@
 package com.example.ourmemory;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
+
 import cz.msebera.android.httpclient.Header;
 
 import android.content.Intent;
@@ -9,16 +11,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 
 import com.example.ourmemory.adapter.MemoryCommentAdapter;
 import com.example.ourmemory.helper.JsonCommentHelper;
 
+import com.example.ourmemory.helper.ViewPagerHelper;
 import com.example.ourmemory.model.MemoryCommentDTO;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
@@ -50,8 +53,10 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     MemoryDTO memoryDTO;
     ImageView imageView;
     TextView textView1, textView2, textView3, textViewContent, textView9, textView10;
-  
-    Button buttonBack, buttonCommentSubmit, buttonModify, buttonDelete, buttonShare;
+
+    Button buttonBack, buttonCommentSubmit, buttonShare;
+    ImageButton imageButtonPre, imageButtonNext;
+    ViewPager2 viewPager;
 
     EditText editTextCommentContent, editTextCommentName;
     boolean statusLike = false;
@@ -75,6 +80,10 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         editTextCommentName = findViewById(R.id.editTextCommentName);
         buttonShare = findViewById(R.id.buttonShare);
 
+        imageButtonPre = findViewById(R.id.imageButtonPre);
+        imageButtonNext = findViewById(R.id.imageButtonNext);
+        viewPager =  findViewById(R.id.viewPager);
+
         helper = new ViewHelper();
         recommandHelper = new RecommandHelper();
         recommandCheckHelper = new RecommandCheckHelper();
@@ -88,17 +97,23 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         memoryDTO = (MemoryDTO) getIntent().getSerializableExtra("dto");
         getJsonData(); // 제이슨 데이터 처리!
 
+
         memoryDTO = (MemoryDTO) getIntent().getSerializableExtra("dto");
 
-        String full_filename = "http://192.168.1.21:8085/java/img" + "/" + memoryDTO.getMemory_file();
+        String fileName = memoryDTO.getMemory_file();
+        String[] array_fileName = fileName.split(", ");
+//        String full_filename = "http://192.168.1.3:8085/java/storage" + "/" + array_fileName[0];
+        // viewpager 만들기
+        viewPager.setAdapter(new ViewPagerHelper(array_fileName, this));
 
         // 1 증가한 조회수를 미리 받아버리기~
         int update_hit = getIntent().getIntExtra("memory_hit", 0);
 
         buttonBack = findViewById(R.id.buttonBack);
-        buttonModify = findViewById(R.id.buttonModify);
-        buttonDelete = findViewById(R.id.buttonDelete);
-        imageView = findViewById(R.id.imageView);
+//        buttonModify = findViewById(R.id.buttonModify);
+//        buttonDelete = findViewById(R.id.buttonDelete);
+//        imageView = findViewById(R.id.imageView);
+
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
         textView3 = findViewById(R.id.textView3);
@@ -109,8 +124,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         listView.setAdapter(commentAdapter);
         getCommentData();
 
-        Glide.with(this).load(full_filename)
-                .into(imageView);
+//        Glide.with(this).load(full_filename)
+//                .into(imageView);
         textView1.setText("글 제목 : " + memoryDTO.getMemory_subject());
         textView2.setText("작성자 : " + memoryDTO.getMemory_name());
         textView3.setText("조회수 : " + update_hit);
@@ -120,8 +135,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         buttonBack.setOnClickListener(this);
         buttonShare.setOnClickListener(this);
-        buttonModify.setOnClickListener(this);
-        buttonDelete.setOnClickListener(this);
+        imageButtonPre.setOnClickListener(this);
+        imageButtonNext.setOnClickListener(this);
+//        buttonModify.setOnClickListener(this);
+//        buttonDelete.setOnClickListener(this);
+
         textView9.setOnClickListener(this);
         textView10.setOnClickListener(this);
         buttonCommentSubmit.setOnClickListener(this);
@@ -137,14 +155,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.21:8085/java/viewHitJson";
+        String url = "http://192.168.0.109:8082/java/viewHitJson";
         client.post(url, params, helper);
     }
 
     private void getCommentData() {
         RequestParams params = new RequestParams();
         params.put("seq", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.21:8085/java/commentViewJson";
+        String url = "http://192.168.0.109:8082/java/commentViewJson";
         client.post(url, params,  commentHelper);
     }
 
@@ -153,7 +171,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         params.put("memory_seq", memoryDTO.getMemory_num());
         params.put("memory_comment_name", editTextCommentName.getText().toString().trim());
         params.put("memory_comment_content", editTextCommentContent.getText().toString().trim());
-        String url = "http://192.168.1.21:8085/java/viewCommentWriteJson";
+        String url = "http://192.168.0.109:8082/java/viewCommentWriteJson";
         client.post(url, params,  commentHelper);
 
         editTextCommentName.setText("");
@@ -168,6 +186,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        int position;
         switch (v.getId()){
             case R.id.buttonBack:
                 finish();
@@ -242,6 +261,17 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
                 intentDelete.putExtra("dto", memoryDTO);
                 startActivity(intentDelete);
                 break;
+
+            case R.id.imageButtonPre:
+                position = viewPager.getCurrentItem();//현재 보여지는 아이템의 위치를 리턴
+
+                viewPager.setCurrentItem(position-1,true);
+                break;
+            case R.id.imageButtonNext:
+                position = viewPager.getCurrentItem();//현재 보여지는 아이템의 위치를 리턴
+
+                viewPager.setCurrentItem(position+1,true);
+                break;
         }
 
     }
@@ -249,8 +279,10 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandCheck() {
         RequestParams params = new RequestParams();
 
+
         String url = "http://192.168.1.21:8085/java/recommandCheck";
         params.put("recommand_id", session_id); // 변경시킴
+
         params.put("recommand_seq", memoryDTO.getMemory_num());
         client.post(url, params, recommandCheckHelper);
         Log.d("[test]",like_status+" ");
@@ -260,6 +292,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandData() {
         RequestParams params = new RequestParams();
         if (like_status == 1){
+
             String url = "http://192.168.1.21:8085/java/recommendation";
             params.put("memory_num", memoryDTO.getMemory_num());
             client.post(url, params, recommandHelper);
@@ -325,5 +358,5 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
             Toast.makeText(ViewActivity.this, "Check " + i + "에러가 났네요", Toast.LENGTH_SHORT).show();
         }
-    }//
+    }
 }
