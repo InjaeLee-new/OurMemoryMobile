@@ -203,16 +203,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 RequestParams params = new RequestParams();
                 params.put("id", editTextID.getText().toString().trim());
                 params.put("pw", editTextPassword.getText().toString().trim());
-                String url = "http://192.168.1.21:8085/java/appLogin";
+                String url = "http://192.168.0.109:8082/java/appLogin";
                 client.post(url, params,  helper);
 
-<<<<<<< HEAD
-                if(LoginOK && !isntAppJoin) {
-=======
+
                 if(LoginOK && isntAppJoin) {
                     Log.d("[Main.LoginOK]", ""+LoginOK);
                     Log.d("[Main.isntAppJoin]", ""+isntAppJoin);
->>>>>>> faccf04e21efd587d7fe71b32661c23a02370a44
+
                     Intent intentLogin = new Intent(this, IndexActivity.class);
                     startActivity(intentLogin);
                 } else {
