@@ -1,14 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/oneLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".fragment.OneByOneFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+        android:id="@+id/editTextOne1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="문의 제목"
+        android:inputType="textPersonName" />
 
-</FrameLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/buttonOnepicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사진 첨부" />
+
+            <ImageView
+                android:id="@+id/imageViewOne"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                tools:src="@tools:sample/avatars" />
+
+            <EditText
+                android:id="@+id/editTextOne2"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:background="#D8D8D8"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint=" 문의 내용"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="* 문의하신 내용에 대한 본인 파악 및 원활한 상담을 위하여 이메일, 휴대폰 번호를 수집합니다 수집한 개인정보는 문의 접수일 기준 3년간 보관 후 폐기됩니다."
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#B6B6B6" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="답변 받을 방식"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#000000" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/radioButtonEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이메일  " />
+
+                <RadioButton
+                    android:id="@+id/radioButtonPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="휴대폰" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/editTextOne3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="휴대폰 번호 예)010-1234-5678"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextOne4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="이메일"
+                android:inputType="textEmailAddress" />
+
+            <Button
+                android:id="@+id/buttonOneOK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFD3D3"
+                android:text="문의 제출"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

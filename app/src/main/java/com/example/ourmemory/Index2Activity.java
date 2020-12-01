@@ -130,7 +130,7 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         params.put("cate1","health");
         params.put("cate2","pet");
         params.put("cate3","food");
-        String url = "http://192.168.1.21:8085/java/totalListJson";
+        String url = "http://192.168.1.3:8085/java/totalListJson";
         client.get(url, params, helper);
     }
 
@@ -165,6 +165,11 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
                 Intent intent4 = new Intent(this, ListActivity.class);
                 intent4.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent4);
+                break;
+            case R.id.action_contactus: // 고객센터 관련 activity로 이동
+                Intent intent5 = new Intent(this, ContactUsActivity.class);
+                intent5.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent5);
                 break;
 
         }
