@@ -161,7 +161,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_mypage:    //마이페이지 액티비티(임시)로 가도록 이동
+            case R.id.action_settings:    //마이페이지 액티비티(임시)로 가도록 이동
                 Intent intent = new Intent(this, MypageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent);

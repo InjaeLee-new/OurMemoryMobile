@@ -65,7 +65,9 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
     Toolbar toolbar;
     ImageButton toolBack;
     // 하단 메뉴_푸터
-    ImageButton btnHome, btnWrite, btnFav, btnTotal;
+    ImageButton btnHome, btnWrite, btnFav, btnMypage;
+    // 화면이동 전역변수 인텐트
+    Intent intent;
     // 세션관리
     SessionManager sessionManager;
 
@@ -93,11 +95,11 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         btnHome = findViewById(R.id.btnHome);
         btnWrite = findViewById(R.id.btnWrite);
         btnFav = findViewById(R.id.btnFav);
-        btnTotal = findViewById(R.id.btnTotal);
+        btnMypage = findViewById(R.id.btnMypage);
         btnHome.setOnClickListener(this);
         btnWrite.setOnClickListener(this);
         btnFav.setOnClickListener(this);
-        btnTotal.setOnClickListener(this);
+        btnMypage.setOnClickListener(this);
 
         buttonWrite = findViewById(R.id.buttonWrite);
         buttonWriteCancel = findViewById(R.id.buttonWriteCancel);
@@ -175,8 +177,8 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_mypage:    //마이페이지 액티비티(임시)로 가도록 이동
-                Intent intent = new Intent(this, MypageActivity.class);
+            case R.id.action_settings:    //세팅 액티비티로 가도록 이동
+                intent = new Intent(this, SettingsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent);
                 break;
@@ -237,16 +239,20 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnHome:      // 홈화면 (모든 리스트 보이는 현재 화면)
-                Intent intent1 = new Intent(this, Index2Activity.class);
-                startActivity(intent1);
+                intent = new Intent(this, Index2Activity.class);
+                startActivity(intent);
                 break;
             case R.id.btnWrite:     // 작성화면 (WriteActivity)
-                Intent intent2 = new Intent(this, WriteActivity.class);
-                startActivity(intent2);
+                intent = new Intent(this, WriteActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.btnFav:       // 좋아요 누른 게시물만? (미정)
+            case R.id.btnFav:       // 좋아요/비추천 누른 게시물만
+                intent = new Intent(this, FavoriteActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.btnTotal:     // 내 게시물? (미정)
+            case R.id.btnMypage:     // 마이페이지
+                intent = new Intent(this, MypageActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.toolBack :

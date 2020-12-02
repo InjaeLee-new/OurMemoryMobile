@@ -1,7 +1,6 @@
 package com.example.ourmemory;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -41,7 +39,7 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
     Toolbar toolbar;
     ImageButton toolBack;
     // 하단 메뉴_푸터
-    ImageButton btnHome, btnWrite, btnFav, btnTotal;
+    ImageButton btnHome, btnWrite, btnFav, btnMypage;
     // 화면이동 전역변수 인텐트
     Intent intent;
     // 세션관리
@@ -84,11 +82,11 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         btnHome = findViewById(R.id.btnHome);
         btnWrite = findViewById(R.id.btnWrite);
         btnFav = findViewById(R.id.btnFav);
-        btnTotal = findViewById(R.id.btnTotal);
+        btnMypage = findViewById(R.id.btnMypage);
         btnHome.setOnClickListener(this);
         btnWrite.setOnClickListener(this);
         btnFav.setOnClickListener(this);
-        btnTotal.setOnClickListener(this);
+        btnMypage.setOnClickListener(this);
 
         listView_index.setOnItemClickListener(this);
 
@@ -177,8 +175,8 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_mypage:    //마이페이지 액티비티(임시)로 가도록 이동
-                Intent intent = new Intent(this, MypageActivity.class);
+            case R.id.action_settings:    //세팅 액티비티로 가도록 이동
+                Intent intent = new Intent(this, SettingsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent);
                 break;
@@ -246,9 +244,13 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
                     intent = new Intent(this, WriteActivity.class);
                     startActivity(intent);
                     break;
-                case R.id.btnFav:       // 좋아요 누른 게시물만? (미정)
+                case R.id.btnFav:       // 좋아요/비추천 누른 게시물만
+                    intent = new Intent(this, FavoriteActivity.class);
+                    startActivity(intent);
                     break;
-                case R.id.btnTotal:     // 내 게시물? (미정)
+                case R.id.btnMypage:     // 마이페이지
+                    intent = new Intent(this, MypageActivity.class);
+                    startActivity(intent);
                     break;
 
                 case R.id.toolBack :

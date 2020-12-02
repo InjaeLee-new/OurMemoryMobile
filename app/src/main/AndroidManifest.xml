@@ -16,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MypageActivity"></activity>
+        <activity android:name=".FavoriteActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".MypageActivity" />
         <activity android:name=".EventActivity" />
         <activity android:name=".ArtListActivity" />
         <activity android:name=".MusicListActivity" />

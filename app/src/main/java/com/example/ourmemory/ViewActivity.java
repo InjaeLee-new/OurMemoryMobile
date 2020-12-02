@@ -56,10 +56,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
     MemoryDTO memoryDTO;
     ImageView imageView;
-    TextView textView1, textView2, textView3, textViewContent, textView9, textView10;
+    TextView textViewName, textView1, textView2, textView3, textView4, textView5,textViewContent, textView9, textView10;
 
     Button buttonBack, buttonCommentSubmit, buttonShare, buttonModify, buttonDelete;
     ImageButton imageButtonPre, imageButtonNext;
+    ImageButton imageButtonLike, imageButtonDis, imageButtonComm;
     ViewPager2 viewPager;
 
     EditText editTextCommentContent, editTextCommentName;
@@ -74,7 +75,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     Toolbar toolbar;
     ImageButton toolBack;
     // 하단 메뉴_푸터
-    ImageButton btnHome, btnWrite, btnFav, btnTotal;
+    ImageButton btnHome, btnWrite, btnFav, btnMypage;
     // 화면이동 전역변수 인텐트
     Intent intent;
 
@@ -100,11 +101,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         btnHome = findViewById(R.id.btnHome);
         btnWrite = findViewById(R.id.btnWrite);
         btnFav = findViewById(R.id.btnFav);
-        btnTotal = findViewById(R.id.btnTotal);
+        btnMypage = findViewById(R.id.btnMypage);
         btnHome.setOnClickListener(this);
         btnWrite.setOnClickListener(this);
         btnFav.setOnClickListener(this);
-        btnTotal.setOnClickListener(this);
+        btnMypage.setOnClickListener(this);
 
         buttonCommentSubmit = findViewById(R.id.buttonCommentSubmit);
         editTextCommentContent = findViewById(R.id.editTextCommentContent);
@@ -115,6 +116,10 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         imageButtonPre = findViewById(R.id.imageButtonPre);
         imageButtonNext = findViewById(R.id.imageButtonNext);
+        imageButtonLike = findViewById(R.id.imageButtonLike);
+        imageButtonDis = findViewById(R.id.imageButtonDis);
+        imageButtonComm = findViewById(R.id.imageButtonComm);
+
         viewPager =  findViewById(R.id.viewPager);
 
         helper = new ViewHelper();
@@ -147,9 +152,12 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 //        buttonDelete = findViewById(R.id.buttonDelete);
 //        imageView = findViewById(R.id.imageView);
 
+        textViewName = findViewById(R.id.textViewName);
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
         textView3 = findViewById(R.id.textView3);
+        textView4 = findViewById(R.id.textView4);
+        textView5 = findViewById(R.id.textView5);
         textView9 = findViewById(R.id.textView9);
         textView10 = findViewById(R.id.textView10);
         textViewContent = findViewById(R.id.textViewContent);
@@ -159,9 +167,13 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
 //        Glide.with(this).load(full_filename)
 //                .into(imageView);
-        textView1.setText("글 제목 : " + memoryDTO.getMemory_subject());
-        textView2.setText("작성자 : " + memoryDTO.getMemory_name());
-        textView3.setText("조회수 : " + update_hit);
+        textViewName.setText(memoryDTO.getMemory_name());
+        textView1.setText("\uD83D\uDE0D"+memoryDTO.getMemory_rec()+"명이 좋아합니다.");
+        textView2.setText("\uD83D\uDE2B"+memoryDTO.getMemory_nrec()+"명이 싫어합니다.");
+        textView3.setText(update_hit+"명이 조회했습니다.");
+        textView4.setText(memoryDTO.getMemory_name());
+        textView5.setText(memoryDTO.getMemory_subject());
+
         textView9.setText("추천수 : " + memoryDTO.getMemory_rec());
         textView10.setText("비추천수 : " +memoryDTO.getMemory_nrec());
         textViewContent.setText(memoryDTO.getMemory_content());
@@ -173,6 +185,9 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         buttonModify.setOnClickListener(this);
         buttonDelete.setOnClickListener(this);
 
+        imageButtonLike.setOnClickListener(this);
+        imageButtonDis.setOnClickListener(this);
+        imageButtonComm.setOnClickListener(this);
         textView9.setOnClickListener(this);
         textView10.setOnClickListener(this);
         buttonCommentSubmit.setOnClickListener(this);
@@ -203,8 +218,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_mypage:    //마이페이지 액티비티(임시)로 가도록 이동
-                Intent intent = new Intent(this, MypageActivity.class);
+            case R.id.action_settings:    //세팅 액티비티로 가도록 이동
+                Intent intent = new Intent(this, SettingsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent);
                 break;
@@ -298,11 +313,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(this, WriteActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.btnFav:       // 좋아요 누른 게시물만? (미정)
+            case R.id.btnFav:       // 좋아요/비추천 누른 게시물만
+                intent = new Intent(this, FavoriteActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.btnTotal:     // 내 게시물? (미정)
+            case R.id.btnMypage:     // 마이페이지
+                intent = new Intent(this, MypageActivity.class);
+                startActivity(intent);
                 break;
-
             case R.id.toolBack :
                 finish();
                 break;
@@ -310,13 +328,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonBack:
                 finish();
                 break;
-            case R.id.textView9:
+            case R.id.imageButtonLike:
                 // 추천 버튼
                 recommandCheck(); // 1계정당 1게시물 추천 가능 함수
                 Log.d("[RT2]",rt2);
                 if (rt2.equals("OK")){
                     if (!statusLike){
-                        textView9.setText("추천수 : " + (memoryDTO.getMemory_rec()+1));
+                        textView1.setText("\uD83D\uDE0D"+memoryDTO.getMemory_rec()+1+"명이 좋아합니다.");
+                        //textView9.setText("추천수 : " + (memoryDTO.getMemory_rec()+1));
                         like_status = 1; statusLike = true;
                         Toast.makeText(this,"추천하셨습니다.",Toast.LENGTH_SHORT).show();
                     }
@@ -324,13 +343,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this,"이미 추천 / 비추천하셨습니다.",Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case R.id.textView10:
+            case R.id.imageButtonDis:
                 // 비추 버튼
                 recommandCheck(); // 1계정당 1게시물 추천 가능 함수
                 Log.d("[RT2]",rt2);
                 if (rt2.equals("OK")){
                     if (!statusLike){
-                        textView10.setText("비추천수 : " +(memoryDTO.getMemory_nrec()+1));
+                        //textView10.setText("비추천수 : " +(memoryDTO.getMemory_nrec()+1));
+                        textView2.setText("\uD83D\uDE2B"+memoryDTO.getMemory_nrec()+1+"명이 싫어합니다.");
                         like_status = 2; statusLike = true;
                         Toast.makeText(this,"비추천하셨습니다.",Toast.LENGTH_SHORT).show();
                     }
