@@ -44,8 +44,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
-import java.util.concurrent.Delayed;
-import java.util.concurrent.TimeUnit;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -92,6 +90,7 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
         radioGroup.setOnCheckedChangeListener(this);
         buttonOnepicture.setOnClickListener(this);
         buttonOneOK.setOnClickListener(this);
+        imageViewOne.setVisibility(View.GONE);
         return rootView;
     }
 
@@ -128,40 +127,51 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
     private void postJsonData() {
         int checkedId = radioGroup.getCheckedRadioButtonId();
         RadioButton radioButton = rootView.findViewById(checkedId);
-        HashMap<String, String> user = sessionManager.getUserDetail();
-        String session_id = user.get(sessionManager.ID);
-        String session_name = user.get(sessionManager.NAME);
+        // 세션이 없는 관계로 계속 시스템 뻗음
+//        HashMap<String, String> user = sessionManager.getUserDetail();
+//        String session_id = user.get(sessionManager.ID);
+//        String session_name = user.get(sessionManager.NAME);
 
         String subject = editTextOne1.getText().toString();
         String content = editTextOne2.getText().toString();
-        String phone, email, callBack;
+        String phone= editTextOne3.getText().toString();
+        String email = editTextOne4.getText().toString();
+        String callBack = "";
+
+        if (subject.equals("")||content.equals("")){
+            Toast.makeText(context,"내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (phone.equals("")&&email.equals("")){
+            Toast.makeText(context,"답변 받을 방식을 선택 후 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (radioButton.getText().equals("휴대폰")){
-            phone = editTextOne3.getText().toString();
             email = "X";
             callBack = "please reply to phone";
         } else {
-            email = editTextOne4.getText().toString();
             phone = "X";
             callBack = "please reply to email";
         }
         RequestParams params = new RequestParams();
 
-        String url = "http://192.168.0.42:8088/java/contactUsAndroid";
-        params.put("contact_name",session_name);
-        params.put("contact_id",session_id);
+        String url = "http://192.168.1.3:8085/java/contactUsAndroid";
+        params.put("contact_name","홍길동");
+        params.put("contact_id","hong02");
         params.put("contact_email",email);
         params.put("contact_tel",phone);
         params.put("contact_callback",callBack);
         params.put("contact_subject",subject);
         params.put("contact_content",content);
-        // 여기에서 같은 키로 풋 해도 결국 밑에 client에서 입력은 하나만 들어가는 것 같음
-        // 여러개 넣으려면 다시 검색해보거나 memory_file 이름 다 다르게 해서 spring에 있는 파라미터 값도 바꿔줘야함.
-        try {
-            params.put("contact_file", new File(filePath));
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        if (filePath!=null){
+            try {
+                params.put("contact_file", new File(filePath));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
+
         // 파일을 보내려면 사용하는 코드
         params.setForceMultipartEntityContentType(true);
         client.post(url,params,response);
@@ -185,6 +195,16 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
             } else {
                 ActivityCompat.requestPermissions(activity,
                         new String[]{Manifest.permission.CAMERA}, 100);
+            }
+        }
+        if (ActivityCompat.checkSelfPermission(context,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+
+            } else {
+                ActivityCompat.requestPermissions(activity,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 102 );
             }
         }
     }
@@ -216,12 +236,6 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
                         startActivityForResult(intent,100);
                         break;
                     case 1: //갤러리에서 가져오기-갤러리 호출
-//                        intent = new Intent(Intent.ACTION_OPEN_DOCUMENT); 파일 탐색기 불러오는 것
-//                        intent.addCategory(Intent.CATEGORY_OPENABLE);
-//                        intent.setType("image/*");
-//                        intent.putExtra(Intent.EXTRA_LOCAL_ONLY,true);
-//                        startActivityForResult(intent,101);
-                        // 갤러리 불러오는 것
                         intent = new Intent(Intent.ACTION_PICK);
                         intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
 //                        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true); 여러장 선택 가능한 함수
@@ -247,6 +261,7 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
                     Log.d("[TEST]", filePath);
                     context.sendBroadcast(intent);
                     realFileName = filePath.substring(filePath.lastIndexOf("/")+1);
+                    imageViewOne.setVisibility(View.VISIBLE);
                     Glide.with(this).load(filePath)
                             .into(imageViewOne);
                     break;
@@ -258,6 +273,7 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
                     Log.d("[TEST]", "filePath = "+filePath);
                     Toast.makeText(context, fileName+"을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
                     realFileName = filePath.substring(filePath.lastIndexOf("/")+1);
+                    imageViewOne.setVisibility(View.VISIBLE);
                     Glide.with(this).load(filePath)
                             .into(imageViewOne);
                     break;
@@ -273,9 +289,14 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
                 JSONObject json = new JSONObject(str);
                 String rt = json.getString("rt");
                 if (rt.equals("OK")){
-                    Toast.makeText(context,"저장 성공",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"문의 내용을 접수 하였습니다.",Toast.LENGTH_SHORT).show();
+                    imageViewOne.setVisibility(View.GONE);
+                    editTextOne1.setText("");
+                    editTextOne2.setText("");
+                    editTextOne3.setText("");
+                    editTextOne4.setText("");
                 } else {
-                    Toast.makeText(context,"저장 실패",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"문의 접수를 실패 하였습니다.",Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

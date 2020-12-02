@@ -53,7 +53,7 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
     HttpResponse response;
     AsyncHttpClient client;
     String filePath1, filePath2, filePath3, filePath4, filePath5 ="";
-    String realFileName; // DB에 저장할 파일 이름
+
     int imgCnt=0;   // 이미지 추가 버튼 생성시 사용
 
     @Override
@@ -179,6 +179,16 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
                         new String[]{Manifest.permission.CAMERA}, 100);
             }
         }
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 102 );
+            }
+        }
     }
     private void showSelect() {
         final String [] menu = {"새로 촬영하기", "갤러리에서 가져오기"};
@@ -238,7 +248,7 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
                     intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(filePath));
                     Log.d("[TEST]", filePath);
                     sendBroadcast(intent);
-                    realFileName = filePath.substring(filePath.lastIndexOf("/")+1);
+                    Toast.makeText(this, filePath+"을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
                     imgButtonCreate();  // 이미지 넣고 버튼 나타나게 하는 함수
                     break;
                 case 101 :
@@ -248,7 +258,6 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
                     filePath = FileUtils.getPath(this, data.getData());
                     Log.d("[TEST]", "filePath = "+filePath);
                     Toast.makeText(this, fileName+"을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
-                    realFileName = filePath.substring(filePath.lastIndexOf("/")+1);
                     imgButtonCreate();
                     break;
             }
