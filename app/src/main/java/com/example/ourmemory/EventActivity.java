@@ -3,10 +3,12 @@ package com.example.ourmemory;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.ourmemory.R;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class EventActivity extends AppCompatActivity implements View.OnClickListener {
 
