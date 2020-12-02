@@ -28,6 +28,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 
@@ -85,6 +86,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // 안드로이드 푸쉬를 위해 추가
+        try {
+            String token = FirebaseInstanceId.getInstance().getToken();
+            Log.d("IDService","device token : "+token);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
         // 아이디 세션을 위한 함수
         sessionManager = new SessionManager(this);

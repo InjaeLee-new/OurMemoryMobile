@@ -59,4 +59,7 @@ dependencies {
 
     // viewPager 2
     implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha04'
+
+    // 안드로이드 푸쉬 기능
+    implementation 'com.google.firebase:firebase-messaging:17.3.3'
 }
