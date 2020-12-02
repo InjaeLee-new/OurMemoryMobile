@@ -2,21 +2,36 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ourmemory">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ourmemory5"
+        android:icon="@mipmap/ourmemory8"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TotalListActivity"></activity>
+
+        <activity android:name=".ContactUsActivity"></activity>
+        <activity android:name=".EventActivity"></activity>
+        <activity android:name=".ArtListActivity" />
+        <activity android:name=".MusicListActivity" />
+        <activity android:name=".PetListActivity" />
+        <activity android:name=".WriteActivity" />
+        <activity android:name=".JoinActivity" />
+        <activity android:name=".GoogleLoginResultActivity" />
+        <activity android:name=".TotalListActivity" />
         <activity android:name=".HealthListActivity" />
+        <activity android:name=".GameListActivity" />
+        <activity android:name=".ItListActivity" />
+        <activity android:name=".FoodListActivity" />
         <activity android:name=".ViewActivity" />
         <activity android:name=".ListActivity" />
+        <activity android:name=".AppJoinActivity" />
         <activity android:name=".IndexActivity" />
+        <activity android:name=".Index2Activity" />
+        <activity android:name=".ModifyActivity" />
+        <activity android:name=".DeleteActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +39,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

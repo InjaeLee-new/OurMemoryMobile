@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
+// 헬스 카테고리 데이터 받아오는 helper
 public class HealthJsonHelper extends AsyncHttpResponseHandler {
     Activity activity;
     MemoryAdapter adapter;

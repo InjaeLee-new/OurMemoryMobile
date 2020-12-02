@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string-array name="category_item">
+        <item>-----카테고리 선택-----</item>
+        <item>memory</item>
+        <item>food</item>
+        <item>culture</item>
+        <item>it</item>
+        <item>pet</item>
+        <item>health</item>
+        <item>music</item>
+        <item>game</item>
+    </string-array>
+</resources>
+

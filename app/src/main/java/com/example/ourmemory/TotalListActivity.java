@@ -1,7 +1,5 @@
 package com.example.ourmemory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +8,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.ourmemory.adapter.MemoryAdapter;
-import com.example.ourmemory.helper.HealthJsonHelper;
 import com.example.ourmemory.helper.TotalListJsonHelper;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
@@ -19,12 +16,14 @@ import com.loopj.android.http.RequestParams;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class TotalListActivity extends AppCompatActivity
         implements View.OnClickListener, AdapterView.OnItemClickListener {
     TotalListJsonHelper helper;
     AsyncHttpClient client;
     MemoryAdapter adapter;
-    Button buttonTotal;
+    Button buttonTotal, buttonWrite;
     ListView listViewTotal;
     List<MemoryDTO> list;
 
@@ -33,6 +32,8 @@ public class TotalListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_total_list);
         buttonTotal = findViewById(R.id.buttonTotal);
+        buttonWrite = findViewById(R.id.buttonWrite);
+
         listViewTotal = findViewById(R.id.listViewTotal);
 
 
@@ -45,6 +46,8 @@ public class TotalListActivity extends AppCompatActivity
         listViewTotal.setAdapter(adapter);
 
         buttonTotal.setOnClickListener(this);
+        buttonWrite.setOnClickListener(this);
+
         listViewTotal.setOnItemClickListener(this);
     }
 
@@ -63,13 +66,23 @@ public class TotalListActivity extends AppCompatActivity
         params.put("cate1","health");
         params.put("cate2","pet");
         params.put("cate3","food");
-        String url = "http://192.168.0.42:8088/java/totalListJson";
+        String url = "http://192.168.1.3:8085/java/totalListJson";
         client.get(url, params, helper);
     }
 
     @Override
     public void onClick(View v) {
-        finish();
+        switch (v.getId()){
+            case R.id.buttonWrite: // 글 쓰기 버튼
+                Intent intent = new Intent(this, WriteActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent);
+                break;
+            case R.id.buttonTotal: // 뒤로가기 버튼
+                finish();
+                break;
+
+        }
     }
 
     @Override
@@ -81,5 +94,5 @@ public class TotalListActivity extends AppCompatActivity
 
         intent.putExtra("memory_hit", dto.getMemory_hit()+1);
         startActivity(intent);
-    }
+    }//
 }

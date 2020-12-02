@@ -1,4 +1,6 @@
-package com.example.uitest1.helper;
+
+package com.example.ourmemory.helper;
+
 
 import android.app.Activity;
 import android.graphics.Bitmap;

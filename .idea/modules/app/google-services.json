@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "789653528022",
-    "firebase_url": "https://ourmemory-dc874.firebaseio.com",
-    "project_id": "ourmemory-dc874",
-    "storage_bucket": "ourmemory-dc874.appspot.com"
+    "project_number": "911385247107",
+    "firebase_url": "https://ourmemory-e3b3e.firebaseio.com",
+    "project_id": "ourmemory-e3b3e",
+    "storage_bucket": "ourmemory-e3b3e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:789653528022:android:ff2536e4c1e4e74efe9877",
+        "mobilesdk_app_id": "1:911385247107:android:fc5245733d62f8c6c74ab6",
         "android_client_info": {
           "package_name": "com.example.ourmemory"
         }
       },
       "oauth_client": [
         {
-          "client_id": "789653528022-dab05hvipngbllpiprlqner7omctnh4f.apps.googleusercontent.com",
+          "client_id": "911385247107-rkv4usitj6eln34mb75g4jhekeqss6q8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.ourmemory",
@@ -23,20 +23,28 @@
           }
         },
         {
-          "client_id": "789653528022-hcdqulkf2trhgo50mndtum9tg96vlmet.apps.googleusercontent.com",
+          "client_id": "911385247107-6badjnhkkhc7t4li4596ivkgftbg6evq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ourmemory",
+            "certificate_hash": "3fe1fa28be419411674b971f8739231d65a902fa"
+          }
+        },
+        {
+          "client_id": "911385247107-c0ckp5bb279uph3vts950augmcm7um5k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB0yzrCXZYMAkeCu_ChShLchVwlh3AjSns"
+          "current_key": "AIzaSyCOK96Enesw1-aPWOoQ9TsCVNd6ZgnlA5w"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "789653528022-hcdqulkf2trhgo50mndtum9tg96vlmet.apps.googleusercontent.com",
+              "client_id": "911385247107-c0ckp5bb279uph3vts950augmcm7um5k.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

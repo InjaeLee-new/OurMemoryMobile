@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package com.example.uitest1.helper;
+=======
+package com.example.ourmemory.helper;
+>>>>>>> c0cba3e3fef6a78ec4007d35c34523364527e618
 
 import android.annotation.SuppressLint;
 import android.content.res.AssetFileDescriptor;
