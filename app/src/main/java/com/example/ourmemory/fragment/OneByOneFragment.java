@@ -75,6 +75,8 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
         response = new HttpResponse();
         client = new AsyncHttpClient();
 
+        sessionManager = new SessionManager(context);
+
         buttonOnepicture = rootView.findViewById(R.id.buttonOnepicture);
         buttonOneOK = rootView.findViewById(R.id.buttonOneOK);
 
@@ -127,10 +129,10 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
     private void postJsonData() {
         int checkedId = radioGroup.getCheckedRadioButtonId();
         RadioButton radioButton = rootView.findViewById(checkedId);
-        // 세션이 없는 관계로 계속 시스템 뻗음
-//        HashMap<String, String> user = sessionManager.getUserDetail();
-//        String session_id = user.get(sessionManager.ID);
-//        String session_name = user.get(sessionManager.NAME);
+
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        String session_id = user.get(sessionManager.ID);
+        String session_name = user.get(sessionManager.NAME);
 
         String subject = editTextOne1.getText().toString();
         String content = editTextOne2.getText().toString();
@@ -156,8 +158,8 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
         RequestParams params = new RequestParams();
 
         String url = "http://192.168.1.3:8085/java/contactUsAndroid";
-        params.put("contact_name","홍길동");
-        params.put("contact_id","hong02");
+        params.put("contact_name", session_id);
+        params.put("contact_id", session_name);
         params.put("contact_email",email);
         params.put("contact_tel",phone);
         params.put("contact_callback",callBack);
