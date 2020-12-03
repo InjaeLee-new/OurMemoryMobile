@@ -57,8 +57,8 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
     LinearLayout oneLayout;
     View rootView;
     Context context;
-    String filePath, realFileName;
     ContactUsActivity activity;
+    String filePath, realFileName;
     SessionManager sessionManager;
     HttpResponse response;
     AsyncHttpClient client;

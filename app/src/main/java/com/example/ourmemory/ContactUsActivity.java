@@ -28,8 +28,8 @@ public class ContactUsActivity extends AppCompatActivity implements View.OnClick
         textViewOne = findViewById(R.id.textViewOne);
         textViewQues = findViewById(R.id.textViewQues);
 
-        noticeFragment = new NoticeFragment();
-        questionFragment = new QuestionFragment();
+        noticeFragment = new NoticeFragment(this);
+        questionFragment = new QuestionFragment(this);
         oneByOneFragment = new OneByOneFragment(this);
 
         if (savedInstanceState ==null){
