@@ -2,10 +2,13 @@ package com.example.ourmemory.helper;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.ourmemory.AppJoinActivity;
+import com.example.ourmemory.IndexActivity;
 import com.example.ourmemory.MainActivity;
 import com.example.ourmemory.SessionManager;
 import com.example.ourmemory.adapter.MemoryAdapter;
@@ -15,6 +18,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -59,8 +64,20 @@ public class JsonLoginHelper extends AsyncHttpResponseHandler {
                     String google_Id = temp.getString("google_Id");
                     String kakao_Id = temp.getString("kakao_Id");
 
-                    if(cate1 == null) {
+                    if(cate1 != null) {
                         MainActivity.isntAppJoin = true;
+                        Intent intent = new Intent(activity, IndexActivity.class);
+                        activity.startActivity(intent);
+                        sessionManager.createSession(user_id, user_name, cate1,
+                                cate2, cate3, google_Id, kakao_Id);
+                    } else {
+                        HashMap<String, String> user = sessionManager.getUserDetail();
+                        user_id = user.get(sessionManager.ID);
+                        user_name = user.get(sessionManager.NAME);
+                        Intent intentAppJoin = new Intent(activity, AppJoinActivity.class);
+                        intentAppJoin.putExtra("user_id", user_id);
+                        intentAppJoin.putExtra("user_name", user_name);
+                        activity.startActivity(intentAppJoin);
                     }
 
                     sessionManager.createSession(user_id, user_name, cate1,
