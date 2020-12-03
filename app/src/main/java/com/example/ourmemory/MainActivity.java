@@ -218,27 +218,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 params.put("id", editTextID.getText().toString().trim());
                 params.put("pw", editTextPassword.getText().toString().trim());
                 //String url = "http://192.168.1.21:8085/java/appLogin";
-                String url = "http://192.168.0.9:8085/java/appLogin";
+//                String url = "http://192.168.0.9:8085/java/appLogin";
+                String url = "http://192.168.1.3:8085/java/appLogin";
                 client.post(url, params,  helper);
 
+                editTextID.setText("");
+                editTextPassword.setText("");
 
-                if(LoginOK && isntAppJoin) {
-                    Log.d("[Main.LoginOK]", ""+LoginOK);
-                    Log.d("[Main.isntAppJoin]", ""+isntAppJoin);
-
-                    Intent intentLogin = new Intent(this, IndexActivity.class);
-                    startActivity(intentLogin);
-                } else {
-                    HashMap<String, String> user = sessionManager.getUserDetail();
-                    String user_id = user.get(sessionManager.ID);
-                    String user_name = user.get(sessionManager.NAME);
-                    Intent intentAppJoin = new Intent(this, AppJoinActivity.class);
-                    intentAppJoin.putExtra("user_id", user_id);
-                    intentAppJoin.putExtra("user_name", user_name);
-                    startActivity(intentAppJoin);
-                    editTextID.setText("");
-                    editTextPassword.setText("");
-                }
                 break;
             case R.id.buttonToMain:
                 login_form.setVisibility(View.GONE);
