@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static public Boolean LoginOK = false;
     static public Boolean isntAppJoin = false;
     static public String user_name = "";
+    static public Boolean pushGanung = true;
 
     // 일반 로그인에 필요한 내용 구현
     JsonLoginHelper helper;
@@ -88,11 +89,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // 안드로이드 푸쉬를 위해 추가
-        try {
-            String token = FirebaseInstanceId.getInstance().getToken();
-            Log.d("IDService","device token : "+token);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+        if(pushGanung == true) {
+            try {
+                String token = FirebaseInstanceId.getInstance().getToken();
+                Log.d("IDService","device token : "+token);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        } else {
+
         }
 
         // 아이디 세션을 위한 함수
