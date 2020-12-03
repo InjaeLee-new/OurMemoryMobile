@@ -51,7 +51,6 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     List<MemoryCommentDTO> list;
 
     MemoryDTO memoryDTO;
-    ImageView imageView;
     TextView textView1, textView2, textView3, textViewContent, textView9, textView10;
 
     Button buttonBack, buttonCommentSubmit, buttonShare, buttonModify, buttonDelete;
@@ -294,7 +293,6 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandData() {
         RequestParams params = new RequestParams();
         if (like_status == 1){
-
             String url = "http://192.168.0.9:8085/java/recommendation";
             params.put("memory_num", memoryDTO.getMemory_num());
             client.post(url, params, recommandHelper);

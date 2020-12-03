@@ -1,5 +1,6 @@
 package com.example.ourmemory;
 
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,8 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.ourmemory.helper.FileUtils;
-import com.example.ourmemory.helper.PhotoHelper;
+import com.example.ourmemory.photoHelper.FileUtils;
+import com.example.ourmemory.photoHelper.PhotoHelper;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -52,12 +53,14 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
     HttpResponse response;
     AsyncHttpClient client;
     String filePath1, filePath2, filePath3, filePath4, filePath5 ="";
-    String realFileName; // DB에 저장할 파일 이름
+
     int imgCnt=0;   // 이미지 추가 버튼 생성시 사용
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
+
         buttonWrite = findViewById(R.id.buttonWrite);
         buttonWriteCancel = findViewById(R.id.buttonWriteCancel);
 
@@ -125,6 +128,10 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
 
 
 
+
+
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -170,6 +177,16 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
             } else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.CAMERA}, 100);
+            }
+        }
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 102 );
             }
         }
     }
@@ -231,7 +248,7 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
                     intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(filePath));
                     Log.d("[TEST]", filePath);
                     sendBroadcast(intent);
-                    realFileName = filePath.substring(filePath.lastIndexOf("/")+1);
+                    Toast.makeText(this, filePath+"을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
                     imgButtonCreate();  // 이미지 넣고 버튼 나타나게 하는 함수
                     break;
                 case 101 :
@@ -241,7 +258,6 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
                     filePath = FileUtils.getPath(this, data.getData());
                     Log.d("[TEST]", "filePath = "+filePath);
                     Toast.makeText(this, fileName+"을 선택하셨습니다.", Toast.LENGTH_SHORT).show();
-                    realFileName = filePath.substring(filePath.lastIndexOf("/")+1);
                     imgButtonCreate();
                     break;
             }
@@ -394,3 +410,4 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 }
+
