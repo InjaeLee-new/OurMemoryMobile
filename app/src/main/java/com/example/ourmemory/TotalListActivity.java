@@ -14,6 +14,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,9 @@ public class TotalListActivity extends AppCompatActivity
     ListView listViewTotal;
     List<MemoryDTO> list;
 
+    SessionManager sessionManager;
+    String cate1, cate2, cate3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,12 @@ public class TotalListActivity extends AppCompatActivity
 
         listViewTotal = findViewById(R.id.listViewTotal);
 
+        sessionManager = new SessionManager(this);
+
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        cate1 = user.get(sessionManager.CATE1);
+        cate2 = user.get(sessionManager.CATE2);
+        cate3 = user.get(sessionManager.CATE3);
 
         list = new ArrayList<>();
         adapter = new MemoryAdapter(this, R.layout.list_item, list);
@@ -63,10 +73,10 @@ public class TotalListActivity extends AppCompatActivity
         RequestParams params = new RequestParams();
         params.put("startNum",1);
         params.put("endNum",MemoryDTO.getTotal_count());
-        params.put("cate1","health");
-        params.put("cate2","pet");
-        params.put("cate3","food");
-        String url = "http://192.168.1.3:8085/java/totalListJson";
+        params.put("cate1", cate1);
+        params.put("cate2", cate2);
+        params.put("cate3", cate3);
+        String url = "http://192.168.0.9:8085/java/totalListJson";
         client.get(url, params, helper);
     }
 

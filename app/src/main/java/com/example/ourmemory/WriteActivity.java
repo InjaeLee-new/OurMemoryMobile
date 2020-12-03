@@ -404,9 +404,9 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
 
         @Override
         public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-            Toast.makeText(WriteActivity.this,"false",Toast.LENGTH_SHORT).show();
-            String str = new String(responseBody);
-            Log.d("[TEST]",str);
+            Toast.makeText(WriteActivity.this,"false, statusCode = " + statusCode,Toast.LENGTH_SHORT).show();
+//            String str = new String(responseBody);
+//            Log.d("[TEST]",str);
         }
     }
 }

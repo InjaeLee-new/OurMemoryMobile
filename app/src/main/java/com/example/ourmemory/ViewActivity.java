@@ -53,7 +53,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     MemoryDTO memoryDTO;
     TextView textView1, textView2, textView3, textViewContent, textView9, textView10;
 
-    Button buttonBack, buttonCommentSubmit, buttonShare;
+    Button buttonBack, buttonCommentSubmit, buttonShare, buttonModify, buttonDelete;
     ImageButton imageButtonPre, imageButtonNext;
     ViewPager2 viewPager;
 
@@ -78,6 +78,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         editTextCommentContent = findViewById(R.id.editTextCommentContent);
         editTextCommentName = findViewById(R.id.editTextCommentName);
         buttonShare = findViewById(R.id.buttonShare);
+        buttonModify = findViewById(R.id.buttonModify);
+        buttonDelete = findViewById(R.id.buttonDelete);
 
         imageButtonPre = findViewById(R.id.imageButtonPre);
         imageButtonNext = findViewById(R.id.imageButtonNext);
@@ -101,7 +103,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         String fileName = memoryDTO.getMemory_file();
         String[] array_fileName = fileName.split(", ");
-//        String full_filename = "http://192.168.1.3:8085/java/storage" + "/" + array_fileName[0];
+        String full_filename = "http://192.168.0.9:8085/java/img" + "/" + array_fileName[0];
         // viewpager 만들기
         viewPager.setAdapter(new ViewPagerHelper(array_fileName, this));
 
@@ -136,8 +138,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         buttonShare.setOnClickListener(this);
         imageButtonPre.setOnClickListener(this);
         imageButtonNext.setOnClickListener(this);
-//        buttonModify.setOnClickListener(this);
-//        buttonDelete.setOnClickListener(this);
+        buttonModify.setOnClickListener(this);
+        buttonDelete.setOnClickListener(this);
 
         textView9.setOnClickListener(this);
         textView10.setOnClickListener(this);
@@ -154,14 +156,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.3:8085/java/viewHitJson";
+        String url = "http://192.168.0.9:8085/java/viewHitJson";
         client.post(url, params, helper);
     }
 
     private void getCommentData() {
         RequestParams params = new RequestParams();
         params.put("seq", memoryDTO.getMemory_num());
-        String url = "http://192.168.1.3:8085/java/commentViewJson";
+        String url = "http://192.168.0.9:8085/java/commentViewJson";
         client.post(url, params,  commentHelper);
     }
 
@@ -170,7 +172,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         params.put("memory_seq", memoryDTO.getMemory_num());
         params.put("memory_comment_name", editTextCommentName.getText().toString().trim());
         params.put("memory_comment_content", editTextCommentContent.getText().toString().trim());
-        String url = "http://192.168.1.3:8085/java/viewCommentWriteJson";
+        String url = "http://192.168.0.9:8085/java/viewCommentWriteJson";
         client.post(url, params,  commentHelper);
 
         editTextCommentName.setText("");
@@ -279,7 +281,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         RequestParams params = new RequestParams();
 
 
-        String url = "http://192.168.1.3:8085/java/recommandCheck";
+        String url = "http://192.168.0.9:8085/java/recommandCheck";
         params.put("recommand_id", session_id); // 변경시킴
 
         params.put("recommand_seq", memoryDTO.getMemory_num());
@@ -291,14 +293,13 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandData() {
         RequestParams params = new RequestParams();
         if (like_status == 1){
-
-            String url = "http://192.168.1.3:8085/java/recommendation";
+            String url = "http://192.168.0.9:8085/java/recommendation";
             params.put("memory_num", memoryDTO.getMemory_num());
             client.post(url, params, recommandHelper);
             Log.d("[test]",like_status+" ");
         } else if (like_status == 2){
             params.put("memory_num", memoryDTO.getMemory_num());
-            String url = "http://192.168.1.3:8085/java/notrecommendation";
+            String url = "http://192.168.0.9:8085/java/notrecommendation";
             client.post(url, params, recommandHelper);
             Log.d("[test]",like_status+" ");
         }
