@@ -44,6 +44,7 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
     Intent intent;
     // 세션관리
     SessionManager sessionManager;
+    String session_id, cate1, cate2, cate3;
 
 
     // 팝업을 위한 코드 선언
@@ -60,9 +61,10 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         sessionManager = new SessionManager(this);
 //        sessionManager.checkLogin();
         HashMap<String, String> user = sessionManager.getUserDetail();
-        String session_id = user.get(sessionManager.ID);
-        String cate1 = user.get(sessionManager.CATE1);
-        String google = user.get(sessionManager.GOOGLE_ID);
+        session_id = user.get(sessionManager.ID);
+        cate1 = user.get(sessionManager.CATE1);
+        cate2 = user.get(sessionManager.CATE2);
+        cate3 = user.get(sessionManager.CATE3);
 
         // 툴바관리
         toolbar = findViewById(R.id.toolbar);
@@ -156,10 +158,10 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("startNum",1);
-        params.put("endNum",MemoryDTO.getTotal_count());
-        params.put("cate1","health");
-        params.put("cate2","pet");
-        params.put("cate3","food");
+        params.put("endNum", MemoryDTO.getTotal_count());
+        params.put("cate1", cate1);
+        params.put("cate2",cate2);
+        params.put("cate3",cate3);
         String url = "http://192.168.0.109:8082/java/totalListJson";
         client.get(url, params, helper);
     }

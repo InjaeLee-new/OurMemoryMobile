@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,7 +57,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
     MemoryDTO memoryDTO;
     ImageView imageView;
-    TextView textViewName, textView1, textView2, textView3, textView4, textView5,textViewContent, textView9, textView10;
+    TextView textViewName, textView1, textView2, textView3, textView4, textView5,textViewContent;
 
     Button buttonBack, buttonCommentSubmit, buttonShare, buttonModify, buttonDelete;
     ImageButton imageButtonPre, imageButtonNext;
@@ -78,6 +79,9 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     ImageButton btnHome, btnWrite, btnFav, btnMypage;
     // 화면이동 전역변수 인텐트
     Intent intent;
+
+    // 댓글창으로 이동하기 위한 스크롤 뷰
+    ScrollView scrollView;
 
 
     // 확인용 주석
@@ -158,12 +162,12 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         textView3 = findViewById(R.id.textView3);
         textView4 = findViewById(R.id.textView4);
         textView5 = findViewById(R.id.textView5);
-        textView9 = findViewById(R.id.textView9);
-        textView10 = findViewById(R.id.textView10);
+//        textView9 = findViewById(R.id.textView9);
+//        textView10 = findViewById(R.id.textView10);
         textViewContent = findViewById(R.id.textViewContent);
 
         listView.setAdapter(commentAdapter);
-        getCommentData();
+        //getCommentData();
 
 //        Glide.with(this).load(full_filename)
 //                .into(imageView);
@@ -174,8 +178,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         textView4.setText(memoryDTO.getMemory_name());
         textView5.setText(memoryDTO.getMemory_subject());
 
-        textView9.setText("추천수 : " + memoryDTO.getMemory_rec());
-        textView10.setText("비추천수 : " +memoryDTO.getMemory_nrec());
+//        textView9.setText("추천수 : " + memoryDTO.getMemory_rec());
+//        textView10.setText("비추천수 : " +memoryDTO.getMemory_nrec());
         textViewContent.setText(memoryDTO.getMemory_content());
 
 //        buttonBack.setOnClickListener(this);
@@ -188,15 +192,20 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         imageButtonLike.setOnClickListener(this);
         imageButtonDis.setOnClickListener(this);
         imageButtonComm.setOnClickListener(this);
-        textView9.setOnClickListener(this);
-        textView10.setOnClickListener(this);
+//        textView9.setOnClickListener(this);   => imageButtonLike로 대체
+//        textView10.setOnClickListener(this);  => imageButtonDis로 대체
         buttonCommentSubmit.setOnClickListener(this);
+
+        scrollView = findViewById(R.id.scrollView);
+
     }
 
     // 댓글을 입력한 이후에, 화면이 초기화되는 작업이 필요하다. 이 부분은 resume으로 해야하는지 알아볼 것.
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d("[TEST adapter]", ""+commentAdapter.getCount());
+        commentAdapter.clear();
         getCommentData();
     }
 
@@ -334,7 +343,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("[RT2]",rt2);
                 if (rt2.equals("OK")){
                     if (!statusLike){
-                        textView1.setText("\uD83D\uDE0D"+memoryDTO.getMemory_rec()+1+"명이 좋아합니다.");
+                        textView1.setText("\uD83D\uDE0D"+(memoryDTO.getMemory_rec()+1)+"명이 좋아합니다.");
                         //textView9.setText("추천수 : " + (memoryDTO.getMemory_rec()+1));
                         like_status = 1; statusLike = true;
                         Toast.makeText(this,"추천하셨습니다.",Toast.LENGTH_SHORT).show();
@@ -390,6 +399,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
                 // Title of intent
                 Intent chooser = Intent.createChooser(intent, "친구에게 공유하기");
                 startActivity(chooser);
+                break;
             case R.id.buttonModify:
                 Intent intentModify = new Intent(this, ModifyActivity.class);
                 intentModify.putExtra("dto", memoryDTO);
@@ -410,6 +420,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
                 position = viewPager.getCurrentItem();//현재 보여지는 아이템의 위치를 리턴
 
                 viewPager.setCurrentItem(position+1,true);
+                break;
+
+            case R.id.imageButtonComm :
+                scrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);}
+                });
                 break;
         }
 

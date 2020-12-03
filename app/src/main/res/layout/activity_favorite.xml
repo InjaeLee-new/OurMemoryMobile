@@ -4,12 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FBF2F3"
+    android:orientation="vertical"
     tools:context=".FavoriteActivity">
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <include
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:clickable="true" />
+
+    <ListView
+        android:id="@+id/listView_fav"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="Favorite Activity입니당" />
+        android:background="#FBF2F3">
+
+    </ListView>
+
+    <ListView
+        android:id="@+id/listView_myList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFEBEC">
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/home_button" />
+
+        <ImageButton
+            android:id="@+id/btnWrite"
+            android:layout_width="32dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toEndOf="@+id/btnHome"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/plus_button" />
+
+        <ImageButton
+            android:id="@+id/btnFav"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="47dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toStartOf="@+id/btnMypage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/fav_button2" />
+
+        <ImageButton
+            android:id="@+id/btnMypage"
+            android:layout_width="33dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="70dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/mypage_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
