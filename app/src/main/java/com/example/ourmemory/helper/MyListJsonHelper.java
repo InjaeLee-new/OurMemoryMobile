@@ -1,6 +1,7 @@
 package com.example.ourmemory.helper;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -60,7 +61,7 @@ public class MyListJsonHelper extends AsyncHttpResponseHandler {
                 memoryDTO.setMemory_nrec(temp.getInt("memory_nrec"));
                 memoryDTO.setMemory_name(temp.getString("memory_name"));
                 memoryDTO.setMemory_category(temp.getString("memory_category"));
-                memoryDTO.setMemory_category(temp.getString("memory_id"));
+                memoryDTO.setMemory_id(temp.getString("memory_id"));
 
                 adapter.add(memoryDTO);
             }
