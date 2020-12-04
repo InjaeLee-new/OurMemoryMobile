@@ -229,7 +229,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_settings:    //세팅 액티비티로 가도록 이동
+            case R.id.action_contactus:    //세팅 액티비티로 가도록 이동
                 Intent intent = new Intent(this, SettingsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent);

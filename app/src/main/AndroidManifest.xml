@@ -17,11 +17,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".FavoriteActivity"></activity>
+        <activity android:name=".FavoriteActivity" />
         <activity android:name=".SettingsActivity" />
+        <activity android:name=".MapActivity" />
         <activity android:name=".MypageActivity" />
-        <activity android:name=".ContactUsActivity"></activity>
-        <activity android:name=".EventActivity"></activity>
+        <activity android:name=".ContactUsActivity" />
+        <activity android:name=".EventActivity" />
         <activity android:name=".ArtListActivity" />
         <activity android:name=".MusicListActivity" />
         <activity android:name=".PetListActivity" />

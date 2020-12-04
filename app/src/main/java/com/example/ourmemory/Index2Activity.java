@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -30,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Index2Activity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+    Button buttonMap;
     List<MemoryDTO> list;
     TotalListJsonHelper helper;
     AsyncHttpClient client;
@@ -93,10 +95,12 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         btnWrite = findViewById(R.id.btnWrite);
         btnFav = findViewById(R.id.btnFav);
         btnMypage = findViewById(R.id.btnMypage);
+        buttonMap = findViewById(R.id.buttonMap);
         btnHome.setOnClickListener(this);
         btnWrite.setOnClickListener(this);
         btnFav.setOnClickListener(this);
         btnMypage.setOnClickListener(this);
+        buttonMap.setOnClickListener(this);
 
         listView_index.setOnItemClickListener(this);
 
@@ -186,11 +190,11 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_settings:    //세팅 액티비티로 가도록 이동
-                Intent intent = new Intent(this, SettingsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                startActivity(intent);
-                break;
+//            case R.id.action_contactus:    //세팅 액티비티로 가도록 이동
+//                Intent intent = new Intent(this, SettingsActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+//                startActivity(intent);
+//                break;
             case R.id.action_logout:
                 // 로그아웃 테스트
                 // 이후 로그아웃 버튼 생성시 sessionManager.logout(); 함수 실행
@@ -239,9 +243,9 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent8);
                 break;
             case R.id.action_contactus: // 고객센터 관련 activity로 이동
-                Intent intent5 = new Intent(this, ContactUsActivity.class);
-                intent5.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                startActivity(intent5);
+                Intent intent9 = new Intent(this, ContactUsActivity.class);
+                intent9.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent9);
                 break;
 
         }
@@ -271,6 +275,10 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
 
                 case R.id.toolBack :
                     finish();
+                    break;
+                case R.id.buttonMap:
+                    intent = new Intent(this, MapActivity.class);
+                    startActivity(intent);
                     break;
             }
     }
