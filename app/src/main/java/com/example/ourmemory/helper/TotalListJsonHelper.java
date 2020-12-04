@@ -41,7 +41,7 @@ public class TotalListJsonHelper extends AsyncHttpResponseHandler {
 
         try {
             JSONObject json = new JSONObject(str);
-//            MemoryDTO.setTotal_count(json.getInt("totalResult"));
+            MemoryDTO.setTotal_count(json.getInt("totalResult"));
             JSONArray memorylist = json.getJSONArray("memoryList");
 
             for(int a = 0 ; a < memorylist.length(); a++) {

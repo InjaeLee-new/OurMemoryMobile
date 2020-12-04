@@ -2,6 +2,7 @@ package com.example.ourmemory.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -39,6 +40,7 @@ public class MyListAdapter extends ArrayAdapter<MemoryDTO> {
 
 //        String[] array_fileName = fileName.split(", ");
 //        String full_filename = "http://192.168.0.109:8082/java/img" + "/" + array_fileName[0];
+
 
         if (memoryDTO != null) {
 //            ImageView imageView = convertView.findViewById(R.id.imageView);

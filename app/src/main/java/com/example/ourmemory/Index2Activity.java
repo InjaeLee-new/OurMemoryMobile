@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,6 +66,13 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         cate1 = user.get(sessionManager.CATE1);
         cate2 = user.get(sessionManager.CATE2);
         cate3 = user.get(sessionManager.CATE3);
+
+        Log.d("[TEST]", session_id);
+        Log.d("[TEST]", cate1);
+        Log.d("[TEST]", cate2);
+        Log.d("[TEST]", cate3);
+        Log.d("[TEST]", ""+MemoryDTO.getTotal_count());
+
 
         // 툴바관리
         toolbar = findViewById(R.id.toolbar);
@@ -158,7 +166,8 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("startNum",1);
-        params.put("endNum", MemoryDTO.getTotal_count());
+//        params.put("endNum", MemoryDTO.total_count);
+        params.put("endNum", 20);
         params.put("cate1", cate1);
         params.put("cate2",cate2);
         params.put("cate3",cate3);

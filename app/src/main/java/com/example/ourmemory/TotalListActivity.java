@@ -72,7 +72,7 @@ public class TotalListActivity extends AppCompatActivity
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("startNum",1);
-        params.put("endNum",MemoryDTO.getTotal_count());
+        params.put("endNum", MemoryDTO.getTotal_count());
         params.put("cate1", cate1);
         params.put("cate2", cate2);
         params.put("cate3", cate3);
