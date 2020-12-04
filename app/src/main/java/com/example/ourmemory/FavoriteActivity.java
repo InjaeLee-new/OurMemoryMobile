@@ -115,12 +115,12 @@ public class FavoriteActivity extends AppCompatActivity implements View.OnClickL
         //MemoryDTO.getTotal_count()
         params.put("endNum", 10);
         params.put("id", session_id);
-        String url = "http://192.168.0.109:8082/java/myListJson";
+        String url = "http://192.168.1.21:8085/java/myListJson";
         client1.get(url, params, helper1);
 
         RequestParams params2 = new RequestParams();
         params2.put("id", session_id);
-        String url2 = "http://192.168.0.109:8082/java/favoriteJson";
+        String url2 = "http://192.168.1.21:8085/java/favoriteJson";
         client2.get(url2, params2, helper2);
     }
 
