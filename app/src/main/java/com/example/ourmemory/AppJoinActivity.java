@@ -267,7 +267,7 @@ public class AppJoinActivity extends AppCompatActivity implements View.OnClickLi
         params.put("cate3", category[2]);
         params.put("google_Id", "23523523");
         params.put("kakao_Id", "235235");
-        String url = "http://192.168.0.9:8085/java/appJoinJson";
+        String url = "http://192.168.0.109:8082/java/appJoinJson";
         client.post(url, params, helper);
     }
 
