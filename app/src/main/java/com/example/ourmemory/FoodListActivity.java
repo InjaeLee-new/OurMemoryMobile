@@ -13,6 +13,7 @@ import com.example.ourmemory.adapter.MemoryAdapter;
 import com.example.ourmemory.helper.JsonHelper;
 import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,6 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         helper = new JsonHelper(this, adapter, listView);
 
         listView.setAdapter(adapter);
-        getJsonData();
 
         button.setOnClickListener(this);
         listView.setOnItemClickListener(this);
@@ -57,8 +57,11 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void getJsonData() {
-        String url = "http://192.168.1.21:8085/java/foodListJson";
-        client.get(url, helper);
+        RequestParams params = new RequestParams();
+//        String url = "http://192.168.1.21:8085/java/foodListJson";
+        String url = "http://192.168.0.42:8088/java/foodListJson";
+        params.put("category","food");
+        client.get(url, params, helper);
     }
 
     @Override

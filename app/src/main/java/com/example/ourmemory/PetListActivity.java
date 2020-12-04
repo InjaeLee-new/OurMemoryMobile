@@ -54,7 +54,9 @@ public class PetListActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void getJsonData() {
-        String url = "http://192.168.1.21:8085/java/petListJson";
+//        String url = "http://192.168.1.21:8085/java/petListJson";
+        String url = "http://192.168.0.42:8088/java/petListJson";
+
         client.get(url, helper);
     }
 

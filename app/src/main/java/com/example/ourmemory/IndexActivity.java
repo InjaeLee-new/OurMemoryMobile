@@ -2,30 +2,19 @@ package com.example.ourmemory;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.EventLog;
-import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import android.widget.TextView;
-import android.widget.ImageView;
 import android.widget.Toolbar;
 
 
-import com.bumptech.glide.Glide;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -163,11 +152,11 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:    //마이페이지 액티비티(임시)로 가도록 이동
-                Intent intent = new Intent(this, MypageActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                startActivity(intent);
-                break;
+//            case R.id.action_contactus:    //마이페이지 액티비티(임시)로 가도록 이동
+//                Intent intent = new Intent(this, MypageActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+//                startActivity(intent);
+//                break;
             case R.id.action_logout:
                 // 로그아웃 테스트
                 // 이후 로그아웃 버튼 생성시 sessionManager.logout(); 함수 실행
@@ -181,45 +170,45 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent1);
                 break;
             case R.id.pet :
-                Intent intent2 = new Intent(this, ListActivity.class);
+                Intent intent2 = new Intent(this,  PetListActivity.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent2);
                 break;
             case R.id.it :
-                Intent intent3 = new Intent(this, ListActivity.class);
+                Intent intent3 = new Intent(this, ItListActivity.class);
                 intent3.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent3);
                 break;
             case R.id.game :
-                Intent intent4 = new Intent(this, ListActivity.class);
+                Intent intent4 = new Intent(this, GameListActivity.class);
                 intent4.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent4);
                 break;
             case R.id.food :
-                Intent intent5 = new Intent(this, ListActivity.class);
+                Intent intent5 = new Intent(this, FoodListActivity.class);
                 intent5.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent5);
                 break;
             case R.id.music :
-                Intent intent6 = new Intent(this, ListActivity.class);
+                Intent intent6 = new Intent(this, MusicListActivity.class);
                 intent6.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent6);
                 break;
             case R.id.art :
-                Intent intent7 = new Intent(this, ListActivity.class);
+                Intent intent7 = new Intent(this, ArtListActivity.class);
                 intent7.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent7);
                 break;
             case R.id.health :
-                Intent intent8 = new Intent(this, ListActivity.class);
+                Intent intent8 = new Intent(this, HealthListActivity.class);
                 intent8.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent8);
                 break;
 
             case R.id.action_contactus: // 고객센터 관련 activity로 이동
-                Intent intent5 = new Intent(this, ContactUsActivity.class);
-                intent5.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                startActivity(intent5);
+                Intent intent9 = new Intent(this, ContactUsActivity.class);
+                intent9.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent9);
                 break;
 
         }
