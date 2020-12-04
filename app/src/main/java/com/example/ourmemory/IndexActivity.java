@@ -39,7 +39,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
      */
     TextView textView6;
 
-    Button buttonPet, buttonLogout;
+    Button buttonPet, buttonLogout, buttonIsPush;
 
     Button buttonFood , buttonHealth, buttonGame, buttonTotal;
     Button buttonTravel, buttonMusic, buttonArt, buttonIt;
@@ -67,6 +67,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
         textView6.setText("카데고리 목록 (안녕하세요 " + session_id + "\n" + cate1 + "\n" + google + "\n" + "님)");
 
+        buttonIsPush = findViewById(R.id.buttonIsPush);
 
         buttonPet = findViewById(R.id.buttonPet);
         buttonFood = findViewById(R.id.buttonFood);
@@ -89,6 +90,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         buttonIt.setOnClickListener(this);
         buttonTotal.setOnClickListener(this);
         buttonLogout.setOnClickListener(this);
+        buttonIsPush.setOnClickListener(this);
 
         // 이벤트 알림창 띄우기
         alert = new AlertDialog.Builder(this);
@@ -214,6 +216,11 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent8);
                 break;
 
+            case R.id.action_contactus: // 고객센터 관련 activity로 이동
+                Intent intent5 = new Intent(this, ContactUsActivity.class);
+                intent5.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent5);
+                break;
 
         }
         return super.onOptionsItemSelected(item);
@@ -292,6 +299,15 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 sessionManager.logout();
                 finish();
                 MainActivity.LoginOK =false;
+                break;
+            case R.id.buttonIsPush:
+                if(MainActivity.pushGanung) {
+                    MainActivity.pushGanung = false;
+                    buttonIsPush.setText("푸쉬기능OFF");
+                } else {
+                    MainActivity.pushGanung = true;
+                    buttonIsPush.setText("푸쉬기능ON");
+                }
                 break;
         }
     }

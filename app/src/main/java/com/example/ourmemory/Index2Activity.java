@@ -238,6 +238,11 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
                 intent8.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent8);
                 break;
+            case R.id.action_contactus: // 고객센터 관련 activity로 이동
+                Intent intent5 = new Intent(this, ContactUsActivity.class);
+                intent5.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent5);
+                break;
 
         }
         return super.onOptionsItemSelected(item);

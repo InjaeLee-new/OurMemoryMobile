@@ -145,6 +145,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         String fileName = memoryDTO.getMemory_file();
         String[] array_fileName = fileName.split(", ");
         String full_filename = "http://192.168.0.109:8082/java/img" + "/" + array_fileName[0];
+
         // viewpager 만들기
         viewPager.setAdapter(new ViewPagerHelper(array_fileName, this));
 
@@ -213,6 +214,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
         String url = "http://192.168.0.109:8082/java/viewHitJson";
+
         client.post(url, params, helper);
     }
 
@@ -289,6 +291,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         RequestParams params = new RequestParams();
         params.put("seq", memoryDTO.getMemory_num());
         String url = "http://192.168.0.109:8082/java/commentViewJson";
+
         client.post(url, params,  commentHelper);
     }
 
@@ -449,7 +452,6 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandData() {
         RequestParams params = new RequestParams();
         if (like_status == 1){
-
             String url = "http://192.168.0.109:8082/java/recommendation";
             params.put("memory_num", memoryDTO.getMemory_num());
             client.post(url, params, recommandHelper);

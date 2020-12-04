@@ -33,6 +33,7 @@ dependencies {
 
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -59,4 +60,8 @@ dependencies {
 
     // viewPager 2
     implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha04'
+
+    // 안드로이드 푸쉬 기능
+    implementation 'com.google.firebase:firebase-messaging:17.3.3'
+
 }

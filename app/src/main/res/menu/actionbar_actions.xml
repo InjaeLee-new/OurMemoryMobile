@@ -41,5 +41,4 @@
         android:id="@+id/health"
         android:title="건강" />
 
-
 </menu>
