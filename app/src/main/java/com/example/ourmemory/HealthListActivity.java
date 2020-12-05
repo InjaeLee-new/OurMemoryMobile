@@ -57,7 +57,8 @@ public class HealthListActivity extends AppCompatActivity
     }
 
     private void getJsonData() {
-        String url = "http://192.168.0.109:8082/java/healthListJson";
+        String url = "http://192.168.0.42:8088/java/healthListJson";
+//        String url = "http://192.168.1.21:8085/java/healthListJson";
         client.get(url, helper);
     }
 

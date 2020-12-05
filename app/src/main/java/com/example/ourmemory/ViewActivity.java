@@ -66,7 +66,6 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
     EditText editTextCommentContent, editTextCommentName;
     boolean statusLike = false;
-    int like_status = 0;
 
     // 세션 사용을 위해 세션 매니저 선언
     SessionManager sessionManager;
@@ -83,6 +82,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     // 댓글창으로 이동하기 위한 스크롤 뷰
     ScrollView scrollView;
 
+    int re_check= 0;
 
     // 확인용 주석
     @Override
@@ -142,7 +142,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         String fileName = memoryDTO.getMemory_file();
         String[] array_fileName = fileName.split(", ");
-        String full_filename = "http://192.168.0.109:8082/java/img" + "/" + array_fileName[0];
+        String full_filename = "http://192.168.0.42:8088/java/img" + "/" + array_fileName[0];
 
         // viewpager 만들기
         viewPager.setAdapter(new ViewPagerHelper(array_fileName, this));
@@ -211,7 +211,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
-        String url = "http://192.168.0.109:8082/java/viewHitJson";
+        String url = "http://192.168.0.42:8088/java/viewHitJson";
 
         client.post(url, params, helper);
     }
@@ -293,7 +293,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getCommentData() {
         RequestParams params = new RequestParams();
         params.put("seq", memoryDTO.getMemory_num());
-        String url = "http://192.168.0.109:8082/java/commentViewJson";
+        String url = "http://192.168.0.42:8088/java/commentViewJson";
 
         client.post(url, params,  commentHelper);
     }
@@ -303,7 +303,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         params.put("memory_seq", memoryDTO.getMemory_num());
         params.put("memory_comment_name", editTextCommentName.getText().toString().trim());
         params.put("memory_comment_content", editTextCommentContent.getText().toString().trim());
-        String url = "http://192.168.0.109:8082/java/viewCommentWriteJson";
+        String url = "http://192.168.0.42:8088/java/viewCommentWriteJson";
         client.post(url, params,  commentHelper);
 
         editTextCommentName.setText("");
@@ -313,7 +313,6 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onPause() {
         super.onPause();
-        recommandData();
     }
 
     @Override
@@ -339,39 +338,18 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.toolBack :
                 finish();
                 break;
-
             case R.id.buttonBack:
                 finish();
                 break;
             case R.id.imageButtonLike:
                 // 추천 버튼
+                re_check = 1;
                 recommandCheck(); // 1계정당 1게시물 추천 가능 함수
-                Log.d("[RT2]",rt2);
-                if (rt2.equals("OK")){
-                    if (!statusLike){
-                        textView1.setText("\uD83D\uDE0D"+(memoryDTO.getMemory_rec()+1)+"명이 좋아합니다.");
-                        //textView9.setText("추천수 : " + (memoryDTO.getMemory_rec()+1));
-                        like_status = 1; statusLike = true;
-                        Toast.makeText(this,"추천하셨습니다.",Toast.LENGTH_SHORT).show();
-                    }
-                } else if (rt2.equals("Exist")) {
-                    Toast.makeText(this,"이미 추천 / 비추천하셨습니다.",Toast.LENGTH_SHORT).show();
-                }
                 break;
             case R.id.imageButtonDis:
                 // 비추 버튼
+                re_check = 2;
                 recommandCheck(); // 1계정당 1게시물 추천 가능 함수
-                Log.d("[RT2]",rt2);
-                if (rt2.equals("OK")){
-                    if (!statusLike){
-                        //textView10.setText("비추천수 : " +(memoryDTO.getMemory_nrec()+1));
-                        textView2.setText("\uD83D\uDE2B"+memoryDTO.getMemory_nrec()+1+"명이 싫어합니다.");
-                        like_status = 2; statusLike = true;
-                        Toast.makeText(this,"비추천하셨습니다.",Toast.LENGTH_SHORT).show();
-                    }
-                } else if (rt2.equals("Exist")){
-                    Toast.makeText(this,"이미 추천 / 비추천 하셨습니다.",Toast.LENGTH_SHORT).show();
-                }
                 break;
 
             case R.id.buttonCommentSubmit:
@@ -442,30 +420,25 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandCheck() {
         RequestParams params = new RequestParams();
 
-
-        String url = "http://192.168.0.109:8082/java/recommandCheck";
-        params.put("recommand_id", session_id); // 변경시킴
-
+        String url = "http://192.168.0.42:8088/java/recommandCheck";
+        params.put("recommand_id", session_id);
         params.put("recommand_seq", memoryDTO.getMemory_num());
         client.post(url, params, recommandCheckHelper);
-        Log.d("[test]",like_status+" ");
 
     }
 
     private void recommandData() {
         RequestParams params = new RequestParams();
-        if (like_status == 1){
-            String url = "http://192.168.0.109:8082/java/recommendation";
+        if (re_check == 1){
+            String url = "http://192.168.0.42:8088/java/recommendation";
             params.put("memory_num", memoryDTO.getMemory_num());
             client.post(url, params, recommandHelper);
-            Log.d("[test]",like_status+" ");
-        } else if (like_status == 2){
+        } else if (re_check == 2){
             params.put("memory_num", memoryDTO.getMemory_num());
-            String url = "http://192.168.0.109:8082/java/notrecommendation";
+            String url = "http://192.168.0.42:8088/java/notrecommendation";
             client.post(url, params, recommandHelper);
-            Log.d("[test]",like_status+" ");
         }
-        like_status = 0;
+        re_check = 0;
     }
 
     class ViewHelper extends AsyncHttpResponseHandler {
@@ -492,7 +465,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onSuccess(int i, Header[] headers, byte[] bytes) {
-            Toast.makeText(ViewActivity.this, "추천 / 비추천 성공했습니다. ", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(ViewActivity.this, "추천 / 비추천 성공했습니다. ", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -509,6 +482,30 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
             try {
                 JSONObject json = new JSONObject(str);
                 rt2 = json.getString("rt");
+
+                if (rt2.equals("OK")&&re_check==1){
+                    if (!statusLike){
+                        textView1.setText("\uD83D\uDE0D"+(memoryDTO.getMemory_rec()+1)+"명이 좋아합니다.");
+                        //textView9.setText("추천수 : " + (memoryDTO.getMemory_rec()+1));
+                        statusLike = true;
+                        recommandData();
+                        Toast.makeText(ViewActivity.this,"추천하셨습니다.",Toast.LENGTH_SHORT).show();
+                    }
+                } else if (rt2.equals("Exist")&&re_check==1) {
+                    Toast.makeText(ViewActivity.this,"이미 추천 / 비추천하셨습니다.",Toast.LENGTH_SHORT).show();
+                }
+
+                if (rt2.equals("OK")&&re_check==2){
+                    if (!statusLike){
+                        //textView10.setText("비추천수 : " +(memoryDTO.getMemory_nrec()+1));
+                        textView2.setText("\uD83D\uDE2B"+(memoryDTO.getMemory_nrec()+1)+"명이 싫어합니다.");
+                        statusLike = true;
+                        recommandData();
+                        Toast.makeText(ViewActivity.this,"비추천하셨습니다.",Toast.LENGTH_SHORT).show();
+                    }
+                } else if (rt2.equals("Exist")&&re_check==2){
+                    Toast.makeText(ViewActivity.this,"이미 추천 / 비추천 하셨습니다.",Toast.LENGTH_SHORT).show();
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.example.testapplication;
+package com.example.ourmemory;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -19,10 +19,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.example.testapplication.GpsTracker;
 import com.example.ourmemory.R;
 import com.example.testapplication.GpsTracker;
-
 
 import java.io.IOException;
 import java.util.List;
@@ -50,6 +49,7 @@ public class MapActivity extends AppCompatActivity {
 
             checkRunTimePermission();
         }
+
 
         final TextView textview_address = (TextView)findViewById(R.id.textView);
 
