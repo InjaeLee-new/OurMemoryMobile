@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testapplication.GpsTracker;
+import com.example.ourmemory.R;
+import com.example.testapplication.GpsTracker;
 
 import java.io.IOException;
 import java.util.List;
@@ -35,10 +37,9 @@ public class MapActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_map);
 
 
         if (!checkLocationServicesStatus()) {
@@ -49,7 +50,8 @@ public class MapActivity extends AppCompatActivity {
             checkRunTimePermission();
         }
 
-        final TextView textview_address = (TextView)findViewById(R.id.textView32);
+
+        final TextView textview_address = (TextView)findViewById(R.id.textView);
 
 
         Button ShowLocationButton = (Button) findViewById(R.id.button);

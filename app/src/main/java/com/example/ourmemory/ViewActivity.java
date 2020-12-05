@@ -137,10 +137,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         commentHelper = new JsonCommentHelper(this, commentAdapter, listView);
 
         memoryDTO = (MemoryDTO) getIntent().getSerializableExtra("dto");
+
         getJsonData(); // 제이슨 데이터 처리!
-
-
-        memoryDTO = (MemoryDTO) getIntent().getSerializableExtra("dto");
 
         String fileName = memoryDTO.getMemory_file();
         String[] array_fileName = fileName.split(", ");
@@ -229,11 +227,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_contactus:    //세팅 액티비티로 가도록 이동
-                Intent intent = new Intent(this, SettingsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                startActivity(intent);
-                break;
+//            case R.id.action_contactus:    //세팅 액티비티로 가도록 이동
+//                Intent intent = new Intent(this, SettingsActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+//                startActivity(intent);
+//                break;
             case R.id.action_logout:
                 // 로그아웃 테스트
                 // 이후 로그아웃 버튼 생성시 sessionManager.logout(); 함수 실행
@@ -280,6 +278,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent8 = new Intent(this, HealthListActivity.class);
                 intent8.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent8);
+                break;
+            case R.id.action_contactus: // 고객센터 관련 activity로 이동
+                Intent intent9 = new Intent(this, ContactUsActivity.class);
+                intent9.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent9);
                 break;
 
         }

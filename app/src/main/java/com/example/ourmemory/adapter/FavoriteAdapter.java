@@ -36,11 +36,13 @@ public class FavoriteAdapter extends ArrayAdapter<RecommandDTO> {
         }
 
         RecommandDTO recommandDTO = getItem(position);
+//        MemoryDTO memoryDTO = new MemoryDTO();
+//        memoryDTO.getMemory_subject();
+
 
         if (recommandDTO != null) {
             TextView textView = convertView.findViewById(R.id.textView);
-            textView.setText(recommandDTO.getRecommand_id() + "님이 추천 / 비추천하신 글입니다.");
-
+            textView.setText(recommandDTO.getRecommand_id() + "님이 추천 / 비추천하신 " +recommandDTO.getRecommand_seq()+"번째 글입니다.");
         }
         return convertView;
     }
