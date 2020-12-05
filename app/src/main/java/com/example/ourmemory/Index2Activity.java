@@ -171,7 +171,7 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         params.put("cate1", cate1);
         params.put("cate2",cate2);
         params.put("cate3",cate3);
-        String url = "http://192.168.1.21:8085/java/totalListJson";
+        String url = "http://192.168.0.109:8082/java/totalListJson";
         client.get(url, params, helper);
     }
 
@@ -186,11 +186,11 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_settings:    //세팅 액티비티로 가도록 이동
-                Intent intent = new Intent(this, SettingsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                startActivity(intent);
-                break;
+//            case R.id.action_contactus:    //세팅 액티비티로 가도록 이동
+//                Intent intent = new Intent(this, SettingsActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+//                startActivity(intent);
+//                break;
             case R.id.action_logout:
                 // 로그아웃 테스트
                 // 이후 로그아웃 버튼 생성시 sessionManager.logout(); 함수 실행
@@ -239,9 +239,9 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent8);
                 break;
             case R.id.action_contactus: // 고객센터 관련 activity로 이동
-                Intent intent5 = new Intent(this, ContactUsActivity.class);
-                intent5.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                startActivity(intent5);
+                Intent intent9 = new Intent(this, ContactUsActivity.class);
+                intent9.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                startActivity(intent9);
                 break;
 
         }

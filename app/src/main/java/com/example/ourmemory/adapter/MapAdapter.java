@@ -19,13 +19,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 // List를 불러오는 매개체가 되는 Adapter
-public class MemoryAdapter extends ArrayAdapter<MemoryDTO> {
+public class MapAdapter extends ArrayAdapter<MemoryDTO> {
 
     Activity activity;
     int resource;
 
 
-    public MemoryAdapter(@NonNull Context context, int resource, @NonNull List<MemoryDTO> objects) {
+    public MapAdapter(@NonNull Context context, int resource, @NonNull List<MemoryDTO> objects) {
         super(context, resource, objects);
         activity = (Activity) context;
         this.resource = resource;
