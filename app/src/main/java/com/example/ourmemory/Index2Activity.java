@@ -175,7 +175,7 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         params.put("cate1", cate1);
         params.put("cate2",cate2);
         params.put("cate3",cate3);
-        String url = "http://192.168.1.21:8085/java/totalListJson";
+        String url = "http://192.168.0.109:8082/java/totalListJson";
         client.get(url, params, helper);
     }
 

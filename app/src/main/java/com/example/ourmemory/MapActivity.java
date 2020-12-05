@@ -19,6 +19,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
+=======
+import com.example.testapplication.GpsTracker;
+import com.example.ourmemory.R;
+import com.example.testapplication.GpsTracker;
+>>>>>>> 68b5db84e9d059b58f9069b020e1d51b8c9339c2
 
 import java.io.IOException;
 import java.util.List;
@@ -26,7 +32,11 @@ import java.util.Locale;
 
 
 public class MapActivity extends AppCompatActivity {
+<<<<<<< HEAD
     private com.example.testapplication.GpsTracker gpsTracker;
+=======
+    private GpsTracker gpsTracker;
+>>>>>>> 68b5db84e9d059b58f9069b020e1d51b8c9339c2
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
@@ -34,10 +44,9 @@ public class MapActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_map);
 
 
         if (!checkLocationServicesStatus()) {
@@ -48,6 +57,10 @@ public class MapActivity extends AppCompatActivity {
             checkRunTimePermission();
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 68b5db84e9d059b58f9069b020e1d51b8c9339c2
         final TextView textview_address = (TextView)findViewById(R.id.textView);
 
 
@@ -58,7 +71,11 @@ public class MapActivity extends AppCompatActivity {
             public void onClick(View arg0)
             {
 
+<<<<<<< HEAD
                 gpsTracker = new com.example.testapplication.GpsTracker(MapActivity.this);
+=======
+                gpsTracker = new GpsTracker(MapActivity.this);
+>>>>>>> 68b5db84e9d059b58f9069b020e1d51b8c9339c2
 
                 double latitude = gpsTracker.getLatitude();
                 double longitude = gpsTracker.getLongitude();

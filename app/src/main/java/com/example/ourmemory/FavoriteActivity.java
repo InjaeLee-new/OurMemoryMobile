@@ -1,17 +1,20 @@
 package com.example.ourmemory;
 
+import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.ourmemory.adapter.FavoriteAdapter;
 import com.example.ourmemory.adapter.MyListAdapter;
@@ -20,11 +23,18 @@ import com.example.ourmemory.helper.MyListJsonHelper;
 import com.example.ourmemory.model.MemoryDTO;
 import com.example.ourmemory.model.RecommandDTO;
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 public class FavoriteActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     List<MemoryDTO> list_myList;
@@ -39,6 +49,8 @@ public class FavoriteActivity extends AppCompatActivity implements View.OnClickL
 
     AsyncHttpClient client1, client2;
 
+    HttpResponse response;
+
     // 상단 툴바
     Toolbar toolbar;
     ImageButton toolBack;
@@ -49,6 +61,9 @@ public class FavoriteActivity extends AppCompatActivity implements View.OnClickL
     // 세션관리
     SessionManager sessionManager;
     String session_id;
+
+    boolean check_fav = false;
+    boolean check_mylist = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +103,7 @@ public class FavoriteActivity extends AppCompatActivity implements View.OnClickL
         listView_myList.setAdapter(adapter1);
         listView_myList.setOnItemClickListener(this);
 
+
         // 리스트 뷰 관리
         list_fav = new ArrayList<RecommandDTO>();
         listView_fav = findViewById(R.id.listView_fav);
@@ -96,6 +112,9 @@ public class FavoriteActivity extends AppCompatActivity implements View.OnClickL
         helper2 = new FavoriteJsonHelper(this, adapter2, listView_fav);
         listView_fav.setAdapter(adapter2);
         listView_fav.setOnItemClickListener(this);
+
+        // fav seq 로 dto가져오기!
+        response = new HttpResponse();
 
     }
 
@@ -113,12 +132,12 @@ public class FavoriteActivity extends AppCompatActivity implements View.OnClickL
         //MemoryDTO.getTotal_count()
         params.put("endNum", 10);
         params.put("id", session_id);
-        String url = "http://192.168.1.21:8085/java/myListJson";
+        String url = "http://192.168.0.109:8082/java/myListJson";
         client1.get(url, params, helper1);
 
         RequestParams params2 = new RequestParams();
         params2.put("id", session_id);
-        String url2 = "http://192.168.1.21:8085/java/favoriteJson";
+        String url2 = "http://192.168.0.109:8082/java/favoriteJson";
         client2.get(url2, params2, helper2);
     }
 
@@ -214,19 +233,47 @@ public class FavoriteActivity extends AppCompatActivity implements View.OnClickL
             case R.id.toolBack :
                 finish();
                 break;
+//            case R.id.listView_fav :
+//                check_fav = true;
+//                listView_fav.setOnItemClickListener(this);
+//
+//                break;
+//            case R.id.listView_myList :
+//                check_mylist = true;
+//                listView_myList.setOnItemClickListener(this);
+//
+//                break;
         }
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        MemoryDTO dto = list_myList.get(position);
-        Intent intent = new Intent(this, ViewActivity.class);
-        intent.putExtra("dto", dto);
-            // View에서 hit 수가 1 증가하는 부분은 다시 리스트로 돌아올때 적용된다.
-            // 그래서 리스트에서 view로 넘어갈때 임의로 조회수를 1 증가시켜서 보여주기되면 바로바로 실시간 적용이 가능하다.
-            // by 승원
-        intent.putExtra("memory_hit", dto.getMemory_hit()+1);
-        startActivity(intent);
+        switch (parent.getId()) {
+            case R.id.listView_myList :
+                MemoryDTO dto = list_myList.get(position);
+                int memory_num = dto.getMemory_num();
+
+                Intent intent = new Intent(this, ViewActivity.class);
+//        intent.putExtra("memory_num", memory_num);
+                intent.putExtra("dto", dto);
+                // View에서 hit 수가 1 증가하는 부분은 다시 리스트로 돌아올때 적용된다.
+                // 그래서 리스트에서 view로 넘어갈때 임의로 조회수를 1 증가시켜서 보여주기되면 바로바로 실시간 적용이 가능하다.
+                // by 승원
+                intent.putExtra("memory_hit", dto.getMemory_hit()+1);
+                startActivity(intent);
+                break;
+
+            case R.id.listView_fav :
+                RecommandDTO rdto = list_fav.get(position);
+                int recommand_seq = rdto.getRecommand_seq();
+                RequestParams params = new RequestParams();
+                params.put("seq", recommand_seq);
+
+                client2.post("http://192.168.0.109:8082/java/memoryViewJson", params, response);
+
+                break;
+        }
+
 
 
 //        RecommandDTO rdto = list_fav.get(position);
@@ -240,5 +287,55 @@ public class FavoriteActivity extends AppCompatActivity implements View.OnClickL
 
 
 
+    }
+
+    class HttpResponse extends AsyncHttpResponseHandler {
+
+
+        @Override
+        public void onSuccess(int i, Header[] headers, byte[] bytes) {
+            String str = new String(bytes);
+
+            try {
+                JSONObject json = new JSONObject(str);
+//            MemoryDTO.setTotal_count(json.getInt("totalResult"));
+                JSONArray memoryView = json.getJSONArray("memoryView");
+
+
+                    JSONObject temp = memoryView.getJSONObject(0);
+                    MemoryDTO memoryDTO = new MemoryDTO();
+                    memoryDTO.setMemory_num(temp.getInt("memory_num"));
+                    memoryDTO.setMemory_file(temp.getString("memory_file"));
+                    memoryDTO.setMemory_subject(temp.getString("memory_subject"));
+                    memoryDTO.setMemory_content(temp.getString("memory_content"));
+                    memoryDTO.setMemory_date(temp.getString("memory_date"));
+                    memoryDTO.setMemory_hit(temp.getInt("memory_hit"));
+                    memoryDTO.setMemory_rec(temp.getInt("memory_rec"));
+                    memoryDTO.setMemory_nrec(temp.getInt("memory_nrec"));
+                    memoryDTO.setMemory_name(temp.getString("memory_name"));
+                    memoryDTO.setMemory_category(temp.getString("memory_category"));
+//                    memoryDTO.setMemory_id(temp.getString("memory_id"));
+
+                    //adapter.add(memoryDTO);
+
+                Intent intent = new Intent(FavoriteActivity.this, ViewActivity.class);
+                intent.putExtra("dto", memoryDTO);
+                // View에서 hit 수가 1 증가하는 부분은 다시 리스트로 돌아올때 적용된다.
+                // 그래서 리스트에서 view로 넘어갈때 임의로 조회수를 1 증가시켜서 보여주기되면 바로바로 실시간 적용이 가능하다.
+                // by 승원
+                intent.putExtra("memory_hit", memoryDTO.getMemory_hit()+1);
+                startActivity(intent);
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+            Toast.makeText(FavoriteActivity.this, "실패 , i =" + i, Toast.LENGTH_SHORT).show();
+        }
     }
 }

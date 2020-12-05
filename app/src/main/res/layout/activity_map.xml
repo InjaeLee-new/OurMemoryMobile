@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".MapActivity">
 
+<<<<<<< HEAD
     <ListView
         android:id="@+id/listMap"
         android:layout_width="match_parent"
@@ -28,3 +29,14 @@
     </LinearLayout>
 
 </LinearLayout>
+=======
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> 68b5db84e9d059b58f9069b020e1d51b8c9339c2

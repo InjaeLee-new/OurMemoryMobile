@@ -170,37 +170,37 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent1);
                 break;
             case R.id.pet :
-                Intent intent2 = new Intent(this, ListActivity.class);
+                Intent intent2 = new Intent(this,  PetListActivity.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent2);
                 break;
             case R.id.it :
-                Intent intent3 = new Intent(this, ListActivity.class);
+                Intent intent3 = new Intent(this, ItListActivity.class);
                 intent3.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent3);
                 break;
             case R.id.game :
-                Intent intent4 = new Intent(this, ListActivity.class);
+                Intent intent4 = new Intent(this, GameListActivity.class);
                 intent4.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent4);
                 break;
             case R.id.food :
-                Intent intent5 = new Intent(this, ListActivity.class);
+                Intent intent5 = new Intent(this, FoodListActivity.class);
                 intent5.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent5);
                 break;
             case R.id.music :
-                Intent intent6 = new Intent(this, ListActivity.class);
+                Intent intent6 = new Intent(this, MusicListActivity.class);
                 intent6.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent6);
                 break;
             case R.id.art :
-                Intent intent7 = new Intent(this, ListActivity.class);
+                Intent intent7 = new Intent(this, ArtListActivity.class);
                 intent7.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent7);
                 break;
             case R.id.health :
-                Intent intent8 = new Intent(this, ListActivity.class);
+                Intent intent8 = new Intent(this, HealthListActivity.class);
                 intent8.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent8);
                 break;
