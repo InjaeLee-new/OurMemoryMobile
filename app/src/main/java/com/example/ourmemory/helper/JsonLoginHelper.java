@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.example.ourmemory.AppJoinActivity;
 import com.example.ourmemory.Index2Activity;
+
 import com.example.ourmemory.MainActivity;
 import com.example.ourmemory.SessionManager;
 import com.loopj.android.http.AsyncHttpResponseHandler;

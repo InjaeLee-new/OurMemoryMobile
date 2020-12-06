@@ -44,15 +44,14 @@ public class MemoryAdapter extends ArrayAdapter<MemoryDTO> {
         String fileName = memoryDTO.getMemory_file();
 
         String[] array_fileName = fileName.split(", ");
-        String full_filename = "http://192.168.0.9:8085/java/img" + "/" + array_fileName[0];
-
-
+        String full_filename = "http://192.168.0.109:8082/java/img" + "/" + array_fileName[0];
 
         if (memoryDTO != null) {
             ImageView imageView = convertView.findViewById(R.id.imageView);
             TextView textView1 = convertView.findViewById(R.id.textView1);
             TextView textView2 = convertView.findViewById(R.id.textView2);
             TextView textView3 = convertView.findViewById(R.id.textView3);
+            TextView textView4 = convertView.findViewById(R.id.textView4);
 
             Glide.with(activity).load(full_filename)
                     .into(imageView);
@@ -63,9 +62,14 @@ public class MemoryAdapter extends ArrayAdapter<MemoryDTO> {
 //
 //            imageView.setImageBitmap(myBitmap);
 
-            textView1.setText("글 제목 : " + memoryDTO.getMemory_subject());
-            textView2.setText("작성자 : " + memoryDTO.getMemory_name());
-            textView3.setText("조회수 : " + memoryDTO.getMemory_hit() + " / " +"추천수 : " + memoryDTO.getMemory_rec() + " / 비추천수 : " +memoryDTO.getMemory_nrec());
+            textView1.setText(memoryDTO.getMemory_name());
+            textView2.setText("\uD83D\uDE0D 좋아요 "+memoryDTO.getMemory_rec()+"개 \uD83D\uDE2B 싫어요 "+memoryDTO.getMemory_nrec()+"개");
+            textView3.setText(memoryDTO.getMemory_name());
+            textView4.setText(memoryDTO.getMemory_hit()+"명이 조회했어요");
+
+//            textView1.setText("글 제목 : " + memoryDTO.getMemory_subject());
+//            textView2.setText("작성자 : " + memoryDTO.getMemory_name());
+//            textView3.setText("조회수 : " + memoryDTO.getMemory_hit() + " / " +"추천수 : " + memoryDTO.getMemory_rec() + " / 비추천수 : " +memoryDTO.getMemory_nrec());
 
         }
 

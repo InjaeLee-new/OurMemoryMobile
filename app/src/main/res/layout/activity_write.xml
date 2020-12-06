@@ -9,6 +9,11 @@
     android:orientation="vertical"
     tools:context=".WriteActivity">
 
+    <include
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <!--
     <TextView
         android:id="@+id/textView13"
         android:layout_width="match_parent"
@@ -16,38 +21,21 @@
         android:text="[ 🧙‍♂ 글쓰기 🤳 ]"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    -->
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textViewWrite1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="작성자     : " />
-
-        <EditText
-            android:id="@+id/editTextWrite1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="이름 입력"
-            android:inputType="textPersonName" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/textViewWrite2"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="아이디     : " />
+            android:text="아이디     : "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <EditText
             android:id="@+id/editTextWrite2"
@@ -56,19 +44,46 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="아이디 입력"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
+
+        <TextView
+            android:id="@+id/textViewWrite1"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="작성자     : "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <EditText
+            android:id="@+id/editTextWrite1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="이름 입력"
+            android:inputType="textPersonName"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/textViewWrite3"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="비밀번호 : " />
+            android:text="글 비밀번호 : "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <EditText
             android:id="@+id/editTextWrite3"
@@ -77,25 +92,29 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="비밀번호 입력"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:paddingLeft="15dp">
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="카테고리 선택" />
+            android:text="카테고리 선택 💓"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -111,25 +130,29 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="제목"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="91dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/buttonWriteImage1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@android:drawable/ic_menu_gallery" />
+                android:background="@drawable/insert_pic1" />
 
             <ImageView
                 android:id="@+id/imageView1"
@@ -142,6 +165,7 @@
                 android:id="@+id/textViewImage1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
                 android:singleLine="true"
                 android:text="이미지 추가" />
@@ -150,15 +174,16 @@
 
         <LinearLayout
             android:id="@+id/layoutImg2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/buttonWriteImage2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@android:drawable/ic_menu_gallery" />
+                android:background="@drawable/insert_pic2" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -171,22 +196,23 @@
                 android:id="@+id/textViewImage2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
                 android:text="이미지 추가" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layoutImg3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/buttonWriteImage3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@android:drawable/ic_menu_gallery" />
+                android:background="@drawable/insert_pic1" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -199,22 +225,23 @@
                 android:id="@+id/textViewImage3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
+                android:paddingTop="5dp"
                 android:text="이미지 추가" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layoutImg4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/buttonWriteImage4"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@android:drawable/ic_menu_gallery" />
+                android:background="@drawable/insert_pic2" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -227,22 +254,23 @@
                 android:id="@+id/textViewImage4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
+                android:paddingTop="5dp"
                 android:text="이미지 추가" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layoutImg5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/buttonWriteImage5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@android:drawable/ic_menu_gallery" />
+                android:background="@drawable/insert_pic1" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -255,8 +283,8 @@
                 android:id="@+id/textViewImage5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
+                android:paddingTop="5dp"
                 android:text="이미지 추가" />
         </LinearLayout>
 
@@ -265,12 +293,13 @@
     <EditText
         android:id="@+id/editTextWrite5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
         android:gravity="start|top"
         android:hint="작성하실 내용을 입력해주세요."
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:paddingLeft="15dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -291,4 +320,65 @@
             android:layout_weight="1"
             android:text="취소 🙅‍♂" />
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFEBEC">
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/home_button" />
+
+        <ImageButton
+            android:id="@+id/btnWrite"
+            android:layout_width="32dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toEndOf="@+id/btnHome"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/plus_button2" />
+
+        <ImageButton
+            android:id="@+id/btnFav"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="47dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toStartOf="@+id/btnMypage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/fav_button" />
+
+        <ImageButton
+            android:id="@+id/btnMypage"
+            android:layout_width="33dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="70dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/mypage_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>
+

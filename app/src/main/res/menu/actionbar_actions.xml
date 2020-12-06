@@ -3,18 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/iconfinder_ic_search"
-        android:title="Search"
-        app:showAsAction="ifRoom"
-        />
+        android:id="@+id/action_contactus"
+        android:icon="@drawable/settings_button"
+        android:title="Settings"
+        app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_favorite"
-        android:title="Favorite"
-        app:showAsAction="ifRoom"
-        />
+        android:id="@+id/action_logout"
+        android:icon="@drawable/logout_button"
+        android:title="Logout"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/memory"
@@ -43,13 +41,4 @@
         android:id="@+id/health"
         android:title="건강" />
 
-    <item
-        android:id="@+id/action_mypage"
-        android:title="마이페이지" />
-    <item
-        android:id="@+id/action_contactus"
-        android:title="고객센터" />
-    <item
-        android:id="@+id/action_logout"
-        android:title="로그아웃" />
 </menu>

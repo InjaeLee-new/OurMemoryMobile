@@ -46,10 +46,9 @@ public class MemoryCommentAdapter extends ArrayAdapter<MemoryCommentDTO> {
             TextView textView2 = convertView.findViewById(R.id.textView2);
             TextView textView3 = convertView.findViewById(R.id.textView3);
 
-
-            textView1.setText("작성자 : " + memoryCommentDTO.getMemory_comment_name());
+            textView1.setText("\uD83D\uDC8C"+memoryCommentDTO.getMemory_comment_name());
             textView2.setText(memoryCommentDTO.getMemory_comment_content());
-            textView3.setText("작성일시 : " + memoryCommentDTO.getReg_date());
+            textView3.setText(memoryCommentDTO.getReg_date().substring(0,10));
 
         }
 

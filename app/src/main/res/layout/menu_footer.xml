@@ -24,7 +24,7 @@
             android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/home_button" />
+            app:srcCompat="@drawable/home_button2" />
 
         <ImageButton
             android:id="@+id/btnWrite"
@@ -37,7 +37,7 @@
             android:scaleType="fitXY"
             app:layout_constraintStart_toEndOf="@+id/btnHome"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/write_button" />
+            app:srcCompat="@drawable/plus_button" />
 
         <ImageButton
             android:id="@+id/btnFav"
@@ -48,12 +48,12 @@
             android:background="#FFFFFF"
             android:backgroundTint="#FFEBEC"
             android:scaleType="fitXY"
-            app:layout_constraintEnd_toStartOf="@+id/btnTotal"
+            app:layout_constraintEnd_toStartOf="@+id/btnMypage"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/fav_button" />
 
         <ImageButton
-            android:id="@+id/btnTotal"
+            android:id="@+id/btnMypage"
             android:layout_width="33dp"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
@@ -63,7 +63,7 @@
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/total_button2" />
+            app:srcCompat="@drawable/mypage_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -157,6 +157,7 @@ public class OneByOneFragment extends Fragment implements RadioGroup.OnCheckedCh
         }
         RequestParams params = new RequestParams();
 
+//        String url = "http://192.168.0.109:8082/java/contactUsAndroid";
         String url = "http://192.168.1.3:8085/java/contactUsAndroid";
         params.put("contact_name", session_id);
         params.put("contact_id", session_name);
