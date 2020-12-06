@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+
         // 아이디 세션을 위한 함수
         sessionManager = new SessionManager(this);
 
@@ -182,6 +183,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         lottie1.loop(true);
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sessionManager.checkLogin();
     }
 
     //구글 로그인 버튼 클릭이벤트도 추가해서 클릭시 아래 함수 호출.

@@ -35,7 +35,8 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
     ListView listView_index;
     ImageButton btnHome, btnWrite, btnFav, btnTotal;
     Intent intent;
-
+    // 세션 함수
+    SessionManager sessionManager;
     // 팝업을 위한 코드 선언
     public static boolean popUpStop = false;
     AlertDialog.Builder alert;
@@ -44,6 +45,8 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index2);
+
+        sessionManager = new SessionManager(this);
 
         list = new ArrayList<>();
         listView_index = findViewById(R.id.listView_index);
@@ -162,8 +165,9 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent3);
                 break;
             case R.id.action_logout:
-                Intent intent4 = new Intent(this, ListActivity.class);
-                intent4.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                sessionManager.logout();
+                Intent intent4 = new Intent(this, MainActivity.class);
+                intent4.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent4);
                 break;
             case R.id.action_contactus: // 고객센터 관련 activity로 이동
