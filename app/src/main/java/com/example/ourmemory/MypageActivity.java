@@ -212,7 +212,9 @@ public class MypageActivity extends AppCompatActivity implements View.OnClickLis
                 // 로그아웃 테스트
                 // 이후 로그아웃 버튼 생성시 sessionManager.logout(); 함수 실행
                 sessionManager.logout();
-                finish();
+                Intent intent10 = new Intent(this, MainActivity.class);
+                intent10.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent10);
                 MainActivity.LoginOK =false;
                 break;
             case R.id.memory :

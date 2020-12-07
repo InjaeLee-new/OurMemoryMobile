@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.buttonJoin:
                 Intent intentJoin = new Intent(this, JoinActivity.class);
-                intentJoin.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//                intentJoin.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intentJoin);
                 break;
             case R.id.buttonLogin:

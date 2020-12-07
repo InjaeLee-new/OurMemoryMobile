@@ -1,8 +1,10 @@
 package com.example.ourmemory;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import java.io.File;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
 public class JoinActivity extends AppCompatActivity implements View.OnClickListener {
@@ -61,6 +64,8 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
+
+        permissionCheck();
 
         client = new AsyncHttpClient();
         helper = new JsonJoinHelper(this);
@@ -136,6 +141,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.imageButton:
+                permissionCheck();
                 showPhotoDialog();
                 break;
             case R.id.buttonForTest:
@@ -319,6 +325,38 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this,"회원가입 성공", Toast.LENGTH_SHORT).show();
     }
 
+    private void permissionCheck() {
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 101);
+            }
+        }
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CAMERA)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.CAMERA}, 100);
+            }
+        }
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 102 );
+            }
+        }
+    }
+
     private void showPhotoDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         String[] items = {"새로 촬영하기", "갤러리에서 가져오기"};
@@ -337,7 +375,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
                         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             uri = FileProvider.getUriForFile(getApplicationContext(),
                                     getApplicationContext().getPackageName() + ".fileprovider", file);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
                             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
