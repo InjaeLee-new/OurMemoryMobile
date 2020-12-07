@@ -142,6 +142,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         String fileName = memoryDTO.getMemory_file();
         String[] array_fileName = fileName.split(", ");
+//        String full_filename = "http://192.168.1.3:8085/java/img" + "/" + array_fileName[0];
         String full_filename = "http://192.168.1.21:8085/java/img" + "/" + array_fileName[0];
 
         // viewpager 만들기
@@ -419,16 +420,16 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
     private void recommandCheck() {
         RequestParams params = new RequestParams();
-
         String url = "http://192.168.1.21:8085/java/recommandCheck";
         params.put("recommand_id", session_id);
         params.put("recommand_seq", memoryDTO.getMemory_num());
-        client.post(url, params, recommandCheckHelper);
 
+        client.post(url, params, recommandCheckHelper);
     }
 
     private void recommandData() {
         RequestParams params = new RequestParams();
+
         if (re_check == 1){
             String url = "http://192.168.1.21:8085/java/recommendation";
             params.put("memory_num", memoryDTO.getMemory_num());

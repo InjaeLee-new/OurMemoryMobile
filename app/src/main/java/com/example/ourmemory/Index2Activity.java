@@ -45,10 +45,10 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
     ImageButton btnHome, btnWrite, btnFav, btnMypage;
     // 화면이동 전역변수 인텐트
     Intent intent;
+
     // 세션관리
     SessionManager sessionManager;
     String session_id, cate1, cate2, cate3;
-
 
     // 팝업을 위한 코드 선언
     public static boolean popUpStop = false;
@@ -82,6 +82,7 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         toolBack.setOnClickListener(this);
+
 
         list = new ArrayList<>();
         listView_index = findViewById(R.id.listView_index);
@@ -175,6 +176,8 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         params.put("cate1", cate1);
         params.put("cate2",cate2);
         params.put("cate3",cate3);
+//        String url = "http://192.168.0.109:8082/java/totalListJson";
+//        String url = "http://192.168.1.3:8085/java/totalListJson";
         String url = "http://192.168.1.21:8085/java/totalListJson";
         client.get(url, params, helper);
     }
@@ -195,13 +198,6 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
 //                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 //                startActivity(intent);
 //                break;
-            case R.id.action_logout:
-                // 로그아웃 테스트
-                // 이후 로그아웃 버튼 생성시 sessionManager.logout(); 함수 실행
-                sessionManager.logout();
-                finish();
-                MainActivity.LoginOK =false;
-                break;
             case R.id.memory :
                 Intent intent1 = new Intent(this, ListActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
@@ -217,9 +213,19 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
                 intent3.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                 startActivity(intent3);
                 break;
+
+            case R.id.action_logout:
+                sessionManager.logout();
+                Intent intent10 = new Intent(this, MainActivity.class);
+                intent10.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent10);
+                MainActivity.LoginOK =false;
+                break;
+
             case R.id.game :
                 Intent intent4 = new Intent(this, GameListActivity.class);
                 intent4.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+
                 startActivity(intent4);
                 break;
             case R.id.food :

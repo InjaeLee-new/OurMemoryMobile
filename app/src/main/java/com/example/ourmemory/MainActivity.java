@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+
         // 아이디 세션을 위한 함수
         sessionManager = new SessionManager(this);
 
@@ -184,6 +185,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sessionManager.checkLogin();
+    }
+
     //구글 로그인 버튼 클릭이벤트도 추가해서 클릭시 아래 함수 호출.
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -217,10 +224,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 RequestParams params = new RequestParams();
                 params.put("id", editTextID.getText().toString().trim());
                 params.put("pw", editTextPassword.getText().toString().trim());
+//                String url = "http://192.168.0.109:8082/java/appLogin";
+                //String url = "http://192.168.1.21:8085/java/appLogin";
 //                String url = "http://192.168.0.9:8085/java/appLogin";
                 String url = "http://192.168.1.21:8085/java/appLogin";
 //                String url = "http://192.168.0.9:8085/java/appLogin";
-                //String url = "http://192.168.1.3:8085/java/appLogin";
+//                String url = "http://192.168.1.3:8085/java/appLogin";
                 client.post(url, params,  helper);
 
                 editTextID.setText("");

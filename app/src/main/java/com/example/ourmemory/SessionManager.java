@@ -47,8 +47,8 @@ public class SessionManager {
     }
 
     public void checkLogin(){ // 로그인 안 되어있으면 로그인 창으로 이동해라 함수
-        if (!this.isLogin()){
-            Intent intent = new Intent(context, IndexActivity.class);
+        if (this.isLogin()){
+            Intent intent = new Intent(context, Index2Activity.class);
             context.startActivity(intent);
         }
     }

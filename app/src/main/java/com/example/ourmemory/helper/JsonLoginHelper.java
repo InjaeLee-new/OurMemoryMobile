@@ -1,19 +1,14 @@
 package com.example.ourmemory.helper;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.ourmemory.AppJoinActivity;
 import com.example.ourmemory.Index2Activity;
-import com.example.ourmemory.IndexActivity;
+
 import com.example.ourmemory.MainActivity;
 import com.example.ourmemory.SessionManager;
-import com.example.ourmemory.adapter.MemoryAdapter;
-import com.example.ourmemory.model.MemoryDTO;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONArray;

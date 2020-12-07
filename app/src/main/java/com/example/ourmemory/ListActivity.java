@@ -58,6 +58,7 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         private void getJsonData() {
+//                String url = "http://192.168.1.3:8085/java/listJson";
                 String url = "http://192.168.1.21:8085/java/listJson";
                 client.get(url, helper);
         }
