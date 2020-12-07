@@ -132,12 +132,12 @@ public class FavoriteActivity extends AppCompatActivity implements View.OnClickL
         //MemoryDTO.getTotal_count()
         params.put("endNum", 10);
         params.put("id", session_id);
-        String url = "http://192.168.0.109:8082/java/myListJson";
+        String url = "http://192.168.1.21:8085/java/myListJson";
         client1.get(url, params, helper1);
 
         RequestParams params2 = new RequestParams();
         params2.put("id", session_id);
-        String url2 = "http://192.168.0.109:8082/java/favoriteJson";
+        String url2 = "http://192.168.1.21:8085/java/favoriteJson";
         client2.get(url2, params2, helper2);
     }
 
@@ -269,23 +269,23 @@ public class FavoriteActivity extends AppCompatActivity implements View.OnClickL
                 RequestParams params = new RequestParams();
                 params.put("seq", recommand_seq);
 
-                client2.post("http://192.168.0.109:8082/java/memoryViewJson", params, response);
+                client2.post("http://192.168.1.21:8085/java/memoryViewJson", params, response);
 
                 break;
         }
 
 
-        /*
-        RecommandDTO rdto = list_fav.get(position);
-        Intent intent2 = new Intent(this, ViewActivity.class);
-        intent2.putExtra("getRecommand_seq.", rdto.getRecommand_seq());
-        // View에서 hit 수가 1 증가하는 부분은 다시 리스트로 돌아올때 적용된다.
-        // 그래서 리스트에서 view로 넘어갈때 임의로 조회수를 1 증가시켜서 보여주기되면 바로바로 실시간 적용이 가능하다.
-        // by 승원
-        intent2.putExtra("memory_hit", dto.getMemory_hit()+1);
-        startActivity(intent2);
 
-         */
+//        RecommandDTO rdto = list_fav.get(position);
+//        Intent intent2 = new Intent(this, ViewActivity.class);
+//        intent2.putExtra("getRecommand_seq.", rdto.getRecommand_seq());
+//        // View에서 hit 수가 1 증가하는 부분은 다시 리스트로 돌아올때 적용된다.
+//        // 그래서 리스트에서 view로 넘어갈때 임의로 조회수를 1 증가시켜서 보여주기되면 바로바로 실시간 적용이 가능하다.
+//        // by 승원
+//        intent2.putExtra("memory_hit", dto.getMemory_hit()+1);
+//        startActivity(intent2);
+
+
 
     }
 

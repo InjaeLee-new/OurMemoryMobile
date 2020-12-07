@@ -72,8 +72,7 @@ public class NoticeFragment extends Fragment {
     }
 
     private void getJsonData() {
-        String url = "http://192.168.1.3:8085/java/noticeJson";
-//        String url = "http://192.168.0.109:8082/java/noticeJson";
+        String url = "http://192.168.1.21:8085/java/noticeJson";
         client.get(url, helper);
     }
 }

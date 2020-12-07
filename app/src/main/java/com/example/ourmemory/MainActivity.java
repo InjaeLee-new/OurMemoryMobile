@@ -227,7 +227,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                String url = "http://192.168.0.109:8082/java/appLogin";
                 //String url = "http://192.168.1.21:8085/java/appLogin";
 //                String url = "http://192.168.0.9:8085/java/appLogin";
-                String url = "http://192.168.1.3:8085/java/appLogin";
+                String url = "http://192.168.1.21:8085/java/appLogin";
+//                String url = "http://192.168.0.9:8085/java/appLogin";
+//                String url = "http://192.168.1.3:8085/java/appLogin";
                 client.post(url, params,  helper);
 
                 editTextID.setText("");

@@ -21,10 +21,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-<!--        <activity android:name=".MyViewActivity" />-->
+<!--        <activity android:name=".MyViewActivity"></activity>-->
         <activity android:name=".FavoriteActivity" />
         <activity android:name=".SettingsActivity" />
+<!--        <activity android:name=".MapActivity" />-->
         <activity android:name=".MypageActivity" />
         <activity android:name=".ContactUsActivity" />
         <activity android:name=".EventActivity" />
@@ -52,7 +52,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 안드로이드 푸쉬를 위해 추가 -->
+        </activity>
+        <!-- 안드로이드 푸쉬를 위해 추가 -->
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -72,7 +73,8 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider> <!-- 안드로이드 푸쉬를 위해 추가 -->
+        </provider>
+        <!-- 안드로이드 푸쉬를 위해 추가 -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />

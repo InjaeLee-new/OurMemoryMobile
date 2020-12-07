@@ -1,4 +1,4 @@
-package com.example.testapplication;
+package com.example.ourmemory.helper;
 
 import android.Manifest;
 import android.app.Service;

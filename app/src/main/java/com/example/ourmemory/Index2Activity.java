@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -30,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Index2Activity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+    Button buttonMap;
     List<MemoryDTO> list;
     TotalListJsonHelper helper;
     AsyncHttpClient client;
@@ -94,10 +96,12 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         btnWrite = findViewById(R.id.btnWrite);
         btnFav = findViewById(R.id.btnFav);
         btnMypage = findViewById(R.id.btnMypage);
+        buttonMap = findViewById(R.id.buttonMap);
         btnHome.setOnClickListener(this);
         btnWrite.setOnClickListener(this);
         btnFav.setOnClickListener(this);
         btnMypage.setOnClickListener(this);
+        buttonMap.setOnClickListener(this);
 
         listView_index.setOnItemClickListener(this);
 
@@ -173,7 +177,8 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         params.put("cate2",cate2);
         params.put("cate3",cate3);
 //        String url = "http://192.168.0.109:8082/java/totalListJson";
-        String url = "http://192.168.1.3:8085/java/totalListJson";
+//        String url = "http://192.168.1.3:8085/java/totalListJson";
+        String url = "http://192.168.1.21:8085/java/totalListJson";
         client.get(url, params, helper);
     }
 
@@ -277,6 +282,10 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
                 case R.id.toolBack :
                     finish();
                     break;
+//                case R.id.buttonMap:
+//                    intent = new Intent(this, MapActivity.class);
+//                    startActivity(intent);
+//                    break;
             }
     }
 
