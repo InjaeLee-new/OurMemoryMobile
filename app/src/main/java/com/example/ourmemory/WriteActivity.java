@@ -118,6 +118,7 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
 
         editTextWrite1 = findViewById(R.id.editTextWrite1);
         editTextWrite2 = findViewById(R.id.editTextWrite2);
+        editTextWrite2.setText(session_id);
         editTextWrite3 = findViewById(R.id.editTextWrite3);
         editTextWrite4 = findViewById(R.id.editTextWrite4);
         editTextWrite5 = findViewById(R.id.editTextWrite5);
@@ -486,7 +487,7 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         }
 
         RequestParams params = new RequestParams();
-        String url = "http://192.168.1.21:8085/java/writeAndroid";
+        String url = "http://192.168.0.109:8082/java/writeAndroid";
         params.put("memory_name",memory_name);
         params.put("memory_id",memory_id);
         params.put("memory_pass",memory_pass);

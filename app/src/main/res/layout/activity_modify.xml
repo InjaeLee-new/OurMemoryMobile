@@ -4,38 +4,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FBF2F3"
+    android:backgroundTint="#FBF2F3"
     android:orientation="vertical"
     tools:context=".ModifyActivity">
+
+    <include
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/textViewNum"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:layout_height="60dp"
+        android:gravity="right|center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000000" />
 
-    <EditText
-        android:id="@+id/editTextS"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="제목수정하기" />
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
-    <EditText
-        android:id="@+id/editTextC"
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="제목 :" />
+
+        <EditText
+            android:id="@+id/editTextS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="제목수정하기"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:ems="10"
-        android:gravity="top"
-        android:inputType="textPersonName"
-        android:text="내용수정하기" />
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="내용 :" />
+
+
+        <EditText
+            android:id="@+id/editTextC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="내용수정하기"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="카테고리 수정 ✔"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000000" />
 
     <RadioGroup
         android:id="@+id/rd"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp">
 
         <RadioButton
             android:id="@+id/radioButton1"
@@ -91,20 +149,83 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/buttonBK"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:background="@android:drawable/btn_default"
+            android:backgroundTint="#FFEBEC"
             android:text="돌아가기" />
 
         <Button
             android:id="@+id/buttonSave"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:background="@android:drawable/btn_default"
+            android:backgroundTint="#FFEBEC"
             android:text="저장하기" />
+
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFEBEC">
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/home_button" />
+
+        <ImageButton
+            android:id="@+id/btnWrite"
+            android:layout_width="32dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toEndOf="@+id/btnHome"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/plus_button" />
+
+        <ImageButton
+            android:id="@+id/btnFav"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="47dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toStartOf="@+id/btnMypage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/fav_button" />
+
+        <ImageButton
+            android:id="@+id/btnMypage"
+            android:layout_width="33dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="70dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/mypage_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

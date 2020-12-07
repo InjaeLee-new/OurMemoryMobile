@@ -96,12 +96,12 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         btnWrite = findViewById(R.id.btnWrite);
         btnFav = findViewById(R.id.btnFav);
         btnMypage = findViewById(R.id.btnMypage);
-        buttonMap = findViewById(R.id.buttonMap);
+//        buttonMap = findViewById(R.id.buttonMap);
         btnHome.setOnClickListener(this);
         btnWrite.setOnClickListener(this);
         btnFav.setOnClickListener(this);
         btnMypage.setOnClickListener(this);
-        buttonMap.setOnClickListener(this);
+//        buttonMap.setOnClickListener(this);
 
         listView_index.setOnItemClickListener(this);
 
@@ -178,7 +178,7 @@ public class Index2Activity extends AppCompatActivity implements View.OnClickLis
         params.put("cate3",cate3);
 //        String url = "http://192.168.0.109:8082/java/totalListJson";
 //        String url = "http://192.168.1.3:8085/java/totalListJson";
-        String url = "http://192.168.1.21:8085/java/totalListJson";
+        String url = "http://192.168.0.109:8082/java/totalListJson";
         client.get(url, params, helper);
     }
 

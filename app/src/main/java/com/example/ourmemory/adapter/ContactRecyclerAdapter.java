@@ -81,7 +81,7 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<ContactRecycler
             this.contactUsDTO = contactUsDTO;
 
             textViewContact1.setText(contactUsDTO.getContactUs_subject());
-            textViewContact2.setText(contactUsDTO.getContactUs_logtime()+"  ➕");
+            textViewContact2.setText(contactUsDTO.getContactUs_logtime().substring(0,10)+"  ➕");
             textViewContact3.setText(contactUsDTO.getContactUs_content());
 
             changeVisibility(selectedItems.get(position));
