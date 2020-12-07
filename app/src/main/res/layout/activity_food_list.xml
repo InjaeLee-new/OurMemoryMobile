@@ -8,12 +8,18 @@
     android:orientation="vertical"
     tools:context=".ListActivity">
 
+    <include
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="[Food 게시판 🍔]"
+        android:text="FOOD"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <ListView
@@ -24,10 +30,63 @@
 
     </ListView>
 
-    <Button
-        android:id="@+id/button"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="돌아가기" />
+        android:layout_height="60dp"
+        android:background="#FFEBEC">
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/home_button" />
+
+        <ImageButton
+            android:id="@+id/btnWrite"
+            android:layout_width="32dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="12dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toEndOf="@+id/btnHome"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/plus_button" />
+
+        <ImageButton
+            android:id="@+id/btnFav"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="47dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toStartOf="@+id/btnMypage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/fav_button" />
+
+        <ImageButton
+            android:id="@+id/btnMypage"
+            android:layout_width="33dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="70dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFEBEC"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/mypage_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

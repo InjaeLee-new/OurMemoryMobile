@@ -314,7 +314,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         params.put("cate3", category[2]);
         params.put("google_Id", "23523523");
         params.put("kakao_Id", "235235");
-        String url = "http://192.168.1.21:8085/java/joinJson";
+        String url = "http://192.168.0.109:8082/java/joinJson";
         client.post(url, params, helper);
         Toast.makeText(this,"회원가입 성공", Toast.LENGTH_SHORT).show();
     }

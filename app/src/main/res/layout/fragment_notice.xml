@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.NoticeFragment" >
+    android:background="#FBF2F3"
+    tools:context=".fragment.NoticeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewN"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E8E8E8" />
+        android:background="#FBF2F3" />
 </LinearLayout>
