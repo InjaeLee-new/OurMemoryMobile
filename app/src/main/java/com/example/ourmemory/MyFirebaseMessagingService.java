@@ -46,6 +46,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void sendNotification(String messageTitle, String messageBody) {
 
+        // 푸쉬 알림을 클릭했을 때 넘어갈 액티비티
         Intent intent = new Intent(this, EventActivity.class);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -55,8 +55,8 @@ public class MusicListActivity extends AppCompatActivity implements View.OnClick
 
     private void getJsonData() {
         RequestParams params = new RequestParams();
-//        String url = "http://192.168.1.21:8085/java/foodListJson";
-        String url = "http://192.168.0.42:8088/java/foodListJson";
+        String url = "http://192.168.1.21:8085/java/foodListJson";
+//        String url = "http://192.168.0.9:8085/java/foodListJson";
         params.put("category","music");
         client.get(url, params, helper);
     }

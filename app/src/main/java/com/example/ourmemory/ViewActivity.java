@@ -142,7 +142,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         String fileName = memoryDTO.getMemory_file();
         String[] array_fileName = fileName.split(", ");
-        String full_filename = "http://192.168.0.42:8088/java/img" + "/" + array_fileName[0];
+        String full_filename = "http://192.168.1.21:8085/java/img" + "/" + array_fileName[0];
 
         // viewpager 만들기
         viewPager.setAdapter(new ViewPagerHelper(array_fileName, this));
@@ -211,7 +211,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
-        String url = "http://192.168.0.42:8088/java/viewHitJson";
+        String url = "http://192.168.1.21:8085/java/viewHitJson";
 
         client.post(url, params, helper);
     }
@@ -227,19 +227,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-<<<<<<< HEAD
-            case R.id.action_contactus:    //세팅 액티비티로 가도록 이동
-                Intent intent = new Intent(this, SettingsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                startActivity(intent);
-                break;
-=======
 //            case R.id.action_contactus:    //세팅 액티비티로 가도록 이동
 //                Intent intent = new Intent(this, SettingsActivity.class);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 //                startActivity(intent);
 //                break;
->>>>>>> 68b5db84e9d059b58f9069b020e1d51b8c9339c2
             case R.id.action_logout:
                 // 로그아웃 테스트
                 // 이후 로그아웃 버튼 생성시 sessionManager.logout(); 함수 실행
@@ -301,7 +293,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void getCommentData() {
         RequestParams params = new RequestParams();
         params.put("seq", memoryDTO.getMemory_num());
-        String url = "http://192.168.0.42:8088/java/commentViewJson";
+        String url = "http://192.168.1.21:8085/java/commentViewJson";
 
         client.post(url, params,  commentHelper);
     }
@@ -311,7 +303,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         params.put("memory_seq", memoryDTO.getMemory_num());
         params.put("memory_comment_name", editTextCommentName.getText().toString().trim());
         params.put("memory_comment_content", editTextCommentContent.getText().toString().trim());
-        String url = "http://192.168.0.42:8088/java/viewCommentWriteJson";
+        String url = "http://192.168.1.21:8085/java/viewCommentWriteJson";
         client.post(url, params,  commentHelper);
 
         editTextCommentName.setText("");
@@ -428,7 +420,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandCheck() {
         RequestParams params = new RequestParams();
 
-        String url = "http://192.168.0.42:8088/java/recommandCheck";
+        String url = "http://192.168.1.21:8085/java/recommandCheck";
         params.put("recommand_id", session_id);
         params.put("recommand_seq", memoryDTO.getMemory_num());
         client.post(url, params, recommandCheckHelper);
@@ -438,12 +430,12 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     private void recommandData() {
         RequestParams params = new RequestParams();
         if (re_check == 1){
-            String url = "http://192.168.0.42:8088/java/recommendation";
+            String url = "http://192.168.1.21:8085/java/recommendation";
             params.put("memory_num", memoryDTO.getMemory_num());
             client.post(url, params, recommandHelper);
         } else if (re_check == 2){
             params.put("memory_num", memoryDTO.getMemory_num());
-            String url = "http://192.168.0.42:8088/java/notrecommendation";
+            String url = "http://192.168.1.21:8085/java/notrecommendation";
             client.post(url, params, recommandHelper);
         }
         re_check = 0;
