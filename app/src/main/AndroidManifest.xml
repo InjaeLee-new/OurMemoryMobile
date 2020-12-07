@@ -21,11 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-<<<<<<< HEAD
-
-=======
-        <activity android:name=".MyViewActivity"></activity>
->>>>>>> 68b5db84e9d059b58f9069b020e1d51b8c9339c2
+<!--        <activity android:name=".MyViewActivity"></activity>-->
         <activity android:name=".FavoriteActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".MapActivity" />
@@ -56,7 +52,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 안드로이드 푸쉬를 위해 추가 -->
+        </activity>
+        <!-- 안드로이드 푸쉬를 위해 추가 -->
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
