@@ -156,7 +156,7 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void updateJson() {
-        String url = "http://192.168.0.109:8082/java/modifyJson";
+        String url = "http://192.168.0.9:8085/java/modifyJson";
         RequestParams params = new RequestParams();
         params.put("memory_num", memoryDTO.getMemory_num());
         params.put("memory_subject", editTextS.getText().toString().trim());

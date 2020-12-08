@@ -93,7 +93,7 @@ public class ItListActivity extends AppCompatActivity implements View.OnClickLis
     private void getJsonData() {
 //        String url = "http://192.168.1.21:8085/java/listITJson";
 //        String url = "http://192.168.1.3:8085/java/listITJson";
-        String url = "http://192.168.0.109:8082/java/listITJson";
+        String url = "http://192.168.0.9:8085/java/listITJson";
 
         client.get(url, helper);
     }

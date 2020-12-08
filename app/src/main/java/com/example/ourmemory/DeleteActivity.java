@@ -97,7 +97,7 @@ public class DeleteActivity extends AppCompatActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.buttonDel:
-                String url = "http://192.168.0.109:8082/java/DeleteJson";
+                String url = "http://192.168.0.9:8085/java/DeleteJson";
                 RequestParams params = new RequestParams();
                 params.put("memory_num", memoryDTO.getMemory_num());
                 client.post(url, params, response);

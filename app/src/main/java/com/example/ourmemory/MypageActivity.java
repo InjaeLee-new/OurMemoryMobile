@@ -54,7 +54,7 @@ public class MypageActivity extends AppCompatActivity implements View.OnClickLis
     private void getJsonData() {
         RequestParams params = new RequestParams();
         params.put("id", session_id);
-        String url = "http://192.168.1.21:8085/java//memberViewJson";
+        String url = "http://192.168.0.9:8085/java//memberViewJson";
         client.post(url, params, helper);
     }
 
@@ -159,9 +159,9 @@ public class MypageActivity extends AppCompatActivity implements View.OnClickLis
                     editTextCate.setText(cate1+" / "+cate2+" / "+cate3);
 
                     // 회원가입 시 넣었던 이미지 존재 X, 실제 존재하는 이미지 이름으로 해도 출력 X
-//                    String full_filename = "http://192.168.0.9:8085/java/img" + "/" + select.getString("profile_image");
+                    String full_filename = "http://192.168.0.9:8085/java/img" + "/" + select.getString("profile_image");
 
-                    String full_filename = "http://192.168.0.109:8082/java/img" + "/" + "turtle.png";
+//                    String full_filename = "http://192.168.0.9:8085/java/img" + "/" + "turtle.png";
                     Glide.with(MypageActivity.this).load(full_filename).into(imageView1);
                 }
 

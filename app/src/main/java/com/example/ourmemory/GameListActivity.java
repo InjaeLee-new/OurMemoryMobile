@@ -53,13 +53,14 @@ public class GameListActivity extends AppCompatActivity implements View.OnClickL
 
         list = new ArrayList<>();
         adapter = new MemoryAdapter(this, R.layout.list_item, list);
+//        buttonH = findViewById(R.id.buttonHealth);
 
         client = new AsyncHttpClient();
         helper = new HealthJsonHelper(this, adapter, listView);
 
         listView.setAdapter(adapter);
 
-        buttonH.setOnClickListener(this);
+//        buttonH.setOnClickListener(this);
         listView.setOnItemClickListener(this);
 
         // 세션관리
@@ -92,7 +93,7 @@ public class GameListActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void getJsonData() {
-        String url = "http://192.168.0.109:8082/java/listGameJson";
+        String url = "http://192.168.0.9:8085/java/listGameJson";
         client.get(url, helper);
     }
 

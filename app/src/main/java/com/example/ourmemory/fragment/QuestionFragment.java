@@ -65,7 +65,7 @@ public class QuestionFragment extends Fragment {
     }
 
     private void getJsonData() {
-        String url = "http://192.168.0.109:8082/java/questionJson";
+        String url = "http://192.168.0.9:8085/java/questionJson";
         client.get(url, helper);
         adapter.notifyDataSetChanged();
     }
