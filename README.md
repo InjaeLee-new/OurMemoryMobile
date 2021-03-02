@@ -1,1 +1,1 @@
-# OurMemoryMobile
+# 우리들의 추억 저장소
