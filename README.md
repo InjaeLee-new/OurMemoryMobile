@@ -1,5 +1,8 @@
-![a](https://user-images.githubusercontent.com/71866565/109638381-4e5b1b00-7b91-11eb-9e86-3892a663f81a.PNG)
+![a](https://user-images.githubusercontent.com/71866565/109638381-4e5b1b00-7b91-11eb-9e86-3892a663f81a.PNG)<br>
+![image](https://user-images.githubusercontent.com/71866565/109779240-18796d80-7c49-11eb-834e-0d57b10bbb40.png)
 ![image](https://user-images.githubusercontent.com/71866565/109779104-f253cd80-7c48-11eb-8194-408ab34646ab.png)
+![image](https://user-images.githubusercontent.com/71866565/109779339-347d0f00-7c49-11eb-8009-f741ddc0f8d5.png)
+
 ## 우리들의 추억 저장소 (App)
 웹 & 앱 연동 추억 저장 통합 SNS  
 - Oracle
