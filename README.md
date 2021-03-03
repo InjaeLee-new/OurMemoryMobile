@@ -2,7 +2,6 @@
 ## 우리들의 추억 저장소 (App)
 웹 & 앱 연동 추억 저장 통합 SNS  
 - Oracle
-- Java
 - spring3
 
 ## 개요
