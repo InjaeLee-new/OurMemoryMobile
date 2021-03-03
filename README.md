@@ -48,24 +48,24 @@
 
 ## 역할
 > [InjaeLee-new (injae)](https://github.com/InjaeLee-new) ( 프로젝트 총괄 )
-> 앱
+##### 앱
 - ListView 기능, 댓글, FCM, 팝업 기능, 이벤트 페이지, 서브메뉴 2가지(memory, pet) 구현
-> 웹
+##### 웹
 - 리스트, 댓글 기능, 마이페이지, 페이징 처리, 웹 회원가입
-<br>
+
 > [aoqnwnd (seungwon)](https://github.com/aoqnwnd)
-> 앱
+##### 앱
 - 구글 로그인 API 적용, 상단 고객센터 페이지 제작, ViewPager 기능으로 여러 사진 보기 구현, 글쓰기 기능 구현
 - 토탈 리스트 구현, 로그인 세션관리추천, 비추천 기능, 데이터 DB에 저장, 서브메뉴의 리스트 2개( art, health)
-> 웹
+##### 웹
 - 내가 올린 글만 보기 기능 구현
-<br>
+
 > [hongsiiiii (sungin)](https://github.com/hongsiiiii)
-> 앱
+##### 앱
 - 전반적인 디자인 관리, 회원가입 기능 추가, footer 기능(회원 타임라인, 마이페이지), 서브메뉴 2가지(Food, Music) 구현
-> 웹
+##### 웹
 - Contact us 기능 구현, 전반적인 디자인 관리
-<br>
+
 > [mysoung00 (sungbin)](https://github.com/mysoung00)
-> 앱
+##### 앱
 - 글 (수정,삭제) 기능구현,  서브메뉴 2가지(memory, pet) 구현
