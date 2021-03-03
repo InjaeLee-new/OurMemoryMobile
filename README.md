@@ -50,7 +50,7 @@
 > [InjaeLee-new (injae)](https://github.com/InjaeLee-new)
 - 프로젝트 총괄, Git 관리
 - > 앱
-- - 1
+- 1
 > [aoqnwnd (seungwon)](https://github.com/aoqnwnd)
 - 1
 > [hongsiiiii (sungin)](https://github.com/hongsiiiii)
