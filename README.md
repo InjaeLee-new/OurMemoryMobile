@@ -47,7 +47,7 @@
 | 언어 | Java, Sql |
 
 ## 역할
-> [InjaeLee-new (injae)](https://github.com/InjaeLee-new) ( 프로젝트 총괄 )
+### [InjaeLee-new (injae)](https://github.com/InjaeLee-new) ( 프로젝트 총괄 )
 ##### 앱
 - ListView 기능
 - 댓글
@@ -62,7 +62,7 @@
 - 페이징 처리
 - 웹 회원가입
 
-> [aoqnwnd (seungwon)](https://github.com/aoqnwnd)
+### [aoqnwnd (seungwon)](https://github.com/aoqnwnd)
 ##### 앱
 - 구글 로그인 API 적용
 - 상단 고객센터 페이지 제작
@@ -76,7 +76,7 @@
 ##### 웹
 - 내가 올린 글만 보기 기능 구현
 
-> [hongsiiiii (sungin)](https://github.com/hongsiiiii)
+### [hongsiiiii (sungin)](https://github.com/hongsiiiii)
 ##### 앱
 - 전반적인 디자인 관리
 - 회원가입 기능 추가
@@ -86,7 +86,7 @@
 - Contact us 기능 구현
 - 전반적인 디자인 관리
 
-> [mysoung00 (sungbin)](https://github.com/mysoung00)
+### [mysoung00 (sungbin)](https://github.com/mysoung00)
 ##### 앱
 - 글 (수정,삭제) 기능구현
 - 서브메뉴 2가지(memory, pet) 구현
