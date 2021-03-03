@@ -46,3 +46,12 @@
 | 데이터베이스 | Oracle |
 | 언어 | Java, Sql |
 
+## 역할
+> [InjaeLee-new (injae)](https://github.com/InjaeLee-new)
+- 1
+> [aoqnwnd (seungwon)](https://github.com/aoqnwnd)
+- 1
+> [hongsiiiii (sungin)](https://github.com/hongsiiiii)
+- 1
+> [mysoung00 (sungbin)](https://github.com/mysoung00)
+- 1
