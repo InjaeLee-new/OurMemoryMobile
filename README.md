@@ -2,6 +2,9 @@
 ![image](https://user-images.githubusercontent.com/71866565/109779240-18796d80-7c49-11eb-834e-0d57b10bbb40.png)
 ![image](https://user-images.githubusercontent.com/71866565/109779339-347d0f00-7c49-11eb-8009-f741ddc0f8d5.png)
 ![image](https://user-images.githubusercontent.com/71866565/109779104-f253cd80-7c48-11eb-8194-408ab34646ab.png)
+![image](https://user-images.githubusercontent.com/71866565/112564887-67b55700-8e1f-11eb-848a-ea77f367e4e8.png)
+![image](https://user-images.githubusercontent.com/71866565/112564926-756adc80-8e1f-11eb-84dd-9059ba9082bf.png)
+
 
 ## 우리들의 추억 저장소 (App)
 웹 & 앱 연동 추억 저장 통합 SNS  
